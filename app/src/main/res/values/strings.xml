@@ -3,4 +3,16 @@
     <string name="login_btn">LOGIN</string>
     <string name="password_ptBr">Senha</string>
     <string name="username_ptBr">Usuário</string>
+
+    <!--activity_companies-->
+    <string name="cnpj_ptBr">CNPJ:</string>
+    <string name="state_registration_ptBr">Inscrição Estadual:</string>
+    <string name="social_name_ptBr">Nome Social:</string>
+    <string name="fantasy_name_ptBr">Nome Fantasia:</string>
+    <string name="address_ptBr">Endereço:</string>
+    <string name="cep_ptBr">CEP:</string>
+    <string name="complement_ptBr">Complemento:</string>
+    <string name="neighborhood_ptBr">Bairro:</string>
+    <string name="save_bt">SALVAR</string>
+    <string name="empty"></string>
 </resources>
