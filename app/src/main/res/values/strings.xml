@@ -13,6 +13,8 @@
     <string name="cep_ptBr">CEP:</string>
     <string name="complement_ptBr">Complemento:</string>
     <string name="neighborhood_ptBr">Bairro:</string>
+    <string name="state_name_ptBr">Estado</string>
+    <string name="city_name_ptBr">Cidade</string>
     <string name="save_bt">SALVAR</string>
     <string name="empty"></string>
 </resources>

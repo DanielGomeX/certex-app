@@ -8,117 +8,159 @@
     android:orientation="vertical"
     tools:context=".CompaniesActivity">
 
-    <EditText
-        android:id="@+id/et_social_name"
+    <ScrollView
+        android:id="@+id/sv_companies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/social_name_ptBr"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent">
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_fantasy_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/fantasy_name_ptBr"
-        android:inputType="textPersonName" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_social_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/social_name_ptBr"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/et_cpnj"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/cnpj_ptBr"
-        android:inputType="textPersonName" /> <!--Validar CNPJ-->
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_fantasy_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/fantasy_name_ptBr"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/et_state_registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/state_registration_ptBr"
-        android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL-->
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_cpnj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/cnpj_ptBr"
+                android:inputType="textPersonName" /> <!--Validar CNPJ-->
 
-    <EditText
-        android:id="@+id/et_cep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/cep_ptBr"
-        android:inputType="textPersonName" /> <!--Validar CEP-->
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_state_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/state_registration_ptBr"
+                android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL-->
 
-    <EditText
-        android:id="@+id/et_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/address_ptBr"
-        android:inputType="textPersonName" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_cep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/cep_ptBr"
+                android:inputType="textPersonName" /> <!--Validar CEP-->
 
-    <EditText
-        android:id="@+id/et_neighborhood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/neighborhood_ptBr"
-        android:inputType="textPersonName" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_states"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:enabled="false"
+                android:hint="@string/state_name_ptBr"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/et_complement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/complement_ptBr"
-        android:inputType="textPersonName" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="25dp" />
+            <EditText
+                android:id="@+id/et_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:enabled="false"
+                android:hint="@string/city_name_ptBr"
+                android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/bt_save"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:textColor="@color/colorText"
-        android:shadowColor="#A80000"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:background="@drawable/button_custom"
-        android:text="@string/save_bt" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/address_ptBr"
+                android:inputType="textPersonName" />
 
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/et_neighborhood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/neighborhood_ptBr"
+                android:inputType="textPersonName" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/et_complement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/complement_ptBr"
+                android:inputType="textPersonName" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <!--<Button-->
+            <!--android:id="@+id/bt_save"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:background="@drawable/button_custom"-->
+            <!--android:shadowColor="#A80000"-->
+            <!--android:shadowDx="0"-->
+            <!--android:shadowDy="0"-->
+            <!--android:shadowRadius="5"-->
+            <!--android:text="@string/save_bt"-->
+            <!--android:textColor="@color/colorText" />-->
+
+            <!--<android.support.v4.widget.Space-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="10dp" />-->
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

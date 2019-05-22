@@ -1,5 +1,8 @@
 package com.certex.certexapp;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +20,18 @@ public class MainActivity extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_companies);
+                Intent intent = new Intent(MainActivity.this, CompaniesActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+                //startActivity(intent); //TESTE TROCA DE TELA
             }
         });
     }
-    //sincronizou? SIM
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.move_left, R.anim.fade_out);
+    }
+
 }

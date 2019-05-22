@@ -9,11 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CompaniesActivity">
-            <meta-data
-                android:name="android:support.parent_activity"
-                android:value="com.certex.certexapp.MainActivity" />
-        </activity>
+        <activity
+            android:name=".CompaniesActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
