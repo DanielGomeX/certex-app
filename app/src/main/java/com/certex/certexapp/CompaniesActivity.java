@@ -21,7 +21,6 @@ public class CompaniesActivity extends AppCompatActivity {
     private EditText etCity;
     private EditText etSocialName;
     private EditText etAddress;
-    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
