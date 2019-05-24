@@ -5,22 +5,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.certex.certexapp.model.CEP;
 import com.certex.certexapp.model.SimpleCallback;
+import com.certex.certexapp.service.Alert;
 import com.certex.certexapp.service.CEPService;
 
 public class CompaniesActivity extends AppCompatActivity {
@@ -189,33 +186,7 @@ public class CompaniesActivity extends AppCompatActivity {
     }
 
     private void alert(String msg, boolean error) {
-        if (error) {
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.custom_toast_erro,
-                    (ViewGroup) findViewById(R.id.custom_toast_container));
-
-            TextView text = (TextView) layout.findViewById(R.id.text);
-            text.setText(msg);
-
-            Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layout);
-            toast.show();
-        } else {
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.custom_toast_ok,
-                    (ViewGroup) findViewById(R.id.custom_toast_container));
-
-            TextView text = (TextView) layout.findViewById(R.id.text);
-            text.setText(msg);
-
-            Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layout);
-            toast.show();
-        }
+        new Alert().show(msg, error, getLayoutInflater(), getApplicationContext(), this.findViewById(android.R.id.content));
     }
 
     @Override
