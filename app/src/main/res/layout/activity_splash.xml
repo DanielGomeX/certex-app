@@ -10,14 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/loading" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="158dp"
-        android:layout_height="302dp"
-        app:srcCompat="@drawable/wallpaper_splash"
+        android:src="@drawable/loading"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="429dp" />
+        tools:layout_editor_absoluteY="-1dp" />
 
 </android.support.constraint.ConstraintLayout>
