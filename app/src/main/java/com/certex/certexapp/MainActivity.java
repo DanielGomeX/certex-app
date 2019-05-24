@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         Button bt_login = (Button) findViewById(R.id.btn_login);
 
         bt_login.setOnClickListener(new View.OnClickListener() {
