@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/cnpj_ptBr"
-                android:inputType="textPersonName" /> <!--Validar CNPJ-->
+                android:inputType="number" /> <!--Validar CNPJ-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/cep_ptBr"
-                android:inputType="textPersonName" /> <!--Validar CEP-->
+                android:inputType="number" /> <!--Validar CEP-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/state_name_ptBr"
                 android:inputType="textPersonName" />
 
@@ -113,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:enabled="false"
                 android:hint="@string/address_ptBr"
                 android:inputType="textPersonName" />
 
@@ -125,6 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:enabled="false"
                 android:hint="@string/neighborhood_ptBr"
                 android:inputType="textPersonName" />
 
@@ -137,6 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:enabled="false"
                 android:hint="@string/complement_ptBr"
                 android:inputType="textPersonName" />
 
