@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_companies"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -16,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.065"
-        app:srcCompat="@drawable/extintor" />
+        app:srcCompat="@drawable/wallpaper" />
 
     <Button
         android:id="@+id/btn_login"
@@ -63,7 +65,7 @@
         android:layout_marginRight="50dp"
         android:ems="10"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textWebPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password" />
