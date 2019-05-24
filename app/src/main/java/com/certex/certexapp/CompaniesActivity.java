@@ -46,7 +46,6 @@ public class CompaniesActivity extends AppCompatActivity {
         etNeighborhood = (EditText) findViewById(R.id.et_neighborhood);
         etComplement = (EditText) findViewById(R.id.et_complement);
 
-
         etState.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
