@@ -1,11 +1,8 @@
 package com.certex.certexapp;
 
-import android.content.Intent;
-import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,17 +38,17 @@ public class MainActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
-                //startActivity(intent); //TESTE TROCA DE TELA
+//                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+//                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+//                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+//                //startActivity(intent); //TESTE TROCA DE TELA
 
                 String usernameText = etUsername.getText().toString().trim();
                 String passwordText = etPassword.getText().toString().trim();
 
-                if (usernameText.isEmpty() || passwordText.isEmpty()){
-                    alert("Favor preencher todos os campos", true);
-                } else {
+//                if (usernameText.isEmpty() || passwordText.isEmpty()){
+//                    alert("Favor preencher todos os campos", true);
+//                } else {
                     String[] keys = {"email", "password"};
                     String[] values = {"anderson@certex.com", "123456"};
 
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ConnectionAPI.setToken("");
 
-                }
+//                }
 
             }
         });

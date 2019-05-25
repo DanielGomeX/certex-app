@@ -2,18 +2,16 @@ package com.certex.certexapp.helpers;
 
 import android.support.v7.app.AppCompatActivity;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ConnectionAPI extends AppCompatActivity {
 
     private static String token;
 
-    private static String dataUrl = "http://177.44.248.19/api/";
+    private static String dataUrl = "177.44.248.19/api/";
 
     public static final String LOGIN = "login";
     public static final String COMPANY = "company";
@@ -22,8 +20,8 @@ public class ConnectionAPI extends AppCompatActivity {
 
         String dataUrlTemp = dataUrl;
         String solution = null;
-
-        dataUrlTemp += from + "?token=" + token;
+        dataUrlTemp += from + "?";
+//        dataUrlTemp += from + "?token=" + token;
         if (keys.length == values.length) {
             int length = keys.length;
 
@@ -35,12 +33,31 @@ public class ConnectionAPI extends AppCompatActivity {
 
                 try {
 
-                    HttpClient httpclient = (HttpClient) new DefaultHttpClient();
-                    HttpGet httpget = new HttpGet(dataUrl);
-                    HttpResponse response = (HttpResponse) httpclient.execute(httpget);
-                    HttpEntity entity = response.getEntity();
+//                    HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+//                    HttpPost httppost = new HttpPost(dataUrl);
+//                    HttpResponse response = (HttpResponse) httpclient.execute(httppost);
+//                    HttpEntity entity = response.getEntity();
 
-                    solution = EntityUtils.toString(entity).trim();
+
+                    URL url = new URL(dataUrlTemp);
+                    HttpURLConnection client = null;
+                    try {
+                        client = (HttpURLConnection) url.openConnection();
+                        client.setRequestMethod("POST");
+                        client.setRequestProperty("key", "value");
+                        client.setDoOutput(true);
+
+                        OutputStream outputPost = new BufferedOutputStream(client.getOutputStream());
+                        solution = outputPost.toString();
+                        outputPost.flush();
+                        outputPost.close();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                    //solution =EntityUtils.toString(entity).trim();
 
                 } catch (Exception e) {
                     e.printStackTrace();
