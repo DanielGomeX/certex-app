@@ -2,20 +2,28 @@ package com.certex.certexapp.helpers;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 public class ConnectionAPI extends AppCompatActivity {
 
     private static String token;
 
-    private static String dataUrl = "http://177.44.248.19/api/" + "?token=";
+    private static String dataUrl = "http://177.44.248.19/api/";
 
+    public static final String LOGIN = "login";
+    public static final String COMPANY = "company";
 
-
-    public static String api(String[] keys, String[] values){
+    public static String api(String[] keys, String[] values, String from){
 
         String dataUrlTemp = dataUrl;
         String solution = null;
 
-        dataUrlTemp += token;
+        dataUrlTemp += from + "?token=" + token;
         if (keys.length == values.length) {
             int length = keys.length;
 
@@ -27,11 +35,12 @@ public class ConnectionAPI extends AppCompatActivity {
 
                 try {
 
-//                    HttpClient httpclient = (HttpClient) new DefaultHttpClient();
-//                    HttpGet httpget = new HttpGet(dataUrl);
-//                    HttpResponse response = (HttpResponse) httpclient.execute(httpget);
-//                    HttpEntity entity = response.getEntity();
+                    HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+                    HttpGet httpget = new HttpGet(dataUrl);
+                    HttpResponse response = (HttpResponse) httpclient.execute(httpget);
+                    HttpEntity entity = response.getEntity();
 
+                    solution = EntityUtils.toString(entity).trim();
 
                 } catch (Exception e) {
                     e.printStackTrace();

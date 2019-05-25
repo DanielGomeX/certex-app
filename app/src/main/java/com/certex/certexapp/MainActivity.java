@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.certex.certexapp.helpers.ConnectionAPI;
 import com.certex.certexapp.service.Alert;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btLogin ;
     private EditText etUsername ;
     private EditText etPassword ;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btLogin = (Button) findViewById(R.id.btn_login);
         etUsername = (EditText) findViewById(R.id.et_username);
         etPassword = (EditText) findViewById(R.id.et_password);
+        tv = (TextView) findViewById(R.id.textView);
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 if (usernameText.isEmpty() || passwordText.isEmpty()){
                     alert("Favor preencher todos os campos", true);
                 } else {
+                    String[] keys = {"email", "password"};
+                    String[] values = {"anderson@certex.com", "123456"};
+
+                    tv.setText( ConnectionAPI.api(keys, values, ConnectionAPI.LOGIN) );
 
                     ConnectionAPI.setToken("");
 
