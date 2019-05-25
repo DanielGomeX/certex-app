@@ -23,11 +23,11 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_social_name"
+                android:id="@+id/et_companies_social_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/social_name_ptBr"
+                android:hint="@string/social_name_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -35,11 +35,11 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_fantasy_name"
+                android:id="@+id/et_companies_fantasy_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/fantasy_name_ptBr"
+                android:hint="@string/fantasy_name_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -47,11 +47,11 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_cpnj"
+                android:id="@+id/et_companies_cpnj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/cnpj_ptBr"
+                android:hint="@string/cnpj_companies_ptBr"
                 android:inputType="number" /> <!--Validar CNPJ-->
 
             <android.support.v4.widget.Space
@@ -59,11 +59,11 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_state_registration"
+                android:id="@+id/et_companies_state_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/state_registration_ptBr"
+                android:hint="@string/state_registration_companies_ptBr"
                 android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL-->
 
             <android.support.v4.widget.Space
@@ -71,11 +71,11 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_cep"
+                android:id="@+id/et_companies_cep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/cep_ptBr"
+                android:hint="@string/cep_companies_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="number" /> <!--Validar CEP-->
 
@@ -84,12 +84,12 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_states"
+                android:id="@+id/et_companies_states"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:enabled="true"
-                android:hint="@string/state_name_ptBr"
+                android:hint="@string/state_name_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -97,12 +97,12 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_city"
+                android:id="@+id/et_companies_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:enabled="false"
-                android:hint="@string/city_name_ptBr"
+                android:hint="@string/city_name_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -110,12 +110,12 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_address"
+                android:id="@+id/et_companies_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:enabled="false"
-                android:hint="@string/address_ptBr"
+                android:hint="@string/address_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -123,12 +123,12 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_neighborhood"
+                android:id="@+id/et_companies_neighborhood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:enabled="false"
-                android:hint="@string/neighborhood_ptBr"
+                android:hint="@string/neighborhood_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -136,12 +136,12 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_complement"
+                android:id="@+id/et_companies_complement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:enabled="false"
-                android:hint="@string/complement_ptBr"
+                android:hint="@string/complement_companies_ptBr"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -149,7 +149,7 @@
                 android:layout_height="25dp" />
 
             <Button
-                android:id="@+id/bt_signature"
+                android:id="@+id/bt_companies_signature"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -158,7 +158,7 @@
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
-                android:text="@string/signature_bt"
+                android:text="@string/signature_companies_bt"
                 android:textColor="@color/colorText" />
 
             <android.support.v4.widget.Space

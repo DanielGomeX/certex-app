@@ -39,17 +39,17 @@ public class CompaniesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
 
-        etSocialName = (EditText) findViewById(R.id.et_social_name);
-        etFantasyName = (EditText) findViewById(R.id.et_fantasy_name);
-        etCpnj = (EditText) findViewById(R.id.et_cpnj);
-        etStateRegistration = (EditText) findViewById(R.id.et_state_registration);
-        etCep = (EditText) findViewById(R.id.et_cep);
-        etState = (EditText) findViewById(R.id.et_states);
-        etCity = (EditText) findViewById(R.id.et_city);
-        etAddress = (EditText) findViewById(R.id.et_address);
-        etNeighborhood = (EditText) findViewById(R.id.et_neighborhood);
-        etComplement = (EditText) findViewById(R.id.et_complement);
-        btSignature = (Button) findViewById(R.id.bt_signature);
+        etSocialName = (EditText) findViewById(R.id.et_companies_social_name);
+        etFantasyName = (EditText) findViewById(R.id.et_companies_fantasy_name);
+        etCpnj = (EditText) findViewById(R.id.et_companies_cpnj);
+        etStateRegistration = (EditText) findViewById(R.id.et_companies_state_registration);
+        etCep = (EditText) findViewById(R.id.et_companies_cep);
+        etState = (EditText) findViewById(R.id.et_companies_states);
+        etCity = (EditText) findViewById(R.id.et_companies_city);
+        etAddress = (EditText) findViewById(R.id.et_companies_address);
+        etNeighborhood = (EditText) findViewById(R.id.et_companies_neighborhood);
+        etComplement = (EditText) findViewById(R.id.et_companies_complement);
+        btSignature = (Button) findViewById(R.id.bt_companies_signature);
 
         etState.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -168,7 +168,7 @@ public class CompaniesActivity extends AppCompatActivity {
                         !etCpnj.getText().toString().isEmpty() && !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
                         !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
                     alert("SALVO COM SUCESSO!", false);
-                    onBackPressed();
+                    System.exit(0);
                     return true;
                 } else {
                     alert("Favor Preencher os dados Corretamente!", true);
