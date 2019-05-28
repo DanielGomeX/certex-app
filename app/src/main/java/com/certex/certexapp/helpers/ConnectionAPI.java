@@ -27,13 +27,17 @@ public class ConnectionAPI extends AppCompatActivity {
         String dataUrlTemp = dataUrl;
         String solution = null;
         dataUrlTemp += from + "?";
-        dataUrlTemp += from + "?token=" + token;
+        //dataUrlTemp += from + "?token=" + token;
         if (keys.length == values.length) {
             int length = keys.length;
 
             if (length > 0) {
                 for (int i = 0; i < length; i++) {
-                    dataUrlTemp += "&" + keys[i] + "=" + values[i];
+                    if (i == 0) {
+                        dataUrlTemp += keys[i] + "=" + values[i];
+                    } else {
+                        dataUrlTemp += "&" + keys[i] + "=" + values[i];
+                    }
                 }
             }
 
@@ -48,7 +52,7 @@ public class ConnectionAPI extends AppCompatActivity {
                 client.connect();
 
                 Scanner scanner = new Scanner(url.openStream());
-                while (scanner.hasNext()){
+                while (scanner.hasNext()) {
                     reply.append(scanner.next());
                 }
             } catch (Exception e) {

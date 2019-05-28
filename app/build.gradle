@@ -35,4 +35,6 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
 
     implementation 'com.github.gcacace:signature-pad:1.2.1'
+
+    implementation 'com.mcxiaoke.volley:library:1.0.18'
 }
