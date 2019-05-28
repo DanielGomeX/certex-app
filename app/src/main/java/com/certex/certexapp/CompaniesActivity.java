@@ -5,20 +5,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.certex.certexapp.model.CEP;
-import com.certex.certexapp.model.SimpleCallback;
 import com.certex.certexapp.service.Alert;
-import com.certex.certexapp.service.CEPService;
+
 
 public class CompaniesActivity extends AppCompatActivity {
 
@@ -51,104 +45,104 @@ public class CompaniesActivity extends AppCompatActivity {
         etComplement = (EditText) findViewById(R.id.et_companies_complement);
         btSignature = (Button) findViewById(R.id.bt_companies_signature);
 
-        etState.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (!etCep.getText().toString().isEmpty()) {
-                        CEPService service = new CEPService(CompaniesActivity.this);
-
-                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
-
-                            @Override
-                            public void onResponse(CEP response) {
-                                CEP cep = response;
-                                String[] txt = cep.toString().split(";");
-                                etState.setText(txt[0]);
-                                etCity.setText(txt[1]);
-                                etState.setEnabled(false);
-                                etAddress.setEnabled(true);
-                                etNeighborhood.setEnabled(true);
-                                etComplement.setEnabled(true);
-                                etAddress.requestFocus();
-                            }
-
-                            @Override
-                            public void onError(String error) {
-                                alert("CEP Não Encontrado!", true);
-                                etState.setEnabled(true);
-                                etAddress.setEnabled(false);
-                                etNeighborhood.setEnabled(false);
-                                etComplement.setEnabled(false);
-                                etCep.setText("");
-                                etCep.requestFocus();
-                            }
-                        });
-
-                    } else {
-                        alert("Favor Preencher o CEP", true);
-                        etState.setEnabled(true);
-                        etAddress.setEnabled(false);
-                        etNeighborhood.setEnabled(false);
-                        etComplement.setEnabled(false);
-                        etCep.setText("");
-                        etCep.requestFocus();
-                    }
-                }
-                return false;
-            }
-        });
-
-        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etCep.getText().toString().isEmpty()) {
-                        CEPService service = new CEPService(CompaniesActivity.this);
-
-                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
-
-                            @Override
-                            public void onResponse(CEP response) {
-                                CEP cep = response;
-                                String[] txt = cep.toString().split(";");
-                                etState.setText(txt[0]);
-                                etCity.setText(txt[1]);
-                                etState.setEnabled(false);
-                                etAddress.setEnabled(true);
-                                etNeighborhood.setEnabled(true);
-                                etComplement.setEnabled(true);
-                                etAddress.requestFocus();
-                            }
-
-                            @Override
-                            public void onError(String error) {
-                                alert("CEP Não Encontrado!", true);
-                                etState.setEnabled(true);
-                                etAddress.setEnabled(false);
-                                etNeighborhood.setEnabled(false);
-                                etComplement.setEnabled(false);
-                                etCep.setText("");
-                                etCep.requestFocus();
-                            }
-                        });
-
-                    } else {
-                        alert("Favor Preencher o CEP", true);
-                        etState.setEnabled(true);
-                        etAddress.setEnabled(false);
-                        etNeighborhood.setEnabled(false);
-                        etComplement.setEnabled(false);
-                        etCep.setText("");
-                        etCep.requestFocus();
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
+//        etState.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    if (!etCep.getText().toString().isEmpty()) {
+//                        CEPService service = new CEPService(CompaniesActivity.this);
+//
+//                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
+//
+//                            @Override
+//                            public void onResponse(CEP response) {
+//                                CEP cep = response;
+//                                String[] txt = cep.toString().split(";");
+//                                etState.setText(txt[0]);
+//                                etCity.setText(txt[1]);
+//                                etState.setEnabled(false);
+//                                etAddress.setEnabled(true);
+//                                etNeighborhood.setEnabled(true);
+//                                etComplement.setEnabled(true);
+//                                etAddress.requestFocus();
+//                            }
+//
+//                            @Override
+//                            public void onError(String error) {
+//                                alert("CEP Não Encontrado!", true);
+//                                etState.setEnabled(true);
+//                                etAddress.setEnabled(false);
+//                                etNeighborhood.setEnabled(false);
+//                                etComplement.setEnabled(false);
+//                                etCep.setText("");
+//                                etCep.requestFocus();
+//                            }
+//                        });
+//
+//                    } else {
+//                        alert("Favor Preencher o CEP", true);
+//                        etState.setEnabled(true);
+//                        etAddress.setEnabled(false);
+//                        etNeighborhood.setEnabled(false);
+//                        etComplement.setEnabled(false);
+//                        etCep.setText("");
+//                        etCep.requestFocus();
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+//
+//        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etCep.getText().toString().isEmpty()) {
+//                        CEPService service = new CEPService(CompaniesActivity.this);
+//
+//                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
+//
+//                            @Override
+//                            public void onResponse(CEP response) {
+//                                CEP cep = response;
+//                                String[] txt = cep.toString().split(";");
+//                                etState.setText(txt[0]);
+//                                etCity.setText(txt[1]);
+//                                etState.setEnabled(false);
+//                                etAddress.setEnabled(true);
+//                                etNeighborhood.setEnabled(true);
+//                                etComplement.setEnabled(true);
+//                                etAddress.requestFocus();
+//                            }
+//
+//                            @Override
+//                            public void onError(String error) {
+//                                alert("CEP Não Encontrado!", true);
+//                                etState.setEnabled(true);
+//                                etAddress.setEnabled(false);
+//                                etNeighborhood.setEnabled(false);
+//                                etComplement.setEnabled(false);
+//                                etCep.setText("");
+//                                etCep.requestFocus();
+//                            }
+//                        });
+//
+//                    } else {
+//                        alert("Favor Preencher o CEP", true);
+//                        etState.setEnabled(true);
+//                        etAddress.setEnabled(false);
+//                        etNeighborhood.setEnabled(false);
+//                        etComplement.setEnabled(false);
+//                        etCep.setText("");
+//                        etCep.requestFocus();
+//                    }
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
         btSignature.setOnClickListener(new View.OnClickListener() {
             @Override
