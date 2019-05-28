@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     String[] keys = {"email", "password"};
                     String[] values = {"anderson@certex.com", "123456"};
 
-                    tv.setText( ConnectionAPI.api(keys, values, ConnectionAPI.LOGIN) );
+                    tv.setText( ConnectionAPI.apiPOST(keys, values, ConnectionAPI.LOGIN) );
 
                     ConnectionAPI.setToken("");
 

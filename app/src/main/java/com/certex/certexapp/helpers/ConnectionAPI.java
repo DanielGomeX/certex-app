@@ -2,10 +2,16 @@ package com.certex.certexapp.helpers;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 public class ConnectionAPI extends AppCompatActivity {
 
@@ -16,58 +22,81 @@ public class ConnectionAPI extends AppCompatActivity {
     public static final String LOGIN = "login";
     public static final String COMPANY = "company";
 
-    public static String api(String[] keys, String[] values, String from){
+    public static String apiPOST(String[] keys, String[] values, String from) {
 
         String dataUrlTemp = dataUrl;
         String solution = null;
         dataUrlTemp += from + "?";
-//        dataUrlTemp += from + "?token=" + token;
+        dataUrlTemp += from + "?token=" + token;
         if (keys.length == values.length) {
             int length = keys.length;
 
-            if(length > 0) {
+            if (length > 0) {
                 for (int i = 0; i < length; i++) {
-                    dataUrlTemp += "&" + keys[i]+"="+values[i];
+                    dataUrlTemp += "&" + keys[i] + "=" + values[i];
                 }
             }
 
-                try {
+            StringBuilder reply = new StringBuilder();
 
-//                    HttpClient httpclient = (HttpClient) new DefaultHttpClient();
-//                    HttpPost httppost = new HttpPost(dataUrl);
-//                    HttpResponse response = (HttpResponse) httpclient.execute(httppost);
-//                    HttpEntity entity = response.getEntity();
+            try {
+                URL url = new URL(dataUrlTemp);
+                HttpURLConnection client = (HttpURLConnection) url.openConnection();
+                client.setRequestMethod("POST");
+                client.setRequestProperty("Accept", "application/json");
+                client.setConnectTimeout(5000);
+                client.connect();
 
-
-                    URL url = new URL(dataUrlTemp);
-                    HttpURLConnection client = null;
-                    try {
-                        client = (HttpURLConnection) url.openConnection();
-                        client.setRequestMethod("POST");
-                        client.setRequestProperty("key", "value");
-                        client.setDoOutput(true);
-
-                        OutputStream outputPost = new BufferedOutputStream(client.getOutputStream());
-                        solution = outputPost.toString();
-                        outputPost.flush();
-                        outputPost.close();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
-                    //solution =EntityUtils.toString(entity).trim();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+                Scanner scanner = new Scanner(url.openStream());
+                while (scanner.hasNext()){
+                    reply.append(scanner.next());
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            solution = reply.toString().trim();
+
         }
 
         return solution;
     }
 
-    public static void setToken(String token){
+    public static String apiGET(String[] keys, String[] values, String from) {
+
+        String dataUrlTemp = dataUrl;
+        String solution = null;
+        dataUrlTemp += from + "?";
+        dataUrlTemp += from + "?token=" + token;
+        if (keys.length == values.length) {
+            int length = keys.length;
+
+            if (length > 0) {
+                for (int i = 0; i < length; i++) {
+                    dataUrlTemp += "&" + keys[i] + "=" + values[i];
+                }
+            }
+
+            try {
+
+                HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+                HttpGet httppost = new HttpGet(dataUrl);
+                HttpResponse response = (HttpResponse) httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+
+
+                solution = EntityUtils.toString(entity).trim();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return solution;
+    }
+
+    public static void setToken(String token) {
         ConnectionAPI.token = token;
     }
 
