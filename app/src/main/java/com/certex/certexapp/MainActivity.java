@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     String reply = ConnectionAPI.apiPOST(keys, values, ConnectionAPI.LOGIN).get("access_token");
                     tv.setText(reply);
                 }
-
             }
         });
     }
