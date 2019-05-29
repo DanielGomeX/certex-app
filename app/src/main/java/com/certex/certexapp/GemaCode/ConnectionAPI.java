@@ -36,7 +36,7 @@ public class ConnectionAPI {
         final StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONArray array;
+                //JSONArray array;
                 try {
                     JSONObject object = new JSONObject(response);
                     //JSONArray jarray = object.getJSONArray("access_token");
