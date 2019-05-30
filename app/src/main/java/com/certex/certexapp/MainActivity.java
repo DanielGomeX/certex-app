@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.GemaCode.Session;
@@ -41,57 +44,35 @@ public class MainActivity extends AppCompatActivity {
         etPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                String usernameText = etUsername.getText().toString().trim();
-                String passwordText = etPassword.getText().toString().trim();
-
-                if (etPassword.getText().length() > 5) {
-                    String[] keys = {"email", "password"};
-                    String[] values = {usernameText, passwordText};
-                    ConnectionAPI api = new ConnectionAPI();
-                    Log.i("Script", "beforeTextChanged");
-                    api.Post(keys, values, "login", "access_token", MainActivity.this);
-                }
-
+                getToken();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String usernameText = etUsername.getText().toString().trim();
-                String passwordText = etPassword.getText().toString().trim();
-
-                if (etPassword.getText().length() > 5) {
-                    String[] keys = {"email", "password"};
-                    String[] values = {usernameText, passwordText};
-                    ConnectionAPI api = new ConnectionAPI();
-                    Log.i("Script", "onTextChanged");
-                    api.Post(keys, values, "login", "access_token", MainActivity.this);
-                }
+                getToken();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //Action on click
+            }
+        });
+
+        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    goLogin();
+                    return true;
+                }
+                return false;
             }
         });
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String usernameText = etUsername.getText().toString().trim();
-                String passwordText = etPassword.getText().toString().trim();
-
-                if (usernameText.isEmpty() || passwordText.isEmpty()) {
-                    alert("Favor preencher todos os campos", true);
-                } else {
-                    if (Session.getInstance().getToken() != null) {
-                        Intent intent = new Intent(MainActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
-                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                        ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
-                    } else {
-                        alert("Usuário e/ou Senha Incorretos(s)!", true);
-                    }
-                }
+                goLogin();
             }
         });
 
@@ -103,6 +84,36 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
+    }
+
+    private void goLogin() {
+        String usernameText = etUsername.getText().toString().trim();
+        String passwordText = etPassword.getText().toString().trim();
+
+        if (usernameText.isEmpty() || passwordText.isEmpty()) {
+            alert("Favor preencher todos os campos", true);
+        } else {
+            if (Session.getInstance().getToken() != null) {
+                Intent intent = new Intent(MainActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+            } else {
+                alert("Usuário e/ou Senha Incorretos(s)!", true);
+            }
+        }
+    }
+
+    private void getToken() {
+        String usernameText = etUsername.getText().toString().trim();
+        String passwordText = etPassword.getText().toString().trim();
+
+        if (etPassword.getText().length() > 5) {
+            String[] keys = {"email", "password"};
+            String[] values = {usernameText, passwordText};
+            ConnectionAPI api = new ConnectionAPI();
+            Log.i("Script", "beforeTextChanged");
+            api.Post(keys, values, "login", "access_token", MainActivity.this);
+        }
     }
 
     private void alert(String msg, boolean error) {
