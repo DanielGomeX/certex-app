@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
 
 
@@ -48,7 +49,6 @@ public class CompaniesActivity extends AppCompatActivity {
 //        etState.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
-//
 //
 //                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 //                    if (!etCep.getText().toString().isEmpty()) {

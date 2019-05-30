@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.GemaCode.Session;
@@ -35,30 +36,58 @@ public class MainActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.et_password);
 
         etUsername.setText("jackson@certex.com");
-        etPassword.setText("123456");
+        etPassword.setText("");
 
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                String usernameText = etUsername.getText().toString().trim();
+                String passwordText = etPassword.getText().toString().trim();
+
+                if (etPassword.getText().length() > 5) {
+                    String[] keys = {"email", "password"};
+                    String[] values = {usernameText, passwordText};
+                    ConnectionAPI api = new ConnectionAPI();
+                    Log.i("Script", "beforeTextChanged");
+                    api.Post(keys, values, "login", "access_token", MainActivity.this);
+                }
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String usernameText = etUsername.getText().toString().trim();
+                String passwordText = etPassword.getText().toString().trim();
+
+                if (etPassword.getText().length() > 5) {
+                    String[] keys = {"email", "password"};
+                    String[] values = {usernameText, passwordText};
+                    ConnectionAPI api = new ConnectionAPI();
+                    Log.i("Script", "onTextChanged");
+                    api.Post(keys, values, "login", "access_token", MainActivity.this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String usernameText = etUsername.getText().toString().trim();
                 String passwordText = etPassword.getText().toString().trim();
 
                 if (usernameText.isEmpty() || passwordText.isEmpty()) {
                     alert("Favor preencher todos os campos", true);
                 } else {
-                    String[] keys = {"email", "password"};
-                    String[] values = {usernameText, passwordText};
-                    ConnectionAPI api = new ConnectionAPI();
-                    api.Post(keys, values, "login", "access_token", MainActivity.this);
-                    String token = Session.getInstance().getToken() + "";
-                    alert(token, false);
-
-                    if (Session.getInstance().getToken() != null) { //TESTE
-                        Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                    if (Session.getInstance().getToken() != null) {
+                        Intent intent = new Intent(MainActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
-                        alert(token, false);
                     } else {
                         alert("Usuário e/ou Senha Incorretos(s)!", true);
                     }
@@ -75,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void alert(String msg, boolean error) {
         new Alert().show(msg, error, getLayoutInflater(), getApplicationContext(), this.findViewById(android.R.id.content));
