@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/name_user_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -46,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/email_user_ptBr"
-                android:inputType="textPersonName" />
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -58,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/password_user_ptBr"
-                android:inputType="textVisiblePassword" /> <!--Validar CNPJ-->
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" /> <!--Validar CNPJ-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

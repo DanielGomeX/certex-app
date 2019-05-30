@@ -46,6 +46,8 @@ public class CompaniesActivity extends AppCompatActivity {
         etComplement = (EditText) findViewById(R.id.et_companies_complement);
         btSignature = (Button) findViewById(R.id.bt_companies_signature);
 
+        setTitle("Dados da Empresa");
+
 //        etState.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
