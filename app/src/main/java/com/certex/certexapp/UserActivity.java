@@ -44,39 +44,17 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etName.getText().toString().isEmpty()) {
-                        if (validateNameFormat(etName.getText().toString())) {
-                            etEmail.requestFocus();
-                        } else {
-                            alert("Nome Inválido!", true);
-                            etName.requestFocus();
-                        }
-                    } else {
-                        alert("Nome Inválido!", true);
-                        etName.requestFocus();
-                    }
-                    return true;
+                    return !validateNameFormat(etName.getText().toString());
                 }
-                return false;
+                return true;
             }
         });
+
 
         etEmail.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (!etName.getText().toString().isEmpty()) {
-                    if (validateNameFormat(etName.getText().toString())) {
-                        etEmail.requestFocus();
-                        return true;
-                    } else {
-                        alert("Nome Inválido!", true);
-                        etName.requestFocus();
-                    }
-                } else {
-                    alert("Nome Inválido!", true);
-                    etName.requestFocus();
-                }
-                return false;
+                return !validateNameFormat(etName.getText().toString());
             }
         });
 
@@ -84,39 +62,16 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etEmail.getText().toString().isEmpty()) {
-                        if (validateEmailFormat(etEmail.getText().toString())) {
-                            etPassword.requestFocus();
-                        } else {
-                            alert("E-mail Inválido!", true);
-                            etEmail.requestFocus();
-                        }
-                    } else {
-                        alert("E-mail Inválido!", true);
-                        etEmail.requestFocus();
-                    }
-                    return true;
+                    return !validateEmailFormat(etEmail.getText().toString());
                 }
-                return false;
+                return true;
             }
         });
 
         etPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (!etEmail.getText().toString().isEmpty()) {
-                    if (validateEmailFormat(etEmail.getText().toString())) {
-                        etPassword.requestFocus();
-                        return true;
-                    } else {
-                        alert("E-mail Inválido!", true);
-                        etEmail.requestFocus();
-                    }
-                } else {
-                    alert("E-mail Inválido!", true);
-                    etEmail.requestFocus();
-                }
-                return false;
+                return !validateEmailFormat(etEmail.getText().toString());
             }
         });
 
@@ -124,23 +79,30 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    goCompany();
+                    return !goCompany();
                 }
-                return false;
+                return true;
             }
         });
     }
 
     private boolean validateNameFormat(String name) {
+        if (name.isEmpty()) {
+            alert("Nome Inválido!", true);
+            return false; //Nome Invalido
+        }
         if (name.length() < 4 || name.length() > 50) {
+            alert("Nome Inválido!", true);
             return false; //Nome Invalido
         }
 
         if (name.indexOf(" ") == -1) {
+            alert("Nome Inválido!", true);
             return false; //Deve conter nome e sobrenome
         }
 
         if (name.substring(0, name.indexOf(" ")).length() < 2 || name.substring(name.lastIndexOf(" ") + 1).length() < 2) {
+            alert("Nome Inválido!", true);
             return false; //O nome e o sobrenome deve contrer pelo menos 2 caracteres
         }
 
@@ -158,8 +120,14 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private boolean validateEmailFormat(final String email) {
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            return true;
+        if (!email.isEmpty()) {
+            if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                return true;
+            } else {
+                alert("E-mail Inválido!", true);
+            }
+        } else {
+            alert("E-mail Inválido!", true);
         }
         return false;
     }

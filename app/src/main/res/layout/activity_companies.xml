@@ -23,36 +23,14 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_companies_social_name"
+                android:id="@+id/et_companies_cnpj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:hint="@string/social_name_companies_ptBr"
-                android:inputType="textPersonName" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/et_companies_fantasy_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="@string/fantasy_name_companies_ptBr"
-                android:inputType="textPersonName" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/et_companies_cpnj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
+                android:enabled="true"
                 android:hint="@string/cnpj_companies_ptBr"
-                android:inputType="number" /> <!--Validar CNPJ-->
+                android:imeOptions="actionNext"
+                android:inputType="number" /> <!--Validar CNPJ E PREENCHER O RESTO-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -63,21 +41,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:enabled="true"
                 android:hint="@string/state_registration_companies_ptBr"
-                android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL-->
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
             <EditText
+                android:id="@+id/et_companies_social_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:enabled="false"
+                android:hint="@string/social_name_companies_ptBr"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/et_companies_fantasy_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:enabled="false"
+                android:hint="@string/fantasy_name_companies_ptBr"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+
+            <EditText
                 android:id="@+id/et_companies_cep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:enabled="false"
                 android:hint="@string/cep_companies_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="number" /> <!--Validar CEP-->
+                android:inputType="number" /> <!--Validar CEP E PREENCHER ESTADO E CIDADE-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -88,8 +98,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:enabled="true"
+                android:enabled="false"
                 android:hint="@string/state_name_companies_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -103,6 +114,7 @@
                 android:autofillHints=""
                 android:enabled="false"
                 android:hint="@string/city_name_companies_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -116,6 +128,7 @@
                 android:autofillHints=""
                 android:enabled="false"
                 android:hint="@string/address_companies_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -129,6 +142,7 @@
                 android:autofillHints=""
                 android:enabled="false"
                 android:hint="@string/neighborhood_companies_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
@@ -142,6 +156,7 @@
                 android:autofillHints=""
                 android:enabled="false"
                 android:hint="@string/complement_companies_ptBr"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space

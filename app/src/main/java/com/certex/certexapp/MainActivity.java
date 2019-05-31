@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             alert("Favor preencher todos os campos", true);
         } else {
             if (Session.getInstance().getToken() != null) {
-                Intent intent = new Intent(MainActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                Intent intent = new Intent(MainActivity.this, CompaniesActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
             } else {

@@ -5,13 +5,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
 
 
@@ -19,7 +22,7 @@ public class CompaniesActivity extends AppCompatActivity {
 
     private EditText etSocialName;
     private EditText etFantasyName;
-    private EditText etCpnj;
+    private EditText etCnpj;
     private EditText etStateRegistration;
     private EditText etCep;
     private EditText etState;
@@ -36,7 +39,7 @@ public class CompaniesActivity extends AppCompatActivity {
 
         etSocialName = (EditText) findViewById(R.id.et_companies_social_name);
         etFantasyName = (EditText) findViewById(R.id.et_companies_fantasy_name);
-        etCpnj = (EditText) findViewById(R.id.et_companies_cpnj);
+        etCnpj = (EditText) findViewById(R.id.et_companies_cnpj);
         etStateRegistration = (EditText) findViewById(R.id.et_companies_state_registration);
         etCep = (EditText) findViewById(R.id.et_companies_cep);
         etState = (EditText) findViewById(R.id.et_companies_states);
@@ -48,103 +51,42 @@ public class CompaniesActivity extends AppCompatActivity {
 
         setTitle("Dados da Empresa");
 
-//        etState.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//
-//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//                    if (!etCep.getText().toString().isEmpty()) {
-//                        CEPService service = new CEPService(CompaniesActivity.this);
-//
-//                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
-//
-//                            @Override
-//                            public void onResponse(CEP response) {
-//                                CEP cep = response;
-//                                String[] txt = cep.toString().split(";");
-//                                etState.setText(txt[0]);
-//                                etCity.setText(txt[1]);
-//                                etState.setEnabled(false);
-//                                etAddress.setEnabled(true);
-//                                etNeighborhood.setEnabled(true);
-//                                etComplement.setEnabled(true);
-//                                etAddress.requestFocus();
-//                            }
-//
-//                            @Override
-//                            public void onError(String error) {
-//                                alert("CEP Não Encontrado!", true);
-//                                etState.setEnabled(true);
-//                                etAddress.setEnabled(false);
-//                                etNeighborhood.setEnabled(false);
-//                                etComplement.setEnabled(false);
-//                                etCep.setText("");
-//                                etCep.requestFocus();
-//                            }
-//                        });
-//
-//                    } else {
-//                        alert("Favor Preencher o CEP", true);
-//                        etState.setEnabled(true);
-//                        etAddress.setEnabled(false);
-//                        etNeighborhood.setEnabled(false);
-//                        etComplement.setEnabled(false);
-//                        etCep.setText("");
-//                        etCep.requestFocus();
-//                    }
-//                }
-//                return false;
-//            }
-//        });
-//
-//        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-//                    if (!etCep.getText().toString().isEmpty()) {
-//                        CEPService service = new CEPService(CompaniesActivity.this);
-//
-//                        service.getCEP(etCep.getText().toString(), new SimpleCallback<CEP>() {
-//
-//                            @Override
-//                            public void onResponse(CEP response) {
-//                                CEP cep = response;
-//                                String[] txt = cep.toString().split(";");
-//                                etState.setText(txt[0]);
-//                                etCity.setText(txt[1]);
-//                                etState.setEnabled(false);
-//                                etAddress.setEnabled(true);
-//                                etNeighborhood.setEnabled(true);
-//                                etComplement.setEnabled(true);
-//                                etAddress.requestFocus();
-//                            }
-//
-//                            @Override
-//                            public void onError(String error) {
-//                                alert("CEP Não Encontrado!", true);
-//                                etState.setEnabled(true);
-//                                etAddress.setEnabled(false);
-//                                etNeighborhood.setEnabled(false);
-//                                etComplement.setEnabled(false);
-//                                etCep.setText("");
-//                                etCep.requestFocus();
-//                            }
-//                        });
-//
-//                    } else {
-//                        alert("Favor Preencher o CEP", true);
-//                        etState.setEnabled(true);
-//                        etAddress.setEnabled(false);
-//                        etNeighborhood.setEnabled(false);
-//                        etComplement.setEnabled(false);
-//                        etCep.setText("");
-//                        etCep.requestFocus();
-//                    }
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+        etCnpj.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (!etCnpj.getText().toString().isEmpty()) {
+                        return false;
+                    } else {
+                        alert("CNPJ EMPTY", true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        etStateRegistration.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!etCnpj.getText().toString().isEmpty()) {
+                    return false;
+                } else {
+                    alert("CNPJ EMPTY", true);
+                }
+                return true;
+            }
+        });
+
+        etStateRegistration.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    alert("next IE", true);
+                    return false;
+                }
+                return true;
+            }
+        });
 
         btSignature.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +103,7 @@ public class CompaniesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
                 if (!etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
-                        !etCpnj.getText().toString().isEmpty() && !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
+                        !etCnpj.getText().toString().isEmpty() && !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
                         !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
                     alert("SALVO COM SUCESSO!", false);
                     System.exit(0);
