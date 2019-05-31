@@ -8,6 +8,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +27,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 public class SignatureActivity extends AppCompatActivity {
-    SignaturePad signaturePad;
-    Button saveButton, clearButton;
+
+    private SignaturePad signaturePad;
+    private Button saveButton, clearButton;
+    private String cnpj, ie = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,10 @@ public class SignatureActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setTitle("Assinatura");
+
+        Intent it = getIntent();
+        cnpj = it.getStringExtra("cnpj");
+        ie = it.getStringExtra("ie");
 
         signaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
@@ -69,8 +77,11 @@ public class SignatureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createSignature();
-                //write code for saving the signature here
-                finish();
+                Intent intent = new Intent(SignatureActivity.this, CompaniesActivity.class);
+                intent.putExtra("cnpj", cnpj);
+                intent.putExtra("ie", ie);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(SignatureActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
 

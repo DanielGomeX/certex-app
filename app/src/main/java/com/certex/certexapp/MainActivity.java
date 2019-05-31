@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        this.moveTaskToBack(true); //Não volta
+    }
+
+    @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);

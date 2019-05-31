@@ -36,7 +36,7 @@ public class UserActivity extends AppCompatActivity {
 
         setTitle("Dados do Usuário");
 
-        tvTeste.setText(Session.getInstance().getToken().getCode());
+        //tvTeste.setText(Session.getInstance().getToken().getCode());
 
         etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -145,7 +145,6 @@ public class UserActivity extends AppCompatActivity {
             if (validateNameFormat(etName.getText().toString())) {
                 if (validateEmailFormat(etEmail.getText().toString())) {
                     if (etPassword.getText().length() > 5) {
-                        alert("SALVO COM SUCESSO!", false);
                         Intent intent = new Intent(UserActivity.this, CompaniesActivity.class);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
@@ -178,6 +177,11 @@ public class UserActivity extends AppCompatActivity {
     private void alert(String msg, boolean error) {
         new Alert().show(msg, error, getLayoutInflater(), getApplicationContext(), this.findViewById(android.R.id.content));
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        this.moveTaskToBack(true); //Não volta para Login
+//    }
 
     @Override
     public void finish() {

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +22,13 @@ import android.widget.TextView;
 
 import com.certex.certexapp.service.Alert;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class CompaniesActivity extends AppCompatActivity {
@@ -58,6 +65,10 @@ public class CompaniesActivity extends AppCompatActivity {
         ivSignature = (ImageView) findViewById(R.id.iv_companies_signature);
 
         setTitle("Dados da Empresa");
+
+        Intent it = getIntent();
+        etCnpj.setText(it.getStringExtra("cnpj"));
+        etStateRegistration.setText(it.getStringExtra("ie"));
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
@@ -111,6 +122,8 @@ public class CompaniesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CompaniesActivity.this, SignatureActivity.class);
+                intent.putExtra("cnpj", etCnpj.getText().toString());
+                intent.putExtra("ie", etStateRegistration.getText().toString());
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
             }
@@ -122,12 +135,47 @@ public class CompaniesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
-                if (!etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
-                        !etCnpj.getText().toString().isEmpty() && !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
-                        !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
-                    alert("SALVO COM SUCESSO!", false);
-                    System.exit(0);
-                    return true;
+
+                if (!etCnpj.getText().toString().isEmpty() //&& !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
+                    // !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
+                    // !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
+                ) {
+                    File imgFile = new File(Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
+                    if (imgFile.exists()) {
+
+                        File fileExt = new File(Environment.getExternalStoragePublicDirectory(
+                                Environment.DIRECTORY_DOWNLOADS), "base.txt");
+
+                        //Cria o arquivo txt para teste
+                        fileExt.getParentFile().mkdirs();
+                        FileOutputStream fosExt = null;
+                        try {
+                            fosExt = new FileOutputStream(fileExt);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fosExt.write(encodeFileToBase64Binary(imgFile).getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fosExt.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //Log.i("Base64", encodeFileToBase64Binary(imgFile));
+
+                        alert("SALVO COM SUCESSO!", false);
+
+                        Intent intent = new Intent(CompaniesActivity.this, MainActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                        ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                        return true;
+                    } else {
+                        alert("Favor Crie uma Assinatura!", true);
+                    }
                 } else {
                     alert("Favor Preencher os dados Corretamente!", true);
                 }
@@ -135,6 +183,21 @@ public class CompaniesActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private static String encodeFileToBase64Binary(File file) {
+        String encodedfile = null;
+        try {
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int) file.length()];
+            fileInputStreamReader.read(bytes);
+            encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return encodedfile;
     }
 
     @Override

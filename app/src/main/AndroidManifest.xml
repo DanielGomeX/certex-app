@@ -18,8 +18,8 @@
         <activity android:name=".SignatureActivity" />
         <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".CompaniesActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:name=".CompaniesActivity"/>
+            <!--android:windowSoftInputMode="stateHidden" />-->
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
