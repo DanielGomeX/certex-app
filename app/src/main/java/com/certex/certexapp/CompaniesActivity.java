@@ -1,6 +1,9 @@
 package com.certex.certexapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +16,12 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.certex.certexapp.service.Alert;
+
+import java.io.File;
 
 
 public class CompaniesActivity extends AppCompatActivity {
@@ -31,6 +37,7 @@ public class CompaniesActivity extends AppCompatActivity {
     private EditText etNeighborhood;
     private EditText etComplement;
     private Button btSignature;
+    private ImageView ivSignature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +55,20 @@ public class CompaniesActivity extends AppCompatActivity {
         etNeighborhood = (EditText) findViewById(R.id.et_companies_neighborhood);
         etComplement = (EditText) findViewById(R.id.et_companies_complement);
         btSignature = (Button) findViewById(R.id.bt_companies_signature);
+        ivSignature = (ImageView) findViewById(R.id.iv_companies_signature);
 
         setTitle("Dados da Empresa");
+
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
+
+        if (imgFile.exists()) {
+            ivSignature.setVisibility(View.VISIBLE);
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            ivSignature.setImageBitmap(myBitmap);
+        } else {
+            ivSignature.setVisibility(View.INVISIBLE);
+        }
 
         etCnpj.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -97,6 +116,7 @@ public class CompaniesActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

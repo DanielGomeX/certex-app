@@ -161,7 +161,18 @@
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
+
+            <ImageView
+                android:id="@+id/iv_companies_signature"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:srcCompat="@android:color/background_light" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
 
             <Button
                 android:id="@+id/bt_companies_signature"
