@@ -13,21 +13,32 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ConnectionAPI {
 
-    public void Post(final String[] keys, final String[] value, final String table, final String variable, Activity activity) {
+    private static String url = "http://177.44.248.19/api/";
+
+    public static void Post(final String[] keys, final String[] value, final String table, final String variable, Activity activity) {
         final RequestQueue MyRequestQueue = Volley.newRequestQueue(activity);
 
-        String url = "http://177.44.248.19/api/" + table;
-        final StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        String urlTemp = url + table;
+
+        final StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlTemp, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
                     //JSONArray jarray = object.getJSONArray("access_token");
+
                     String output = object.getString(variable);
                     if (table.equals("login")) {
                         Token token = new Token();
@@ -49,16 +60,61 @@ public class ConnectionAPI {
             }
         }) {
             protected Map<String, String> getParams() {
-                Map<String, String> MyData = new HashMap<String, String>();
+                Map<String, String> myData = new HashMap<String, String>();
                 for (int i = 0; i < keys.length; i++) {
-                    MyData.put(keys[i], value[i]);
+                    myData.put(keys[i], value[i]);
                 }
 //                MyData.put("email", "vitor@certex.com");
 //                MyData.put("password", "123456");
-                return MyData;
+                return myData;
             }
         };
 
         MyRequestQueue.add(MyStringRequest);
+    }
+
+        public static Map<String, String> apiGET(String[] keys, String[] values, String from) {
+
+        String dataUrlTemp = url;
+        HashMap<String, String> map = new HashMap();
+
+        dataUrlTemp += from + "?token=" + Session.getInstance().getToken().getCode();
+
+        if (keys.length == values.length) {
+            int length = keys.length;
+
+            if (length > 0) {
+                for (int i = 0; i < length; i++) {
+                    dataUrlTemp += "&" + keys[i] + "=" + values[i];
+                }
+            }
+
+            try {
+
+                HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+                HttpGet httppost = new HttpGet(dataUrlTemp);
+                HttpResponse response = (HttpResponse) httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+
+                JSONObject object = new JSONObject(EntityUtils.toString(entity));
+                if (object.length() > 0) {
+                    while (object.keys().hasNext()) {
+                        String s = object.keys().next();
+
+                        map.put(s + "", object.get(s) + "");
+
+                    }
+                } else {
+                    map.put("erro", "No Info Find");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+//        return solution;
+
+        return map;
     }
 }
