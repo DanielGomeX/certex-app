@@ -73,7 +73,7 @@ public class ConnectionAPI {
         MyRequestQueue.add(MyStringRequest);
     }
 
-        public static Map<String, String> apiGET(String[] keys, String[] values, String from) {
+    public static Map<String, String> apiGET(String[] keys, String[] values, String from) {
 
         String dataUrlTemp = url;
         HashMap<String, String> map = new HashMap();

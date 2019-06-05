@@ -14,7 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.certex.certexapp.GemaCode.Session;
+//import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
 
 public class UserActivity extends AppCompatActivity {
@@ -22,7 +22,6 @@ public class UserActivity extends AppCompatActivity {
     private EditText etName;
     private EditText etPassword;
     private EditText etEmail;
-    private TextView tvTeste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,6 @@ public class UserActivity extends AppCompatActivity {
         etName = (EditText) findViewById(R.id.et_user_name);
         etPassword = (EditText) findViewById(R.id.et_user_password);
         etEmail = (EditText) findViewById(R.id.et_user_email);
-        tvTeste = (TextView) findViewById(R.id.tv_teste);
 
         setTitle("Dados do Usuário");
 
