@@ -38,8 +38,8 @@ public class SignatureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signature);
 
         signaturePad = (SignaturePad) findViewById(R.id.signaturePad);
-        saveButton = (Button) findViewById(R.id.saveButton);
-        clearButton = (Button) findViewById(R.id.clearButton);
+        saveButton = (Button) findViewById(R.id.bt_signature_save);
+        clearButton = (Button) findViewById(R.id.bt_signature_clear);
 
         //disable both buttons at start
         saveButton.setEnabled(false);

@@ -17,14 +17,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/bt_signature_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Save" />
 
         <Button
-            android:id="@+id/clearButton"
+            android:id="@+id/bt_signature_clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

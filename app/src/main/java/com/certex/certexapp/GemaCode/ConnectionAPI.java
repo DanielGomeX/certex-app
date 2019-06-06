@@ -36,6 +36,7 @@ public class ConnectionAPI {
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
+                    Log.i("Script", object.toString());
                     //JSONArray jarray = object.getJSONArray("access_token");
 
                     String output = object.getString(variable);
@@ -101,7 +102,6 @@ public class ConnectionAPI {
                         String s = object.keys().next();
 
                         map.put(s + "", object.get(s) + "");
-
                     }
                 } else {
                     map.put("erro", "No Info Find");
