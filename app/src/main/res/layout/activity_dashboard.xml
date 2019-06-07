@@ -8,58 +8,52 @@
     android:orientation="vertical"
     tools:context=".DashboardActivity">
 
-    <ImageView
-        android:id="@+id/iw_wallpaper"
-        android:layout_width="199dp"
-        android:layout_height="214dp"
-        android:contentDescription="@string/empty"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065"
-        app:srcCompat="@drawable/wallpaper" />
-
     <Button
-        android:id="@+id/bt_dashboard_test"
+        android:id="@+id/bt_dashboard_show_report"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:alpha="0.50"
         android:background="#CE2628"
         android:text="@string/show_report_dashboard_ptBr"
         android:textColor="@color/colorText"
-        app:layout_constraintStart_toEndOf="@+id/bt_dashboard_test2"
-        app:layout_constraintTop_toBottomOf="@+id/iw_wallpaper" />
+        app:layout_constraintBottom_toTopOf="@+id/bt_dashboard_change_report"
+        app:layout_constraintStart_toEndOf="@+id/bt_dashboard_create_report" />
 
     <Button
-        android:id="@+id/bt_dashboard_test2"
+        android:id="@+id/bt_dashboard_create_report"
         android:layout_width="150dp"
         android:layout_height="230dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.50"
         android:background="#CE2628"
         android:text="@string/crate_report_dashboard_ptBr"
         android:textColor="@color/colorText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iw_wallpaper"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/lv_dashboard"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bt_dashboard_test3"
+        android:id="@+id/bt_dashboard_change_report"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.50"
         android:background="#CE2628"
         android:text="@string/perfil_dashboard_ptBr"
         android:textColor="@color/colorText"
-        app:layout_constraintStart_toEndOf="@+id/bt_dashboard_test2"
-        app:layout_constraintTop_toBottomOf="@+id/iw_wallpaper" />
+        app:layout_constraintBottom_toTopOf="@+id/lv_dashboard"
+        app:layout_constraintStart_toEndOf="@+id/bt_dashboard_create_report" />
+
+    <ListView
+        android:id="@+id/lv_dashboard"
+        android:layout_width="380dp"
+        android:layout_height="243dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
