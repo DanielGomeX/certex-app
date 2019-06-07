@@ -10,9 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -22,9 +19,14 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 public class ConnectionAPI {
 
     private static String url = "http://177.44.248.19/api/";
+
 
     public static void Post(final String[] keys, final String[] value, final String table, final String variable, Activity activity) {
         final RequestQueue MyRequestQueue = Volley.newRequestQueue(activity);
@@ -72,6 +74,58 @@ public class ConnectionAPI {
 
         MyRequestQueue.add(MyStringRequest);
     }
+
+
+    public static HashMap<String, String> apiPOST(final String[] keys, final String[] value, final String table) {
+        final HashMap<String, String> map = new HashMap();
+
+
+        String urlTemp = url + table;
+
+        final StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlTemp, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    Log.i("Script", object.toString());
+                    //JSONArray jarray = object.getJSONArray("access_token");
+
+                      Iterator<String> in = object.keys();
+
+                    while (in.hasNext()){
+                        String key = in.next();
+                        String val = object.getString(key);
+                        map.put(key, val);
+
+                        Log.i("Script", "################################## JSON: " + key + "->" + val);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //alert("Error: " + error.getMessage());
+                Log.i("Script", "ERROR: " + error.getMessage());
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> myData = new HashMap<String, String>();
+                for (int i = 0; i < keys.length; i++) {
+                    myData.put(keys[i], value[i]);
+                }
+//                MyData.put("email", "vitor@certex.com");
+//                MyData.put("password", "123456");
+                return myData;
+            }
+        };
+
+        return map;
+    }
+
+
 
     public static Map<String, String> apiGET(String[] keys, String[] values, String from) {
 
