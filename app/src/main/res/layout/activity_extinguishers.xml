@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_companies"
     android:orientation="vertical"
-    tools:context=".CompaniesActivity">
+    tools:context=".ExtinguishersActivity">
 
     <ScrollView
         android:id="@+id/sv_companies"
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:hint="@string/cnpj_companies_ptBr"
+                android:hint="@string/code_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="number" /> <!--Validar CNPJ E PREENCHER O RESTO-->
 
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:hint="@string/state_registration_companies_ptBr"
+                android:hint="@string/number_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
 
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="@string/social_name_companies_ptBr"
+                android:hint="@string/capacity_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="@string/fantasy_name_companies_ptBr"
+                android:hint="@string/charge_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="@string/cep_companies_ptBr"
+                android:hint="@string/chargeDate_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="number" /> <!--Validar CEP E PREENCHER ESTADO E CIDADE-->
 
@@ -93,22 +93,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="@string/state_name_companies_ptBr"
+                android:hint="@string/validate_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_extinguishers_location"
+                android:layout_width="match_parent"
+                android:layout_height="98dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/location_extinguishers_ptBr"
+                android:inputType="textMultiLine" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/et_companies_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:hint="@string/city_name_companies_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -119,63 +119,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="@string/address_companies_ptBr"
+                android:hint="@string/manufacturers_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/et_companies_neighborhood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:hint="@string/neighborhood_companies_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/et_companies_complement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:hint="@string/complement_companies_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <ImageView
-                android:id="@+id/iv_companies_signature"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                app:srcCompat="@android:color/background_light" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
 
             <Button
-                android:id="@+id/bt_companies_signature"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_custom"
-                android:shadowColor="#A80000"
-                android:shadowDx="0"
-                android:shadowDy="0"
-                android:shadowRadius="5"
-                android:text="@string/signature_companies_bt"
-                android:textColor="@color/colorText" />
+                android:id="@+id/bt_extinguishers_manufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/manufacturers_btn_extinguishers_ptBr" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/et_extinguishers_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:enabled="false"
+                android:hint="@string/status_extinguishers_ptBr"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/bt_extinguishers_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/status_btn__extinguishers_ptBr" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

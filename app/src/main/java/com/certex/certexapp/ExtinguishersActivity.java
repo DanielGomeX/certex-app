@@ -1,70 +1,45 @@
 package com.certex.certexapp;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.certex.certexapp.service.Alert;
-
-import org.apache.commons.codec.binary.Base64;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 
-public class CompaniesActivity extends AppCompatActivity {
+public class ExtinguishersActivity extends AppCompatActivity {
 
-    private EditText etSocialName;
-    private EditText etFantasyName;
-    private EditText etCnpj;
-    private EditText etStateRegistration;
-    private EditText etCep;
-    private EditText etState;
-    private EditText etCity;
-    private EditText etAddress;
-    private EditText etNeighborhood;
-    private EditText etComplement;
-    private Button btSignature;
-    private ImageView ivSignature;
+    private EditText etCode;
+    private EditText etNumber;
+    private EditText etCapacity;
+    private EditText etCharge;
+    private EditText etChargeDate;
+    private EditText etValidateDate;
+    private EditText etLocation;
+    private EditText etManufacturers;
+    private Button btManufacturers;
+    private EditText etStatusExtinguishers;
+    private Button btStatusExtinguishers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_companies);
+        setContentView(R.layout.activity_extinguishers);
 
-        etSocialName = (EditText) findViewById(R.id.et_extinguishers_capacity);
-        etFantasyName = (EditText) findViewById(R.id.et_extinguishers_charge);
-        etCnpj = (EditText) findViewById(R.id.et_extinguishers_code);
-        etStateRegistration = (EditText) findViewById(R.id.et_extinguishers_number);
-        etCep = (EditText) findViewById(R.id.et_extinguishers_charge_date);
-        etState = (EditText) findViewById(R.id.et_extinguishers_validate);
-        etCity = (EditText) findViewById(R.id.et_companies_city);
-        etAddress = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
-        etNeighborhood = (EditText) findViewById(R.id.et_companies_neighborhood);
-        etComplement = (EditText) findViewById(R.id.et_companies_complement);
-        btSignature = (Button) findViewById(R.id.bt_companies_signature);
-        ivSignature = (ImageView) findViewById(R.id.iv_companies_signature);
+         etCode = (EditText) findViewById(R.id.et_extinguishers_code);
+         etNumber = (EditText) findViewById(R.id.et_extinguishers_number);
+         etCapacity = (EditText) findViewById(R.id.et_extinguishers_capacity);
+         etCharge = (EditText) findViewById(R.id.et_extinguishers_charge);
+         etChargeDate = (EditText) findViewById(R.id.et_extinguishers_charge_date);
+         etValidateDate = (EditText) findViewById(R.id.et_extinguishers_validate);
+         etLocation = (EditText) findViewById(R.id.et_extinguishers_location);
+         etManufacturers = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
+         btManufacturers = (Button) findViewById(R.id.bt_extinguishers_manufacturers);
+         etStatusExtinguishers = (EditText) findViewById(R.id.et_extinguishers_status);
+         btStatusExtinguishers = (Button) findViewById(R.id.bt_extinguishers_status);
 
-        setTitle("Dados da Empresa");
 
+        setTitle("Cadastro de Extintor");
+/*
         Intent it = getIntent();
         etCnpj.setText(it.getStringExtra("cnpj"));
         etStateRegistration.setText(it.getStringExtra("ie"));
@@ -120,16 +95,16 @@ public class CompaniesActivity extends AppCompatActivity {
         btSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CompaniesActivity.this, SignatureActivity.class);
+                Intent intent = new Intent(ExtinguishersActivity.this, SignatureActivity.class);
                 intent.putExtra("cnpj", etCnpj.getText().toString());
                 intent.putExtra("ie", etStateRegistration.getText().toString());
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                ActivityCompat.startActivity(ExtinguishersActivity.this, intent, activityOptionsCompat.toBundle());
             }
-        });
+        });*/
     }
 
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -168,9 +143,9 @@ public class CompaniesActivity extends AppCompatActivity {
 
                         alert("SALVO COM SUCESSO!", false);
 
-                        Intent intent = new Intent(CompaniesActivity.this, MainActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                        Intent intent = new Intent(ExtinguishersActivity.this, MainActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                        ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                        ActivityCompat.startActivity(ExtinguishersActivity.this, intent, activityOptionsCompat.toBundle());
                         return true;
                     } else {
                         alert("Favor Crie uma Assinatura!", true);
@@ -213,6 +188,6 @@ public class CompaniesActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
-    }
+    }*/
 }
 

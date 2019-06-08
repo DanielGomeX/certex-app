@@ -20,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class ConnectionAPI {
@@ -89,8 +88,18 @@ public class ConnectionAPI {
                     JSONObject object = new JSONObject(response);
                     Log.i("Script", object.toString());
                     //JSONArray jarray = object.getJSONArray("access_token");
+                    Log.i("Script", "################################## JSON: ");
+                    String[] array = object.toString().split(",");
 
-                      Iterator<String> in = object.keys();
+                    for(int k = 0; k < array.length; k++){
+                        String[] temp = array[k].replace("\"", "").split(":");
+                        String key = temp[0];
+                        String val = temp[1];
+                        map.put(key, val);
+                        Log.i("Script", "################################## JSON: " + key + "->" + val);
+                    }
+/*
+                    Iterator<String> in = object.keys();
 
                     while (in.hasNext()){
                         String key = in.next();
@@ -99,7 +108,7 @@ public class ConnectionAPI {
 
                         Log.i("Script", "################################## JSON: " + key + "->" + val);
                     }
-
+*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
