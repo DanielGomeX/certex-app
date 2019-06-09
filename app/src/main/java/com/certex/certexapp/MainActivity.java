@@ -111,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
         if (etPassword.getText().length() > 5) {
             String[] keys = {"email", "password"};
             String[] values = {usernameText, passwordText};
+            String[] keysInput = {"access_token"};
 
-            ConnectionAPI.apiPOST(keys, values, "login");
+            ConnectionAPI.apiPOST(keys, values, keysInput, "login");
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");

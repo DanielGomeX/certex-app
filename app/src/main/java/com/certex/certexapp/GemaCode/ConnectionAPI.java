@@ -75,7 +75,7 @@ public class ConnectionAPI {
     }
 
 
-    public static HashMap<String, String> apiPOST(final String[] keys, final String[] value, final String table) {
+    public static HashMap<String, String> apiPOST(final String[] keys, final String[] value, final String[] keysInput, final String table) {
         final HashMap<String, String> map = new HashMap();
 
 
@@ -86,15 +86,11 @@ public class ConnectionAPI {
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    Log.i("Script", object.toString());
-                    //JSONArray jarray = object.getJSONArray("access_token");
-                    Log.i("Script", "################################## JSON: ");
-                    String[] array = object.toString().split(",");
 
-                    for(int k = 0; k < array.length; k++){
-                        String[] temp = array[k].replace("\"", "").split(":");
-                        String key = temp[0];
-                        String val = temp[1];
+                    for(int k = 0; k < keysInput.length; k++){
+                        String temp = object.getString(keysInput[k]);
+                        String key = keysInput[k];
+                        String val = temp;
                         map.put(key, val);
                         Log.i("Script", "################################## JSON: " + key + "->" + val);
                     }
