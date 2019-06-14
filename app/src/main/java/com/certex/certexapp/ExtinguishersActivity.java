@@ -41,7 +41,7 @@ public class ExtinguishersActivity extends AppCompatActivity {
          etManufacturers = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
          btManufacturers = (Button) findViewById(R.id.bt_extinguishers_manufacturers);
          etStatusExtinguishers = (EditText) findViewById(R.id.et_extinguishers_status);
-         btStatusExtinguishers = (Button) findViewById(R.id.bt_extinguishers_status);
+         btStatusExtinguishers = (Button) findViewById(R.id.bt_manufacturers_save);
 
 
         setTitle("Cadastro de Extintor");

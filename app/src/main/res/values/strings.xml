@@ -43,5 +43,11 @@
     <string name="manufacturers_btn_extinguishers_ptBr">Buscar Fornecedor</string>
     <string name="status_extinguishers_ptBr">Situação:</string>
     <string name="status_btn__extinguishers_ptBr">Difinir Situação</string>
+    <string name="description_manufacturers_ptBr">Descrição</string>
+    <string name="cep__manufacturers_ptBr">CEP</string>
+    <string name="city_manufacturers_ptBr">Cidade</string>
+    <string name="state_manufacturers_ptBr">Estado</string>
+    <string name="save_manufacturers_ptBr">Salvar</string>
+    <string name="save_btn_extinguishers_ptBr">Salvar</string>
 
 </resources>
