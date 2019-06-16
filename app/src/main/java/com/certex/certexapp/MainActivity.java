@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             String[] values = {usernameText, passwordText};
             String[] keysInput = {"access_token"};
 
-            ConnectionAPI.apiPOST(keys, values, keysInput, "login");
+            ConnectionAPI.makePost(keys, values, "login");    //apiPOST(keys, values, keysInput, "login");
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");
