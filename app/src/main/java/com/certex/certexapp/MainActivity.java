@@ -16,8 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
+import com.certex.certexapp.GemaCode.RetryHashMap;
 import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -113,7 +116,17 @@ public class MainActivity extends AppCompatActivity {
             String[] values = {usernameText, passwordText};
             String[] keysInput = {"access_token"};
 
-            ConnectionAPI.makePost(keys, values, "login");    //apiPOST(keys, values, keysInput, "login");
+            //ConnectionAPI.makePost(keys, values, "login");    //apiPOST(keys, values, keysInput, "login");
+
+            HashMap<String, String> map = ConnectionAPI.apiPOST(keys, values, keysInput, "login", MainActivity.this);
+
+            for ( String k : map.keySet()){
+                Log.i("Script", "================MAIN================= > " + map.get(k));
+            }
+
+            for ( String k : RetryHashMap.temp.keySet()){
+                Log.i("Script", "================MAIN STATIC================= > " + map.get(k));
+            }
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");

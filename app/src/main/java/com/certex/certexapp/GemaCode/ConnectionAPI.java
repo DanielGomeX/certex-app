@@ -16,6 +16,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,57 +80,74 @@ public class ConnectionAPI {
     }
 
 
-    public static HashMap<String, String> apiPOST(final String[] keys, final String[] value, final String[] keysInput, final String table) {
-        final HashMap<String, String> map = new HashMap();
+    public static HashMap apiPOST(final String[] keys, final String[] value, final String[] keysInput, String table, Activity activity) {
+        final RequestQueue MyRequestQueue = Volley.newRequestQueue(activity);
 
+        Log.i("Script", "********************** Antes da URL");
+
+        final RetryHashMap m = new RetryHashMap();
 
         String urlTemp = url + table;
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlTemp,
 
-        final StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlTemp, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
+                new Response.Listener<String>()
+                {
 
-                    for(int k = 0; k < keysInput.length; k++){
-                        String temp = object.getString(keysInput[k]);
-                        String key = keysInput[k];
-                        String val = temp;
-                        map.put(key, val);
-                        Log.i("Script", "################################## JSON: " + key + "->" + val);
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("Script", "********************** Entrou no Response");
+
+                        try {
+
+                            JSONObject object = new JSONObject(response);
+
+
+                            for (int i = 0; i < keysInput.length; i++){
+                                String temp = object.getString(keysInput[i]);
+                                m.put(keysInput[i], temp);
+
+                                Log.i("Script", "################################## JSON: "+ keysInput[i] +" ->" + temp);
+                            }
+
+                            HashMap<String, String> ma = m.temp;
+
+                            for ( String k : ma.keySet()){
+                                Log.i("Script", "================IN RESPONSE================= > " + ma.get(k));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-/*
-                    Iterator<String> in = object.keys();
+                },
 
-                    while (in.hasNext()){
-                        String key = in.next();
-                        String val = object.getString(key);
-                        map.put(key, val);
-
-                        Log.i("Script", "################################## JSON: " + key + "->" + val);
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //alert("Error: " + error.getMessage());
+                        Log.i("Script", "ERROR: " + error.getMessage());
                     }
-*/
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //alert("Error: " + error.getMessage());
-                Log.i("Script", "ERROR: " + error.getMessage());
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> myData = new HashMap<String, String>();
-                for (int i = 0; i < keys.length; i++) {
-                    myData.put(keys[i], value[i]);
-                }
-//                MyData.put("email", "vitor@certex.com");
-//                MyData.put("password", "123456");
-                return myData;
-            }
-        };
+                }) {
+                    protected Map<String, String> getParams() {
+                        Map<String, String> myData = new HashMap<String, String>();
+                        for (int i = 0; i < keys.length; i++) {
+                            myData.put(keys[i], value[i]);
+                        }
+        //                MyData.put("email", "vitor@certex.com");
+        //                MyData.put("password", "123456");
+                        return myData;
+                    }
+                };
+
+        HashMap<String, String> map = RetryHashMap.temp;
+
+        //RetryHashMap.temp = RetryHashMap.newMap();
+
+        for ( String k : map.keySet()){
+            Log.i("Script", "================================= > " + map.get(k));
+        }
+
+        MyRequestQueue.add(MyStringRequest);
 
         return map;
     }
