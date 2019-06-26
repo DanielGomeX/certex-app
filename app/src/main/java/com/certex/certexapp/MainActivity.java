@@ -125,18 +125,6 @@ public class MainActivity extends AppCompatActivity {
             String[] values = {usernameText, passwordText};
             String[] keysInput = {"access_token"};
 
-            //ConnectionAPI.makePost(keys, values, "login");    //apiPOST(keys, values, keysInput, "login");
-
-            HashMap<String, String> map = ConnectionAPI.apiPOST(keys, values, keysInput, "login", MainActivity.this);
-
-            for ( String k : map.keySet()){
-                Log.i("Script", "================MAIN================= > " + map.get(k));
-            }
-
-            for ( String k : RetryHashMap.temp.keySet()){
-                Log.i("Script", "================MAIN STATIC================= > " + map.get(k));
-            }
-
             JSONObject jsonData = new JSONObject();
             try {
                 jsonData.put("email", usernameText);
@@ -145,10 +133,10 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            //ConnectionAPI.apiPOSTtest(keys, values, keysInput, "login");
-
-            ConnectionAPI.makePost("login", jsonData);
-
+            HashMap<String, String> map = ConnectionAPI.makePost("login", jsonData, keysInput);
+            for ( String k : map.keySet()){
+                Log.i("Script", "================MAIN================= > " + map.get(k));
+            }
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");
