@@ -152,33 +152,30 @@ public class ConnectionAPI {
         return map;
     }
 
-    public static void makePost(String[] keys, String[] value, String table) {
-        URL tempUrl;
+    public static void makePost(String table, JSONObject jsonData/*, String[] keys, String[] value, String[] keysInput*/) {
+        URL myUrl;
         HttpURLConnection connection = null;
+
+        String urlTemp = url + table;
+
         try {
-            tempUrl = new URL(url + table);
-            connection = (HttpURLConnection) tempUrl.openConnection();
+            myUrl = new URL(urlTemp);
+            connection = (HttpURLConnection) myUrl.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST"); // hear you are telling that it is a POST request, which can be changed into "PUT", "GET", "DELETE" etc.
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8"); // here you are setting the `Content-Type` for the data you are sending which is `application/json`
             connection.connect();
 
-            JSONObject json = new JSONObject();
-
-            for(int i = 0; i < keys.length; i++){
-                json.put(keys[i], value[i]);
-            }
-
             //Send request
             DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-            wr.writeBytes(json.toString());
+            wr.writeBytes(jsonData.toString());
             wr.flush();
             wr.close();
 
             InputStream is;
-            int response = connection.getResponseCode();
-            Log.d("RESPONSE::", String.valueOf(response));
-            Log.d("RESPONSE::", String.valueOf(connection.getContent()));
+            String response = connection.getResponseMessage();
+            Log.d("Script", "%%%%%%%%%%%%%%%%%%%% " + String.valueOf(response));
+            Log.d("Script", String.valueOf(connection.getContent()));
 //                if (response >= 200 && response <= 399) {
 //                    //return is = connection.getInputStream();
 //                    return true;

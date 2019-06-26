@@ -20,6 +20,9 @@ import com.certex.certexapp.GemaCode.RetryHashMap;
 import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -127,6 +130,19 @@ public class MainActivity extends AppCompatActivity {
             for ( String k : RetryHashMap.temp.keySet()){
                 Log.i("Script", "================MAIN STATIC================= > " + map.get(k));
             }
+
+            JSONObject jsonData = new JSONObject();
+            try {
+                jsonData.put("email", usernameText);
+                jsonData.put("password", passwordText);
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            ConnectionAPI.makePost("login", jsonData);
+
+
+
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");
