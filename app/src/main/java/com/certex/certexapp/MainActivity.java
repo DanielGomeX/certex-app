@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.os.StrictMode;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.GemaCode.RetryHashMap;
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         btLogin = (Button) findViewById(R.id.btn_login);
         btSign = (Button) findViewById(R.id.btn_sign);
@@ -139,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            //ConnectionAPI.apiPOSTtest(keys, values, keysInput, "login");
+
             ConnectionAPI.makePost("login", jsonData);
-
-
 
 
             ConnectionAPI api = new ConnectionAPI();
