@@ -16,7 +16,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,15 +28,22 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.os.StrictMode;
-
-import javax.net.ssl.HttpsURLConnection;
-
 public class ConnectionAPI {
 
-    private static String url = "http://177.44.248.19/api/";
+    private final static String url = "http://177.44.248.19/api/";
+    public final static String TABLE_LOGIN = "login";
+    public final static String TABLE_COMPANY = "company";
+
+    public final static String ACTION_STORE = "store";
+    public final static String ACTION_UPDATE = "update";
+    public final static String ACTION_SHOW = "show";
+    public final static String ACTION_INDEX = "index";
+    public final static String ACTION_DESTROY = "destroy";
+    public final static String ACTION_COUNT = "count";
+    public final static String ACTION_NULL = null;
 
 
+    @Deprecated
     public static void Post(final String[] keys, final String[] value, final String table, final String variable, Activity activity) {
         final RequestQueue MyRequestQueue = Volley.newRequestQueue(activity);
 
@@ -205,16 +211,26 @@ public class ConnectionAPI {
 //        return map;
 //    }
 
-    public static HashMap<String, String> makePost(String table, JSONObject jsonData, String[] keysInput) {
+    public static HashMap<String, String> makePost(String table, String action, String indice, JSONObject jsonData, String[] keysInput) {
         URL myUrl;
         HttpURLConnection connection = null;
 
         HashMap<String, String> map = new HashMap();
         String urlTemp = url + table;
 
+        if (indice != null){
+            urlTemp += "/" + indice;
+        }
+
+        if (action != null){
+            urlTemp += "/" + action;
+        }
+
+        urlTemp += "?token=" + Session.getInstance().getToken().getCode();
+
         try {
 //            myUrl = new URL(urlTemp);
-            myUrl = new URL("http://177.44.248.19/api/login");
+            myUrl = new URL(urlTemp);
             connection = (HttpURLConnection) myUrl.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST"); // hear you are telling that it is a POST request, which can be changed into "PUT", "GET", "DELETE" etc.
@@ -243,27 +259,19 @@ public class ConnectionAPI {
 
             JSONObject object = new JSONObject(responseOutput.toString());
 
+           // Log.i("JSON", object.toString());
+
             for (int i = 0; i < keysInput.length; i++){
                 String temp = object.getString(keysInput[i]);
                 map.put(keysInput[i], temp);
-
-                Log.i("Script", "################################## JSON: "+ keysInput[i] +" ->" + temp);
+//                Log.i("Script", "################################## JSON: "+ keysInput[i] +" ->" + temp);
             }
+//            for ( String k : map.keySet()){
+//                Log.i("Script", "================IN RESPONSE================= > " + map.get(k));
+//            }
 
-            for ( String k : map.keySet()){
-                Log.i("Script", "================IN RESPONSE================= > " + map.get(k));
-            }
 
-
-            Log.i(" :: NOVA POST :: ",responseOutput.toString());
-
-//                if (response >= 200 && response <= 399) {
-//                    //return is = connection.getInputStream();
-//                    return true;
-//                } else {
-//                    //return is = connection.getErrorStream();
-//                    return false;
-//                }
+//            Log.i(" :: NOVA POST :: ",responseOutput.toString());
 
 
         } catch (Exception e) {
@@ -280,45 +288,56 @@ public class ConnectionAPI {
         }
     }
 
-
-
-    public static Map<String, String> apiGET(String[] keys, String[] values, String from) {
+    public static Map<String, String> apiGET(String[] parametersFixed, String[] parameters, String from, String action) {
 
         String dataUrlTemp = url;
         HashMap<String, String> map = new HashMap();
 
-        dataUrlTemp += from + "?token=" + Session.getInstance().getToken().getCode();
+        dataUrlTemp += from;
 
-        if (keys.length == values.length) {
-            int length = keys.length;
-
-            if (length > 0) {
-                for (int i = 0; i < length; i++) {
-                    dataUrlTemp += "&" + keys[i] + "=" + values[i];
-                }
+        if (parametersFixed != null){
+            for (int i = 0; i < parametersFixed.length; i++){
+                dataUrlTemp += "/" + parametersFixed[i];
             }
+        }
 
-            try {
+        if (action != null) {
+            dataUrlTemp += "/" + action;
+        }
 
-                HttpClient httpclient = (HttpClient) new DefaultHttpClient();
-                HttpGet httppost = new HttpGet(dataUrlTemp);
-                HttpResponse response = (HttpResponse) httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
+        dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode();
 
-                JSONObject object = new JSONObject(EntityUtils.toString(entity));
-                if (object.length() > 0) {
-                    while (object.keys().hasNext()) {
-                        String s = object.keys().next();
-
-                        map.put(s + "", object.get(s) + "");
-                    }
-                } else {
-                    map.put("erro", "No Info Find");
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (parameters != null){
+            for (int i = 0; i < parameters.length; i++){
+                dataUrlTemp += "&" + parameters[i];
             }
+        }
+
+        try {
+            dataUrlTemp = "http://viacep.com.br/ws/95890000/json";
+            HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+            HttpGet httppost = new HttpGet(dataUrlTemp);
+            HttpResponse response = (HttpResponse) httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            Log.i("SCRIPT API GET URL", dataUrlTemp);
+            Log.i("SCRIPT API GET RESULT", EntityUtils.toString(entity));
+
+            JSONObject object = new JSONObject(EntityUtils.toString(entity));
+//            if (object.length() > 0) {
+//                while (object.keys().hasNext()) {
+//                    String s = object.keys().next();
+//                    map.put(s + "", object.get(s) + "");
+//                }
+//            } else {
+//                map.put("erro", "No Info Find");
+//            }
+            Log.i("JSON", "Aqui");
+
+            Log.i("JSON", object.toString());
+        } catch (Exception e) {
+
+            Log.i("JSON###", e.getMessage());
+            e.printStackTrace();
         }
 
 //        return solution;

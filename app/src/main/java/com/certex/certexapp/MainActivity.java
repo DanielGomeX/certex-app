@@ -2,6 +2,7 @@ package com.certex.certexapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +15,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.os.StrictMode;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
-import com.certex.certexapp.GemaCode.RetryHashMap;
 import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,9 +86,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+                String[] paramentesFixed = {"95950000"};
+                ConnectionAPI.apiGET(paramentesFixed, null, "cep",null);
+//                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
+//                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+//                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+//                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
     }
@@ -125,18 +122,18 @@ public class MainActivity extends AppCompatActivity {
             String[] values = {usernameText, passwordText};
             String[] keysInput = {"access_token"};
 
-            JSONObject jsonData = new JSONObject();
-            try {
-                jsonData.put("email", usernameText);
-                jsonData.put("password", passwordText);
-            } catch (JSONException e){
-                e.printStackTrace();
-            }
-
-            HashMap<String, String> map = ConnectionAPI.makePost("login", jsonData, keysInput);
-            for ( String k : map.keySet()){
-                Log.i("Script", "================MAIN================= > " + map.get(k));
-            }
+//            JSONObject jsonData = new JSONObject();
+//            try {
+//                jsonData.put("email", usernameText);
+//                jsonData.put("password", passwordText);
+//            } catch (JSONException e){
+//                e.printStackTrace();
+//            }
+//
+//            HashMap<String, String> map = ConnectionAPI.makePost("login", jsonData, keysInput);
+//            for ( String k : map.keySet()){
+//                Log.i("Script", "================MAIN================= > " + map.get(k));
+//            }
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");
