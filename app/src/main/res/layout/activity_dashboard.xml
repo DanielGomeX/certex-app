@@ -9,7 +9,20 @@
     tools:context=".DashboardActivity">
 
     <Button
-        android:id="@+id/bt_dashboard_show_report"
+        android:id="@+id/bt_dashboard_register_manufacturers"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="148dp"
+        android:alpha="0.50"
+        android:background="#CE2628"
+        android:text="@string/bt_dashboard_register_manufacturers_ptBr"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/bt_dashboard_change_report"
+        app:layout_constraintStart_toEndOf="@+id/bt_dashboard_create_report" />
+
+    <Button
+        android:id="@+id/bt_dashboard_show_report2"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"

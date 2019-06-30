@@ -18,6 +18,7 @@
         <activity android:name=".DashboardActivity"></activity>
         <activity android:name=".UserActivity" />
         <activity android:name=".SignatureActivity" />
+        <activity android:name=".ManufacturersActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CompaniesActivity" /> <!-- android:windowSoftInputMode="stateHidden" /> -->
         <activity android:name=".SplashActivity">

@@ -1,9 +1,13 @@
 package com.certex.certexapp;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +35,8 @@ public class DashboardActivity extends AppCompatActivity {
             R.drawable.icon,
     };
 
+    private Button btRegisterManufacturers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,15 @@ public class DashboardActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.lv_dashboard);
         list.setAdapter(adapter);
 
+        btRegisterManufacturers = (Button) findViewById(R.id.bt_dashboard_register_manufacturers);
+        btRegisterManufacturers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+            }
+        });
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

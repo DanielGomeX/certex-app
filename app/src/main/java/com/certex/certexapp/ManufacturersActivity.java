@@ -3,7 +3,9 @@ package com.certex.certexapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,10 +38,20 @@ public class ManufacturersActivity extends AppCompatActivity {
          btSave = (Button) findViewById(R.id.bt_manufacturers_save);
          btSearchCep = (Button) findViewById(R.id.bt_search_cep);
 
-        setTitle("Cadastro de Extintor");
+        setTitle("Cadastro de Fornecedor");
 
         Intent it = getIntent();
 
+        btSearchCep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (etCep.getText().toString().isEmpty()){
+                    alert("Por favor preencha um cep valido", true);
+                } else {
+                    searchCep();
+                }
+            }
+        });
 
         //Field description ======= START
         //Verify field empty
@@ -185,16 +197,14 @@ public class ManufacturersActivity extends AppCompatActivity {
     private void searchCep(){
         String cep = etCep.getText().toString();
         String[] parametersFixed = {cep};
-
-        JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
-
         try {
-            etCity.setText( json.getString("localidade") );
-            etState.setText( json.getString("uf") );
+            JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
+            Log.i("JOSN CEP", json.toString());
+            etCity.setText( json.getJSONObject("data").getString("localidade") );
+            etState.setText( json.getJSONObject("data").getString("uf") );
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     private void saveCRUD (){
@@ -202,7 +212,6 @@ public class ManufacturersActivity extends AppCompatActivity {
         String cep = etCep.getText().toString();
         String city = etCity.getText().toString();
         String state = etState.getText().toString();
-
         try {
             JSONObject data = new JSONObject();
             data.put("description", description);
