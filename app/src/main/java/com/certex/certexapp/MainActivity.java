@@ -20,6 +20,11 @@ import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.GemaCode.Session;
 import com.certex.certexapp.service.Alert;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btLogin;
@@ -87,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, UserActivity.class);
                 String[] paramentesFixed = {"95950000"};
-                ConnectionAPI.apiGET(paramentesFixed, null, "cep",null);
+                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
 //                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
 //                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
 //                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
@@ -130,10 +135,10 @@ public class MainActivity extends AppCompatActivity {
 //                e.printStackTrace();
 //            }
 //
-//            HashMap<String, String> map = ConnectionAPI.makePost("login", jsonData, keysInput);
-//            for ( String k : map.keySet()){
-//                Log.i("Script", "================MAIN================= > " + map.get(k));
-//            }
+//            try {
+//                JSONObject json = ConnectionAPI.makePost("login", null, null, jsonData);
+//                Log.i("Script", "================MAIN================= > " + json.get("access_token"));
+//            } catch (Exception e){ e.printStackTrace();}
 
             ConnectionAPI api = new ConnectionAPI();
             Log.i("Script", "beforeTextChanged");

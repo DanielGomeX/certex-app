@@ -42,6 +42,98 @@ public class ConnectionAPI {
     public final static String ACTION_COUNT = "count";
     public final static String ACTION_NULL = null;
 
+    /**
+     *
+     * @param from
+     * @param action
+     * @param indice
+     * @param jsonData
+     * @return
+     */
+    public static JSONObject makePost(String from, String action, String indice, JSONObject jsonData) {
+        URL myUrl;
+        HttpURLConnection connection = null;
+        JSONObject json = null;
+        //Formando a URL
+        String urlTemp = url + from;
+        if (indice != null){ urlTemp += "/" + indice; }
+        if (action != null){ urlTemp += "/" + action; }
+        if (Session.isFromInstance()) { urlTemp += "?token=" + Session.getInstance().getToken().getCode(); }
+        try {
+            //Estabelecer a conexão
+            myUrl = new URL(urlTemp);
+            connection = (HttpURLConnection) myUrl.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST"); // hear you are telling that it is a POST request, which can be changed into "PUT", "GET", "DELETE" etc.
+            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8"); // here you are setting the `Content-Type` for the data you are sending which is `application/json`
+            connection.connect();
+            //Enviar as requisições
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(jsonData.toString());
+            wr.flush();
+            wr.close();
+            //Receber os resultados
+            InputStream is;
+            String response = connection.getResponseMessage();
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder responseOutput = new StringBuilder();
+            String line = "";
+            while ((line = br.readLine()) != null) { responseOutput.append(line); }
+            br.close();
+            //Montar o JSON
+            json = new JSONObject(responseOutput.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) { connection.disconnect(); }
+            return json;
+        }
+    }
+
+    /**
+     *
+     * @param parametersFixed /cep/95890000
+     * @param parameters ?name=modelo&idade=99
+     * @param from
+     * @param action
+     * @return
+     */
+    public static JSONObject makeGet ( String[] parametersFixed, String[] parameters, String from, String action ){
+        StringBuilder result = new StringBuilder();
+        JSONObject json = null;
+        //Montar a URL
+        String dataUrlTemp = url + from;
+        if (parametersFixed != null){
+            for (int i = 0; i < parametersFixed.length; i++){ dataUrlTemp += "/" + parametersFixed[i]; }
+        }
+        if (action != null) { dataUrlTemp += "/" + action; }
+        if (Session.isFromInstance()) { dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode(); }
+        if (parameters != null){
+            for (int i = 0; i < parameters.length; i++){
+                if ( Session.isFromInstance() && i ==0){ dataUrlTemp += "?" + parameters[i]; }
+                else { dataUrlTemp += "&" + parameters[i]; }
+            }
+        }
+        try {
+            //Estabelecer a conexão
+            URL url = new URL(dataUrlTemp);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            //Receber o resultado
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = rd.readLine()) != null) { result.append(line); }
+            //Montar o JSON
+            String st_json = result.toString();
+            json = new JSONObject(st_json);
+//            Log.i("JSON", json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return json;
+        }
+
+    }
 
     @Deprecated
     public static void Post(final String[] keys, final String[] value, final String table, final String variable, Activity activity) {
@@ -211,137 +303,66 @@ public class ConnectionAPI {
 //        return map;
 //    }
 
-    public static HashMap<String, String> makePost(String table, String action, String indice, JSONObject jsonData, String[] keysInput) {
-        URL myUrl;
-        HttpURLConnection connection = null;
-
-        HashMap<String, String> map = new HashMap();
-        String urlTemp = url + table;
-
-        if (indice != null){
-            urlTemp += "/" + indice;
-        }
-
-        if (action != null){
-            urlTemp += "/" + action;
-        }
-
-        urlTemp += "?token=" + Session.getInstance().getToken().getCode();
-
-        try {
-//            myUrl = new URL(urlTemp);
-            myUrl = new URL(urlTemp);
-            connection = (HttpURLConnection) myUrl.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestMethod("POST"); // hear you are telling that it is a POST request, which can be changed into "PUT", "GET", "DELETE" etc.
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8"); // here you are setting the `Content-Type` for the data you are sending which is `application/json`
-            connection.connect();
-
-            //Send request
-            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-            wr.writeBytes(jsonData.toString());
-            wr.flush();
-            wr.close();
-
-            InputStream is;
-            String response = connection.getResponseMessage();
-//            Log.d("Script", "%%%%%%%%%%%%%%%%%%%% " + String.valueOf(response));
-//            Log.d("Script", String.valueOf(connection.getContent()));
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line = "";
-            StringBuilder responseOutput = new StringBuilder();
-
-            while ((line = br.readLine()) != null) {
-                responseOutput.append(line);
-            }
-            br.close();
-
-            JSONObject object = new JSONObject(responseOutput.toString());
-
-           // Log.i("JSON", object.toString());
-
-            for (int i = 0; i < keysInput.length; i++){
-                String temp = object.getString(keysInput[i]);
-                map.put(keysInput[i], temp);
-//                Log.i("Script", "################################## JSON: "+ keysInput[i] +" ->" + temp);
-            }
-//            for ( String k : map.keySet()){
-//                Log.i("Script", "================IN RESPONSE================= > " + map.get(k));
+//    public static Map<String, String> apiGET(String[] parametersFixed, String[] parameters, String from, String action) {
+//
+//        String dataUrlTemp = url;
+//        HashMap<String, String> map = new HashMap();
+//
+//        dataUrlTemp += from;
+//
+//        if (parametersFixed != null){
+//            for (int i = 0; i < parametersFixed.length; i++){
+//                dataUrlTemp += "/" + parametersFixed[i];
 //            }
-
-
-//            Log.i(" :: NOVA POST :: ",responseOutput.toString());
-
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-//                return false;
-
-        } finally {
-
-            if (connection != null) {
-                connection.disconnect();
-            }
-            return map;
-        }
-    }
-
-    public static Map<String, String> apiGET(String[] parametersFixed, String[] parameters, String from, String action) {
-
-        String dataUrlTemp = url;
-        HashMap<String, String> map = new HashMap();
-
-        dataUrlTemp += from;
-
-        if (parametersFixed != null){
-            for (int i = 0; i < parametersFixed.length; i++){
-                dataUrlTemp += "/" + parametersFixed[i];
-            }
-        }
-
-        if (action != null) {
-            dataUrlTemp += "/" + action;
-        }
-
-        dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode();
-
-        if (parameters != null){
-            for (int i = 0; i < parameters.length; i++){
-                dataUrlTemp += "&" + parameters[i];
-            }
-        }
-
-        try {
-            dataUrlTemp = "http://viacep.com.br/ws/95890000/json";
-            HttpClient httpclient = (HttpClient) new DefaultHttpClient();
-            HttpGet httppost = new HttpGet(dataUrlTemp);
-            HttpResponse response = (HttpResponse) httpclient.execute(httppost);
-            HttpEntity entity = response.getEntity();
-            Log.i("SCRIPT API GET URL", dataUrlTemp);
-            Log.i("SCRIPT API GET RESULT", EntityUtils.toString(entity));
-
-            JSONObject object = new JSONObject(EntityUtils.toString(entity));
-//            if (object.length() > 0) {
-//                while (object.keys().hasNext()) {
-//                    String s = object.keys().next();
-//                    map.put(s + "", object.get(s) + "");
+//        }
+//
+//        if (action != null) {
+//            dataUrlTemp += "/" + action;
+//        }
+//
+//        if (Session.isFromInstance()) {
+//            dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode();
+//        }
+//
+//        if (parameters != null){
+//            for (int i = 0; i < parameters.length; i++){
+//                if ( Session.isFromInstance() && i ==0){
+//                    dataUrlTemp += "?" + parameters[i];
+//                } else {
+//                    dataUrlTemp += "&" + parameters[i];
 //                }
-//            } else {
-//                map.put("erro", "No Info Find");
 //            }
-            Log.i("JSON", "Aqui");
-
-            Log.i("JSON", object.toString());
-        } catch (Exception e) {
-
-            Log.i("JSON###", e.getMessage());
-            e.printStackTrace();
-        }
-
-//        return solution;
-
-        return map;
-    }
+//        }
+//
+//        try {
+//            dataUrlTemp = "http://viacep.com.br/ws/95890000/json";
+//            HttpClient httpclient = (HttpClient) new DefaultHttpClient();
+//            HttpGet httppost = new HttpGet(dataUrlTemp);
+//            HttpResponse response = (HttpResponse) httpclient.execute(httppost);
+//            HttpEntity entity = response.getEntity();
+//            Log.i("SCRIPT API GET URL", dataUrlTemp);
+//            Log.i("SCRIPT API GET RESULT", EntityUtils.toString(entity));
+//
+//            JSONObject object = new JSONObject(EntityUtils.toString(entity));
+////            if (object.length() > 0) {
+////                while (object.keys().hasNext()) {
+////                    String s = object.keys().next();
+////                    map.put(s + "", object.get(s) + "");
+////                }
+////            } else {
+////                map.put("erro", "No Info Find");
+////            }
+//            Log.i("JSON", "Aqui");
+//
+//            Log.i("JSON", object.toString());
+//        } catch (Exception e) {
+//
+//            Log.i("JSON###", e.getMessage());
+//            e.printStackTrace();
+//        }
+//
+////        return solution;
+//
+//        return map;
+//    }
 }

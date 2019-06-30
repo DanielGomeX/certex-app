@@ -23,4 +23,11 @@ public class Session {
         return instance;
     }
 
+    public static boolean isFromInstance(){
+        if (instance == null) {
+            return false;
+        }
+        return true;
+    }
+
 }
