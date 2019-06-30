@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_companies"
-    android:orientation="vertical"
     tools:context=".ExtinguishersActivity">
 
     <ScrollView
@@ -47,6 +46,12 @@
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/bt_search_cep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cep_btn_search_manufacturers_ptBr" />
 
             <EditText
                 android:id="@+id/et_extinguishers_capacity"

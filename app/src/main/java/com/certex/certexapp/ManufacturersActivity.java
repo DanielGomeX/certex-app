@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.service.Alert;
+
+import org.json.JSONObject;
 
 
 public class ManufacturersActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class ManufacturersActivity extends AppCompatActivity {
     private EditText etCity;
     private EditText etState;
     private Button btSave;
+    private Button btSearchCep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class ManufacturersActivity extends AppCompatActivity {
          etCity = (EditText) findViewById(R.id.et_extinguishers_capacity);
          etState = (EditText) findViewById(R.id.et_extinguishers_charge);
          btSave = (Button) findViewById(R.id.bt_manufacturers_save);
-
+         btSearchCep = (Button) findViewById(R.id.bt_search_cep);
 
         setTitle("Cadastro de Extintor");
 
@@ -168,6 +172,49 @@ public class ManufacturersActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
+    }
+
+    private void isNew(){
+
+    }
+
+    private void isEdit(){
+
+    }
+
+    private void searchCep(){
+        String cep = etCep.getText().toString();
+        String[] parametersFixed = {cep};
+
+        JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
+
+        try {
+            etCity.setText( json.getString("localidade") );
+            etState.setText( json.getString("uf") );
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveCRUD (){
+        String description = etDescription.getText().toString();
+        String cep = etCep.getText().toString();
+        String city = etCity.getText().toString();
+        String state = etState.getText().toString();
+
+        try {
+            JSONObject data = new JSONObject();
+            data.put("description", description);
+            data.put("cep", cep);
+            data.put("city", city);
+            data.put("state", state);
+
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURERS, ConnectionAPI.ACTION_STORE, null, data);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
 

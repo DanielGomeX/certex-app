@@ -33,6 +33,8 @@ public class ConnectionAPI {
     private final static String url = "http://177.44.248.19/api/";
     public final static String TABLE_LOGIN = "login";
     public final static String TABLE_COMPANY = "company";
+    public final static String TABLE_CEP = "cep";
+    public final static String TABLE_MANUFACTURERS = "manufacturers";
 
     public final static String ACTION_STORE = "store";
     public final static String ACTION_UPDATE = "update";

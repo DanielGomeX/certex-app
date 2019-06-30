@@ -214,5 +214,17 @@ public class CompaniesActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
     }
+
+    private void isNew(){
+
+    }
+
+    private void isEdit(){
+
+    }
+
+    private void saveCRUD (){
+
+    }
 }
 

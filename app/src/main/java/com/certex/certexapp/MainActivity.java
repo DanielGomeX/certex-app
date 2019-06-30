@@ -91,12 +91,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                String[] paramentesFixed = {"95950000"};
-                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
+//                String[] paramentesFixed = {"95950000"};
 //                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
-//                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-//                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-//                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
     }

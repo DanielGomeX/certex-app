@@ -49,5 +49,6 @@
     <string name="state_manufacturers_ptBr">Estado</string>
     <string name="save_manufacturers_ptBr">Salvar</string>
     <string name="save_btn_extinguishers_ptBr">Salvar</string>
+    <string name="cep_btn_search_manufacturers_ptBr" >Pesquisar CEP</string>
 
 </resources>
