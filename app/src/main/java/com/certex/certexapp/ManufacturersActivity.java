@@ -329,7 +329,9 @@ public class ManufacturersActivity extends AppCompatActivity {
             data.put("city", city);
             data.put("state", state);
 
-            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURERS, ConnectionAPI.ACTION_STORE, null, data);
+            Log.i("JSON DATA", data.toString());
+
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_STORE, null, data);
 
             Log.i("JSON de SOTRE", json.toString());
         } catch (Exception e){

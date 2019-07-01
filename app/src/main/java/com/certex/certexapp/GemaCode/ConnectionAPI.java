@@ -34,7 +34,7 @@ public class ConnectionAPI {
     public final static String TABLE_LOGIN = "login";
     public final static String TABLE_COMPANY = "company";
     public final static String TABLE_CEP = "cep";
-    public final static String TABLE_MANUFACTURERS = "manufacturers";
+    public final static String TABLE_MANUFACTURER = "manufacturer";
 
     public final static String ACTION_STORE = "store";
     public final static String ACTION_UPDATE = "update";
@@ -61,6 +61,7 @@ public class ConnectionAPI {
         if (indice != null){ urlTemp += "/" + indice; }
         if (action != null){ urlTemp += "/" + action; }
         if (Session.isFromInstance()) { urlTemp += "?token=" + Session.getInstance().getToken().getCode(); }
+        Log.i("URL DO POST => ", urlTemp);
         try {
             //Estabelecer a conexão
             myUrl = new URL(urlTemp);
@@ -82,6 +83,7 @@ public class ConnectionAPI {
             String line = "";
             while ((line = br.readLine()) != null) { responseOutput.append(line); }
             br.close();
+            Log.i("RETORNO BRUTO POST => ", responseOutput.toString());
             //Montar o JSON
             json = new JSONObject(responseOutput.toString());
         } catch (Exception e) {
@@ -116,6 +118,7 @@ public class ConnectionAPI {
                 else { dataUrlTemp += "&" + parameters[i]; }
             }
         }
+        Log.i("URL DO GET => ", dataUrlTemp);
         try {
             //Estabelecer a conexão
             URL url = new URL(dataUrlTemp);
