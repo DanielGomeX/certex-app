@@ -31,10 +31,10 @@ public class ExtinguishersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extinguishers);
 
-         etCode = (EditText) findViewById(R.id.et_extinguishers_code);
-         etNumber = (EditText) findViewById(R.id.et_extinguishers_number);
-         etCapacity = (EditText) findViewById(R.id.et_extinguishers_capacity);
-         etCharge = (EditText) findViewById(R.id.et_extinguishers_charge);
+         etCode = (EditText) findViewById(R.id.et_name_manufacturers);
+         etNumber = (EditText) findViewById(R.id.et_cep_manufacturers);
+         etCapacity = (EditText) findViewById(R.id.et_city_manufacturers);
+         etCharge = (EditText) findViewById(R.id.et_state_manufacturers);
          etChargeDate = (EditText) findViewById(R.id.et_extinguishers_charge_date);
          etValidateDate = (EditText) findViewById(R.id.et_extinguishers_validate);
          etLocation = (EditText) findViewById(R.id.et_extinguishers_location);

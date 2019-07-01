@@ -51,5 +51,8 @@
     <string name="save_btn_extinguishers_ptBr">Salvar</string>
     <string name="cep_btn_search_manufacturers_ptBr" >Pesquisar CEP</string>
     <string name="bt_dashboard_register_manufacturers_ptBr">Cadastrar Fornecedores</string>
+    <string name="name_manufacturers_ptBr">Nome</string>
+    <string name="fone_manufacturers_ptBr">Telefone</string>
+    <string name="email_manufacturers_ptBr">E-mail</string>
 
 </resources>

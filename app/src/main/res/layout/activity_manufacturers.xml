@@ -7,6 +7,16 @@
     android:background="@drawable/background_companies"
     tools:context=".ExtinguishersActivity">
 
+    <EditText
+        android:id="@+id/et_extinguishers_code4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:enabled="true"
+        android:hint="@string/description_manufacturers_ptBr"
+        android:imeOptions="actionNext"
+        android:inputType="number" />
+
     <ScrollView
         android:id="@+id/sv_companies"
         android:layout_width="match_parent"
@@ -22,26 +32,53 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_extinguishers_code"
+                android:id="@+id/et_name_manufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:hint="@string/name_manufacturers_ptBr"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" /> <!--Validar CNPJ E PREENCHER O RESTO-->
+
+            <EditText
+                android:id="@+id/et_fone_manufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:hint="@string/fone_manufacturers_ptBr"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_email_manufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:hint="@string/email_manufacturers_ptBr"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_description_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:hint="@string/description_manufacturers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="number" /> <!--Validar CNPJ E PREENCHER O RESTO-->
+                android:inputType="textPersonName" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_extinguishers_number"
+                android:id="@+id/et_cep_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:hint="@string/cep__manufacturers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
+                android:inputType="number" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -54,7 +91,7 @@
                 android:text="@string/cep_btn_search_manufacturers_ptBr" />
 
             <EditText
-                android:id="@+id/et_extinguishers_capacity"
+                android:id="@+id/et_city_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -67,7 +104,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_extinguishers_charge"
+                android:id="@+id/et_state_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"

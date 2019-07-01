@@ -50,10 +50,10 @@ public class CompaniesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
 
-        etSocialName = (EditText) findViewById(R.id.et_extinguishers_capacity);
-        etFantasyName = (EditText) findViewById(R.id.et_extinguishers_charge);
-        etCnpj = (EditText) findViewById(R.id.et_extinguishers_code);
-        etStateRegistration = (EditText) findViewById(R.id.et_extinguishers_number);
+        etSocialName = (EditText) findViewById(R.id.et_city_manufacturers);
+        etFantasyName = (EditText) findViewById(R.id.et_state_manufacturers);
+        etCnpj = (EditText) findViewById(R.id.et_name_manufacturers);
+        etStateRegistration = (EditText) findViewById(R.id.et_cep_manufacturers);
         etCep = (EditText) findViewById(R.id.et_extinguishers_charge_date);
         etState = (EditText) findViewById(R.id.et_extinguishers_validate);
         etCity = (EditText) findViewById(R.id.et_companies_city);

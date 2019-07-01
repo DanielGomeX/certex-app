@@ -19,6 +19,10 @@ import org.json.JSONObject;
 
 public class ManufacturersActivity extends AppCompatActivity {
 
+    private int id;
+    private EditText etName;
+    private EditText etFone;
+    private EditText etEmail;
     private EditText etDescription;
     private EditText etCep;
     private EditText etCity;
@@ -31,12 +35,15 @@ public class ManufacturersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manufacturers);
 
-         etDescription = (EditText) findViewById(R.id.et_extinguishers_code);
-         etCep = (EditText) findViewById(R.id.et_extinguishers_number);
-         etCity = (EditText) findViewById(R.id.et_extinguishers_capacity);
-         etState = (EditText) findViewById(R.id.et_extinguishers_charge);
-         btSave = (Button) findViewById(R.id.bt_manufacturers_save);
-         btSearchCep = (Button) findViewById(R.id.bt_search_cep);
+        etName = (EditText) findViewById(R.id.et_name_manufacturers);
+        etFone = (EditText) findViewById(R.id.et_fone_manufacturers);
+        etEmail = (EditText) findViewById(R.id.et_email_manufacturers);
+        etDescription = (EditText) findViewById(R.id.et_description_manufacturers);
+        etCep = (EditText) findViewById(R.id.et_cep_manufacturers);
+        etCity = (EditText) findViewById(R.id.et_city_manufacturers);
+        etState = (EditText) findViewById(R.id.et_state_manufacturers);
+        btSave = (Button) findViewById(R.id.bt_manufacturers_save);
+        btSearchCep = (Button) findViewById(R.id.bt_search_cep);
 
         setTitle("Cadastro de Fornecedor");
 
@@ -52,6 +59,103 @@ public class ManufacturersActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveCRUD();
+            }
+        });
+
+        //Field name ======= START
+        //Verify field empty
+        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (!etName.getText().toString().isEmpty()) {
+                        return false;
+                    } else {
+                        alert("Nome vazio", true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        //Next field
+        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    alert("Próximo: Telefone", true);
+                    return false;
+                }
+                return true;
+            }
+        });
+        //Field name ======= FINISH
+
+
+        //Field fone ======= START
+        //Verify field empty
+        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (!etFone.getText().toString().isEmpty()) {
+                        return false;
+                    } else {
+                        alert("Telefone vazio", true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        //Next field
+        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    alert("Próximo: Email", true);
+                    return false;
+                }
+                return true;
+            }
+        });
+        //Field fone ======= FINISH
+
+
+        //Field email ======= START
+        //Verify field empty
+        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (!etEmail.getText().toString().isEmpty()) {
+                        return false;
+                    } else {
+                        alert("Email vazio", true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        //Next field
+        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    alert("Próximo: Descrição", true);
+                    return false;
+                }
+                return true;
+            }
+        });
+        //Field email ======= FINISH
+
 
         //Field description ======= START
         //Verify field empty
@@ -208,18 +312,26 @@ public class ManufacturersActivity extends AppCompatActivity {
     }
 
     private void saveCRUD (){
+        String name = etName.getText().toString();
+        String fone = etFone.getText().toString();
+        String email = etEmail.getText().toString();
         String description = etDescription.getText().toString();
         String cep = etCep.getText().toString();
         String city = etCity.getText().toString();
         String state = etState.getText().toString();
         try {
             JSONObject data = new JSONObject();
+            data.put("name", name);
+            data.put("fone", fone);
+            data.put("email", email);
             data.put("description", description);
             data.put("cep", cep);
             data.put("city", city);
             data.put("state", state);
 
             JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURERS, ConnectionAPI.ACTION_STORE, null, data);
+
+            Log.i("JSON de SOTRE", json.toString());
         } catch (Exception e){
             e.printStackTrace();
         }
