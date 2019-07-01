@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
+import com.certex.certexapp.GemaCode.SettingStrings;
 import com.certex.certexapp.service.Alert;
 
 import org.json.JSONObject;
@@ -304,8 +305,8 @@ public class ManufacturersActivity extends AppCompatActivity {
         try {
             JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
             Log.i("JOSN CEP", json.toString());
-            etCity.setText( json.getJSONObject("data").getString("localidade") );
-            etState.setText( json.getJSONObject("data").getString("uf") );
+            etCity.setText( SettingStrings.removeAccentuation( json.getJSONObject("data").getString("localidade") ).toUpperCase() );
+            etState.setText( SettingStrings.removeAccentuation( json.getJSONObject("data").getString("uf") ).toUpperCase() );
         } catch (Exception e){
             e.printStackTrace();
         }
