@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -28,7 +30,7 @@ public class ManufacturersActivity extends AppCompatActivity {
     private EditText etCep;
     private EditText etCity;
     private EditText etState;
-    private Button btSave;
+   // private Button btSave;
     private Button btSearchCep;
 
     @Override
@@ -43,7 +45,7 @@ public class ManufacturersActivity extends AppCompatActivity {
         etCep = (EditText) findViewById(R.id.et_cep_manufacturers);
         etCity = (EditText) findViewById(R.id.et_city_manufacturers);
         etState = (EditText) findViewById(R.id.et_state_manufacturers);
-        btSave = (Button) findViewById(R.id.bt_manufacturers_save);
+       // btSave = (Button) findViewById(R.id.bt_manufacturers_save);
         btSearchCep = (Button) findViewById(R.id.bt_search_cep);
 
         setTitle("Cadastro de Fornecedor");
@@ -54,19 +56,19 @@ public class ManufacturersActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (etCep.getText().toString().isEmpty()){
-                    alert("Por favor preencha um cep valido", true);
+                    alert("Favor Preencha CEP Valido", true);
                 } else {
                     searchCep();
                 }
             }
         });
 
-        btSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveCRUD();
-            }
-        });
+//        btSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                saveCRUD();
+//            }
+//        });
 
         //Field name ======= START
         //Verify field empty
@@ -221,65 +223,23 @@ public class ManufacturersActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.bt_main_save:
-//
-//                if (!etCnpj.getText().toString().isEmpty() //&& !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
-//                    // !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
-//                    // !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
-//                ) {
-//                    File imgFile = new File(Environment.getExternalStoragePublicDirectory(
-//                            Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
-//                    if (imgFile.exists()) {
-//
-//                        File fileExt = new File(Environment.getExternalStoragePublicDirectory(
-//                                Environment.DIRECTORY_DOWNLOADS), "base.txt");
-//
-//                        //Cria o arquivo txt para teste
-//                        fileExt.getParentFile().mkdirs();
-//                        FileOutputStream fosExt = null;
-//                        try {
-//                            fosExt = new FileOutputStream(fileExt);
-//                        } catch (FileNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
-//                        try {
-//                            fosExt.write(encodeFileToBase64Binary(imgFile).getBytes());
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        try {
-//                            fosExt.close();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        //Log.i("Base64", encodeFileToBase64Binary(imgFile));
-//
-//                        alert("SALVO COM SUCESSO!", false);
-//
-//                        Intent intent = new Intent(ExtinguishersActivity.this, MainActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
-//                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-//                        ActivityCompat.startActivity(ExtinguishersActivity.this, intent, activityOptionsCompat.toBundle());
-//                        return true;
-//                    } else {
-//                        alert("Favor Crie uma Assinatura!", true);
-//                    }
-//                } else {
-//                    alert("Favor Preencher os dados Corretamente!", true);
-//                }
-//                return false;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bt_main_save:
+                saveCRUD();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
 
     private void alert(String msg, boolean error) {
         new Alert().show(msg, error, getLayoutInflater(), getApplicationContext(), this.findViewById(android.R.id.content));

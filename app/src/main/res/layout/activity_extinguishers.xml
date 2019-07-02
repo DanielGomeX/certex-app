@@ -29,7 +29,7 @@
                 android:enabled="true"
                 android:hint="@string/code_extinguishers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="number" /> <!--Validar CNPJ E PREENCHER O RESTO-->
+                android:inputType="textPersonName" /> <!--Validar CNPJ E PREENCHER O RESTO-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:enabled="true"
                 android:hint="@string/number_extinguishers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
+                android:inputType="number" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:id="@+id/et_city_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/capacity_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
@@ -65,7 +65,7 @@
                 android:id="@+id/et_state_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/charge_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
@@ -74,15 +74,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-
             <EditText
                 android:id="@+id/et_extinguishers_charge_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/chargeDate_extinguishers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="number" /> <!--Validar CEP E PREENCHER ESTADO E CIDADE-->
+                android:inputType="number" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -92,7 +91,7 @@
                 android:id="@+id/et_extinguishers_validate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/validate_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
@@ -118,7 +117,7 @@
                 android:id="@+id/et_extinguishers_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/manufacturers_extinguishers_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName" />
@@ -142,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/status_extinguishers_ptBr"
                 android:inputType="textPersonName" />
 

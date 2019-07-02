@@ -116,47 +116,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-
-            <!--Validar CEP E PREENCHER ESTADO E CIDADE-->
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <Button
-                android:id="@+id/bt_manufacturers_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:text="@string/save_manufacturers_ptBr" />
-
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +20,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.certex.certexapp.GemaCode.ConnectionAPI;
+import com.certex.certexapp.GemaCode.SettingStrings;
 import com.certex.certexapp.service.Alert;
 
 import org.apache.commons.codec.binary.Base64;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,7 +47,9 @@ public class CompaniesActivity extends AppCompatActivity {
     private EditText etNeighborhood;
     private EditText etComplement;
     private Button btSignature;
+    private Button btSearchCep;
     private ImageView ivSignature;
+    private String baseSignature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +67,13 @@ public class CompaniesActivity extends AppCompatActivity {
         etNeighborhood = (EditText) findViewById(R.id.et_companies_neighborhood);
         etComplement = (EditText) findViewById(R.id.et_companies_complement);
         btSignature = (Button) findViewById(R.id.bt_companies_signature);
+        btSearchCep = (Button) findViewById(R.id.bt_search_cep);
         ivSignature = (ImageView) findViewById(R.id.iv_companies_signature);
 
         setTitle("Dados da Empresa");
 
         Intent it = getIntent();
-        etCnpj.setText(it.getStringExtra("cnpj"));
+        etCnpj.setText(it.getStringExtra("cnpj_test"));//alterado
         etStateRegistration.setText(it.getStringExtra("ie"));
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(
@@ -80,31 +87,45 @@ public class CompaniesActivity extends AppCompatActivity {
             ivSignature.setVisibility(View.INVISIBLE);
         }
 
-        etCnpj.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        btSearchCep.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etCnpj.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("CNPJ EMPTY", true);
-                    }
+            public void onClick(View view) {
+                if (etCep.getText().toString().isEmpty()) {
+                    alert("Favor Preencha CEP Valido", true);
+                } else {
+                    searchCep();
+                    etAddress.setEnabled(true);
+                    etNeighborhood.setEnabled(true);
+                    etComplement.setEnabled(true);
                 }
-                return true;
             }
         });
 
-        etStateRegistration.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (!etCnpj.getText().toString().isEmpty()) {
-                    return false;
-                } else {
-                    alert("CNPJ EMPTY", true);
-                }
-                return true;
-            }
-        });
+//        etCnpj.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etCnpj.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("CNPJ EMPTY", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        etStateRegistration.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (!etCnpj.getText().toString().isEmpty()) {
+//                    return false
+//                } else {
+//                    alert("CNPJ EMPTY", true);
+//                }
+//                return true;
+//            }
+//        });
 
         etStateRegistration.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -121,7 +142,7 @@ public class CompaniesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CompaniesActivity.this, SignatureActivity.class);
-                intent.putExtra("cnpj", etCnpj.getText().toString());
+                intent.putExtra("cnpj_test", etCnpj.getText().toString());
                 intent.putExtra("ie", etStateRegistration.getText().toString());
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
@@ -135,13 +156,15 @@ public class CompaniesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
 
-                if (!etCnpj.getText().toString().isEmpty() //&& !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
-                    // !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
-                    // !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
-                ) {
+                if (!etCnpj.getText().toString().isEmpty() && !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
+                        !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
+                        !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
                     File imgFile = new File(Environment.getExternalStoragePublicDirectory(
                             Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
                     if (imgFile.exists()) {
+                        baseSignature = encodeFileToBase64Binary(imgFile);
+
+                        saveCRUD();
 
                         File fileExt = new File(Environment.getExternalStoragePublicDirectory(
                                 Environment.DIRECTORY_DOWNLOADS), "base.txt");
@@ -168,7 +191,7 @@ public class CompaniesActivity extends AppCompatActivity {
 
                         alert("SALVO COM SUCESSO!", false);
 
-                        Intent intent = new Intent(CompaniesActivity.this, MainActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                        Intent intent = new Intent(CompaniesActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
                         return true;
@@ -199,6 +222,19 @@ public class CompaniesActivity extends AppCompatActivity {
         return encodedfile;
     }
 
+    private void searchCep() {
+        String cep = etCep.getText().toString();
+        String[] parametersFixed = {cep};
+        try {
+            JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
+            Log.i("JOSN CEP", json.toString());
+            etCity.setText(SettingStrings.removeAccentuation(json.getJSONObject("data").getString("localidade")).toUpperCase());
+            etState.setText(SettingStrings.removeAccentuation(json.getJSONObject("data").getString("uf")).toUpperCase());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -215,15 +251,49 @@ public class CompaniesActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
     }
 
-    private void isNew(){
+    private void isNew() {
 
     }
 
-    private void isEdit(){
+    private void isEdit() {
 
     }
 
-    private void saveCRUD (){
+    private void saveCRUD() {
+        String cnpJ = etCnpj.getText().toString();
+        String stateRegistration = etStateRegistration.getText().toString();
+        String socialName = etSocialName.getText().toString();
+        String fantasyName = etFantasyName.getText().toString();
+        String address = etAddress.getText().toString();
+        String cep = etCep.getText().toString();
+        String complement = etComplement.getText().toString();
+        String neighborhood = etNeighborhood.getText().toString();
+        String signature = baseSignature;
+        String state = etState.getText().toString();
+        String city = etCity.getText().toString();
+
+        try {
+            JSONObject data = new JSONObject();
+            data.put("cnpj", cnpJ);
+            data.put("state_registration", stateRegistration);
+            data.put("social_name", socialName);
+            data.put("fantasy_name", fantasyName);
+            data.put("address", address);
+            data.put("cep", cep);
+            data.put("complement", complement);
+            data.put("neighborhood", neighborhood);
+            data.put("signature", signature);
+            data.put("state", state);
+            data.put("city", city);
+
+            Log.i("JSON DATA", data.toString());
+
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_STORE, null, data);
+
+            Log.i("JSON de SOTRE", json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

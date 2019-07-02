@@ -52,7 +52,7 @@
                 android:id="@+id/et_city_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/social_name_companies_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
@@ -65,7 +65,7 @@
                 android:id="@+id/et_state_manufacturers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/fantasy_name_companies_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="textCapCharacters" />
@@ -79,10 +79,20 @@
                 android:id="@+id/et_extinguishers_charge_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/cep_companies_ptBr"
                 android:imeOptions="actionNext"
                 android:inputType="number" /> <!--Validar CEP E PREENCHER ESTADO E CIDADE-->
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/bt_search_cep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cep_btn_search_manufacturers_ptBr" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -166,16 +176,9 @@
 
             <Button
                 android:id="@+id/bt_companies_signature"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_custom"
-                android:shadowColor="#A80000"
-                android:shadowDx="0"
-                android:shadowDy="0"
-                android:shadowRadius="5"
-                android:text="@string/signature_companies_bt"
-                android:textColor="@color/colorText" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/signature_companies_bt"/>
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

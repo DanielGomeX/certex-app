@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,17 +33,17 @@ public class ExtinguishersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extinguishers);
 
-         etCode = (EditText) findViewById(R.id.et_name_manufacturers);
-         etNumber = (EditText) findViewById(R.id.et_cep_manufacturers);
-         etCapacity = (EditText) findViewById(R.id.et_city_manufacturers);
-         etCharge = (EditText) findViewById(R.id.et_state_manufacturers);
-         etChargeDate = (EditText) findViewById(R.id.et_extinguishers_charge_date);
-         etValidateDate = (EditText) findViewById(R.id.et_extinguishers_validate);
-         etLocation = (EditText) findViewById(R.id.et_extinguishers_location);
-         etManufacturers = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
-         btManufacturers = (Button) findViewById(R.id.bt_extinguishers_manufacturers);
-         etStatusExtinguishers = (EditText) findViewById(R.id.et_extinguishers_status);
-         btStatusExtinguishers = (Button) findViewById(R.id.bt_manufacturers_save);
+        etCode = (EditText) findViewById(R.id.et_name_manufacturers);
+        etNumber = (EditText) findViewById(R.id.et_cep_manufacturers);
+        etCapacity = (EditText) findViewById(R.id.et_city_manufacturers);
+        etCharge = (EditText) findViewById(R.id.et_state_manufacturers);
+        etChargeDate = (EditText) findViewById(R.id.et_extinguishers_charge_date);
+        etValidateDate = (EditText) findViewById(R.id.et_extinguishers_validate);
+        etLocation = (EditText) findViewById(R.id.et_extinguishers_location);
+        etManufacturers = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
+        btManufacturers = (Button) findViewById(R.id.bt_extinguishers_manufacturers);
+        etStatusExtinguishers = (EditText) findViewById(R.id.et_extinguishers_status);
+        btStatusExtinguishers = (Button) findViewById(R.id.bt_manufacturers_save);
 
 
         setTitle("Cadastro de Extintor");
@@ -291,11 +293,11 @@ public class ExtinguishersActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.bt_main_save:
-//
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bt_main_save:
+
 //                if (!etCnpj.getText().toString().isEmpty() //&& !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
 //                    // !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
 //                    // !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
@@ -339,17 +341,17 @@ public class ExtinguishersActivity extends AppCompatActivity {
 //                } else {
 //                    alert("Favor Preencher os dados Corretamente!", true);
 //                }
-//                return false;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
     private void alert(String msg, boolean error) {
         new Alert().show(msg, error, getLayoutInflater(), getApplicationContext(), this.findViewById(android.R.id.content));
