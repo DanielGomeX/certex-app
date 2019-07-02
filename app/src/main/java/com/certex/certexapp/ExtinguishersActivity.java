@@ -25,26 +25,21 @@ public class ExtinguishersActivity extends AppCompatActivity {
     private EditText etLocation;
     private EditText etManufacturers;
     private Button btManufacturers;
-    private EditText etStatusExtinguishers;
-    private Button btStatusExtinguishers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extinguishers);
 
-        etCode = (EditText) findViewById(R.id.et_name_manufacturers);
-        etNumber = (EditText) findViewById(R.id.et_cep_manufacturers);
-        etCapacity = (EditText) findViewById(R.id.et_city_manufacturers);
-        etCharge = (EditText) findViewById(R.id.et_state_manufacturers);
-        etChargeDate = (EditText) findViewById(R.id.et_extinguishers_charge_date);
-        etValidateDate = (EditText) findViewById(R.id.et_extinguishers_validate);
-        etLocation = (EditText) findViewById(R.id.et_extinguishers_location);
-        etManufacturers = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
-        btManufacturers = (Button) findViewById(R.id.bt_extinguishers_manufacturers);
-        etStatusExtinguishers = (EditText) findViewById(R.id.et_extinguishers_status);
-        btStatusExtinguishers = (Button) findViewById(R.id.bt_manufacturers_save);
-
+        etCode = (EditText) findViewById(R.id.et_extinguishers_code4);
+        etNumber = (EditText) findViewById(R.id.et_number_extinguishers);
+        etCapacity = (EditText) findViewById(R.id.et_capacity_extinguishers);
+        etCharge = (EditText) findViewById(R.id.et_charge_extinguishers);
+        etChargeDate = (EditText) findViewById(R.id.et_charge_date_extinguishers);
+        etValidateDate = (EditText) findViewById(R.id.et_validate_extinguishers);
+        etLocation = (EditText) findViewById(R.id.et_location_extinguishers);
+        etManufacturers = (EditText) findViewById(R.id.et_manufacturers_extinguishers);
+        btManufacturers = (Button) findViewById(R.id.bt_manufacturers_extinguishers);
 
         setTitle("Cadastro de Extintor");
 
@@ -261,34 +256,34 @@ public class ExtinguishersActivity extends AppCompatActivity {
         //Field manufacturers ======= FINISH
 
 
-        //Field status ======= START
-        //Verify field empty
-        etStatusExtinguishers.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etStatusExtinguishers.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("Fornecedora do extintor vazia", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-        etStatusExtinguishers.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("Próximo: status", true);
-                    return false;
-                }
-                return true;
-            }
-        });
-        //Field status ======= FINISH
+//        //Field status ======= START
+//        //Verify field empty
+//        etStatusExtinguishers.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etStatusExtinguishers.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("Fornecedora do extintor vazia", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+//        etStatusExtinguishers.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("Próximo: status", true);
+//                    return false;
+//                }
+//                return true;
+//            }
+//        });
+//        //Field status ======= FINISH
 
     }
 

@@ -23,7 +23,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_name_manufacturers"
+                android:id="@+id/et_cnpj_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -36,7 +36,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_cep_manufacturers"
+                android:id="@+id/et_state_registration_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -49,7 +49,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_city_manufacturers"
+                android:id="@+id/et_social_name_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -62,7 +62,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_state_manufacturers"
+                android:id="@+id/et_fantasy_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -76,7 +76,7 @@
 
 
             <EditText
-                android:id="@+id/et_extinguishers_charge_date"
+                android:id="@+id/et_cep_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -89,7 +89,7 @@
                 android:layout_height="10dp" />
 
             <Button
-                android:id="@+id/bt_search_cep"
+                android:id="@+id/bt_search_cep_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cep_btn_search_manufacturers_ptBr" />
@@ -99,7 +99,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_extinguishers_validate"
+                android:id="@+id/et_state_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -112,7 +112,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_companies_city"
+                android:id="@+id/et_city_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -125,7 +125,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_extinguishers_manufacturers"
+                android:id="@+id/et_address_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -138,7 +138,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_companies_neighborhood"
+                android:id="@+id/et_neighborhood_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -151,7 +151,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/et_companies_complement"
+                android:id="@+id/et_complement_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -164,7 +164,7 @@
                 android:layout_height="15dp" />
 
             <ImageView
-                android:id="@+id/iv_companies_signature"
+                android:id="@+id/iv_signature_company"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -175,7 +175,7 @@
                 android:layout_height="15dp" />
 
             <Button
-                android:id="@+id/bt_companies_signature"
+                android:id="@+id/bt_signature_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signature_companies_bt"/>

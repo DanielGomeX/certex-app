@@ -46,7 +46,7 @@ public class ManufacturersActivity extends AppCompatActivity {
         etCity = (EditText) findViewById(R.id.et_city_manufacturers);
         etState = (EditText) findViewById(R.id.et_state_manufacturers);
        // btSave = (Button) findViewById(R.id.bt_manufacturers_save);
-        btSearchCep = (Button) findViewById(R.id.bt_search_cep);
+        btSearchCep = (Button) findViewById(R.id.bt_search_cep_manufacturers);
 
         setTitle("Cadastro de Fornecedor");
 

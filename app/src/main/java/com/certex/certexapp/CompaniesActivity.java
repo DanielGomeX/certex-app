@@ -56,19 +56,19 @@ public class CompaniesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
 
-        etSocialName = (EditText) findViewById(R.id.et_city_manufacturers);
-        etFantasyName = (EditText) findViewById(R.id.et_state_manufacturers);
-        etCnpj = (EditText) findViewById(R.id.et_name_manufacturers);
-        etStateRegistration = (EditText) findViewById(R.id.et_cep_manufacturers);
-        etCep = (EditText) findViewById(R.id.et_extinguishers_charge_date);
-        etState = (EditText) findViewById(R.id.et_extinguishers_validate);
-        etCity = (EditText) findViewById(R.id.et_companies_city);
-        etAddress = (EditText) findViewById(R.id.et_extinguishers_manufacturers);
-        etNeighborhood = (EditText) findViewById(R.id.et_companies_neighborhood);
-        etComplement = (EditText) findViewById(R.id.et_companies_complement);
-        btSignature = (Button) findViewById(R.id.bt_companies_signature);
-        btSearchCep = (Button) findViewById(R.id.bt_search_cep);
-        ivSignature = (ImageView) findViewById(R.id.iv_companies_signature);
+        etSocialName = (EditText) findViewById(R.id.et_social_name_company);
+        etFantasyName = (EditText) findViewById(R.id.et_fantasy_company);
+        etCnpj = (EditText) findViewById(R.id.et_cnpj_company);
+        etStateRegistration = (EditText) findViewById(R.id.et_state_registration_company);
+        etCep = (EditText) findViewById(R.id.et_cep_company);
+        etState = (EditText) findViewById(R.id.et_state_company);
+        etCity = (EditText) findViewById(R.id.et_city_company);
+        etAddress = (EditText) findViewById(R.id.et_address_company);
+        etNeighborhood = (EditText) findViewById(R.id.et_neighborhood_company);
+        etComplement = (EditText) findViewById(R.id.et_complement_company);
+        btSignature = (Button) findViewById(R.id.bt_signature_company);
+        btSearchCep = (Button) findViewById(R.id.bt_search_cep_company);
+        ivSignature = (ImageView) findViewById(R.id.iv_signature_company);
 
         setTitle("Dados da Empresa");
 

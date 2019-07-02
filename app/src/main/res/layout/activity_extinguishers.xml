@@ -1,174 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/background_companies"
-    android:orientation="vertical"
+    android:baselineAligned="true"
+    android:orientation="horizontal"
+    android:padding="5dp"
     tools:context=".ExtinguishersActivity">
 
-    <ScrollView
-        android:id="@+id/sv_companies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/et_tag_extinguishers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:enabled="true"
+            android:hint="@string/code_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <EditText
+            android:id="@+id/et_validate_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/validate_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/et_name_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/code_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" /> <!--Validar CNPJ E PREENCHER O RESTO-->
+        <EditText
+            android:id="@+id/et_charge_date_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/chargeDate_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="number" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <EditText
+            android:id="@+id/et_location_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/location_extinguishers_ptBr"
+            android:inputType="textMultiLine" />
 
-            <EditText
-                android:id="@+id/et_cep_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/number_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="number" /> <!--Validar INSCRIÇÃO ESTADUAL CASO NÂO TIVER POR CNPJ-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLASSES:"
+            android:textSize="18dp" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="A" />
 
-            <EditText
-                android:id="@+id/et_city_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/capacity_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textCapCharacters" />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="C" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="K" />
 
-            <EditText
-                android:id="@+id/et_state_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/charge_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textCapCharacters" />
+    </LinearLayout>
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+    <LinearLayout
 
-            <EditText
-                android:id="@+id/et_extinguishers_charge_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/chargeDate_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="number" />
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <EditText
+            android:id="@+id/et_number_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/number_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="number" />
 
-            <EditText
-                android:id="@+id/et_extinguishers_validate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/validate_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/et_capacity_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/capacity_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters" />
 
-            <EditText
-                android:id="@+id/et_extinguishers_location"
-                android:layout_width="match_parent"
-                android:layout_height="98dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/location_extinguishers_ptBr"
-                android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/et_charge_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/charge_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <EditText
+            android:id="@+id/et_manufacturers_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:hint="@string/manufacturers_extinguishers_ptBr"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
-            <EditText
-                android:id="@+id/et_extinguishers_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:hint="@string/manufacturers_extinguishers_ptBr"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
+        <Button
+            android:id="@+id/bt_manufacturers_extinguishers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manufacturers_btn_extinguishers_ptBr" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
-            <Button
-                android:id="@+id/bt_extinguishers_manufacturers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/manufacturers_btn_extinguishers_ptBr" />
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D" />
 
-            <EditText
-                android:id="@+id/et_extinguishers_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="true"
-                android:hint="@string/status_extinguishers_ptBr"
-                android:inputType="textPersonName" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/bt_manufacturers_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/status_btn__extinguishers_ptBr" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <Button
-                android:id="@+id/bt_extinguishers_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save_btn_extinguishers_ptBr" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
