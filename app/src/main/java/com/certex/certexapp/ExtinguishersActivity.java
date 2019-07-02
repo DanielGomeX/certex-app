@@ -45,7 +45,6 @@ public class ExtinguishersActivity extends AppCompatActivity {
 
         Intent it = getIntent();
 
-
         //Field code ======= START
         //Verify field empty
         etCode.setOnEditorActionListener(new TextView.OnEditorActionListener() {

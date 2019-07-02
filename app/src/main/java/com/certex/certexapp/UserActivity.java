@@ -5,6 +5,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 //import com.certex.certexapp.GemaCode.Session;
+import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.service.Alert;
+
+import org.json.JSONObject;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -143,6 +147,8 @@ public class UserActivity extends AppCompatActivity {
             if (validateNameFormat(etName.getText().toString())) {
                 if (validateEmailFormat(etEmail.getText().toString())) {
                     if (etPassword.getText().length() > 5) {
+                        saveCRUD();
+
                         Intent intent = new Intent(UserActivity.this, CompaniesActivity.class);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
@@ -170,6 +176,32 @@ public class UserActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    private void saveCRUD() {
+        String name = etName.getText().toString();
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+        String companies_id = "1"; //Verificar com Vitor
+        String access_level_id = "1";
+
+        try {
+            JSONObject data = new JSONObject();
+            data.put("name", name);
+            data.put("email", email);
+            data.put("password", password);
+            data.put("companies_id", companies_id);
+            data.put("access_level_id", access_level_id);
+
+            Log.i("JSON DATA", data.toString());
+
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_USER, ConnectionAPI.ACTION_STORE, null, data);
+
+            Log.i("JSON de SOTRE", json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void alert(String msg, boolean error) {
