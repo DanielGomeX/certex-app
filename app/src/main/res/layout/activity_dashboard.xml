@@ -7,40 +7,51 @@
     android:background="@drawable/background_companies"
     android:orientation="vertical"
     tools:context=".DashboardActivity">
-    
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/bt_dashboard_show_report2"
-            android:layout_width="300dp"
+            android:id="@+id/bt_dashboard_show_report"
+            android:layout_width="340dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:alpha="0.50"
             android:background="#CE2628"
             android:text="@string/show_report_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_create_report" />
 
         <Button
             android:id="@+id/bt_dashboard_create_report"
-            android:layout_width="300dp"
+            android:layout_width="165dp"
             android:layout_height="70dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:alpha="0.50"
             android:background="#CE2628"
-            android:text="@string/crate_report_dashboard_ptBr"
+            android:text="@string/create_report_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_dashboard_create_extinguishers"
+            android:layout_width="165dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.50"
+            android:background="#CE2628"
+            android:text="@string/create_extinguishers_dashboard_ptBr"
+            android:textColor="@color/colorText"
+            app:layout_constraintEnd_toStartOf="@+id/bt_dashboard_create_report"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
@@ -48,26 +59,22 @@
             android:layout_width="380dp"
             android:layout_height="243dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_show_report2"
-            app:layout_constraintVertical_bias="0.085" />
+            app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_show_report" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/menu_dashboard"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        app:menu="@menu/menu_dashboard">
 
     </android.support.design.widget.NavigationView>
-    
 
 
 </android.support.v4.widget.DrawerLayout>

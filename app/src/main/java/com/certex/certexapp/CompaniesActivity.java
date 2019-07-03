@@ -73,8 +73,16 @@ public class CompaniesActivity extends AppCompatActivity {
         setTitle("Dados da Empresa");
 
         Intent it = getIntent();
-        etCnpj.setText(it.getStringExtra("cnpj_test"));//alterado
-        etStateRegistration.setText(it.getStringExtra("ie"));
+        etCnpj.setText(it.getStringExtra("a"));
+        etStateRegistration.setText(it.getStringExtra("b"));
+        etSocialName.setText(it.getStringExtra("c"));
+        etFantasyName.setText(it.getStringExtra("d"));
+        etAddress.setText(it.getStringExtra("e"));
+        etCep.setText(it.getStringExtra("f"));
+        etComplement.setText(it.getStringExtra("g"));
+        etNeighborhood.setText(it.getStringExtra("h"));
+        etState.setText(it.getStringExtra("i"));
+        etCity.setText(it.getStringExtra("j"));
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
@@ -127,23 +135,31 @@ public class CompaniesActivity extends AppCompatActivity {
 //            }
 //        });
 
-        etStateRegistration.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("next IE", true);
-                    return false;
-                }
-                return true;
-            }
-        });
+//        etStateRegistration.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("next IE", true);
+//                    return false;
+//                }
+//                return true;
+//            }
+//        });
 
         btSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CompaniesActivity.this, SignatureActivity.class);
-                intent.putExtra("cnpj_test", etCnpj.getText().toString());
-                intent.putExtra("ie", etStateRegistration.getText().toString());
+                intent.putExtra("a", etCnpj.getText().toString());
+                intent.putExtra("b", etStateRegistration.getText().toString());
+                intent.putExtra("c", etSocialName.getText().toString());
+                intent.putExtra("d", etFantasyName.getText().toString());
+                intent.putExtra("e", etAddress.getText().toString());
+                intent.putExtra("f", etCep.getText().toString());
+                intent.putExtra("g", etComplement.getText().toString());
+                intent.putExtra("h", etNeighborhood.getText().toString());
+                intent.putExtra("i", etState.getText().toString());
+                intent.putExtra("j", etCity.getText().toString());
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
             }

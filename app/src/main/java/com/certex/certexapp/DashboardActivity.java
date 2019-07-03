@@ -35,8 +35,10 @@ public class DashboardActivity extends AppCompatActivity {
             R.drawable.icon,
     };
 
-//    private Button btRegisterManufacturers;
+    //    private Button btRegisterManufacturers;
     private Button btCreateReport;
+    private Button btCreateExtinguishers;
+    private Button btShowReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +51,32 @@ public class DashboardActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.lv_dashboard);
         list.setAdapter(adapter);
 
-//        btRegisterManufacturers = (Button) findViewById(R.id.bt_dashboard_register_manufacturers);
         btCreateReport = (Button) findViewById(R.id.bt_dashboard_create_report);
-
-//        btRegisterManufacturers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
-//                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-//                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
-//            }
-//        });
+        btCreateExtinguishers = (Button) findViewById(R.id.bt_dashboard_create_extinguishers);
+        btShowReport = (Button) findViewById(R.id.bt_dashboard_show_report);
 
         btCreateReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, CompaniesActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+            }
+        });
+
+        btCreateExtinguishers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+            }
+        });
+
+        btShowReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

@@ -24,7 +24,8 @@
     <string name="email_user_ptBr">*E-mail</string>
 
     <!--activity_dashboard-->
-    <string name="crate_report_dashboard_ptBr">Gerar \n Certificados</string>
+    <string name="create_report_dashboard_ptBr">Gerar \n Certificados</string>
+    <string name="create_extinguishers_dashboard_ptBr">Adicionar \n Extintor</string>
     <string name="show_report_dashboard_ptBr">Visualizar \n Certificados</string>
     <string name="perfil_dashboard_ptBr">Alterar Perfil</string>
 
@@ -32,14 +33,14 @@
     <string name="empty"></string>
     <string name="permission_necessary">Permisão Necessária</string>
     <string name="storage_permission_is_encessary_to_wrote_event">É necessário ter acesso as pastas.</string>
-    <string name="code_extinguishers_ptBr">TAG do Extintor</string>
-    <string name="number_extinguishers_ptBr">Número do Extintor</string>
-    <string name="capacity_extinguishers_ptBr">Capacidade</string>
-    <string name="charge_extinguishers_ptBr">Carga</string>
-    <string name="chargeDate_extinguishers_ptBr">Data da Carga:</string>
-    <string name="validate_extinguishers_ptBr">Validade:</string>
+    <string name="code_extinguishers_ptBr">*TAG do Extintor</string>
+    <string name="number_extinguishers_ptBr">*Número do Extintor</string>
+    <string name="capacity_extinguishers_ptBr">*Capacidade</string>
+    <string name="charge_extinguishers_ptBr">*Carga</string>
+    <string name="chargeDate_extinguishers_ptBr">*Data da Carga:</string>
+    <string name="validate_extinguishers_ptBr">*Validade:</string>
     <string name="location_extinguishers_ptBr">Localização:</string>
-    <string name="manufacturers_extinguishers_ptBr">Fornecedor</string>
+    <string name="manufacturers_extinguishers_ptBr">*Fornecedor</string>
     <string name="manufacturers_btn_extinguishers_ptBr">Buscar Fornecedor</string>
     <string name="status_extinguishers_ptBr">Situação:</string>
     <string name="status_btn__extinguishers_ptBr">Difinir Situação</string>

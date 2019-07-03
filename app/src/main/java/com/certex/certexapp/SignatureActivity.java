@@ -30,7 +30,7 @@ public class SignatureActivity extends AppCompatActivity {
 
     private SignaturePad signaturePad;
     private Button saveButton, clearButton;
-    private String cnpj, ie = "";
+    private String a, b, c, d, e, f, g, h, i, j = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,16 @@ public class SignatureActivity extends AppCompatActivity {
         setTitle("Assinatura");
 
         Intent it = getIntent();
-        cnpj = it.getStringExtra("cnpj");
-        ie = it.getStringExtra("ie");
+        a = it.getStringExtra("a");
+        b = it.getStringExtra("b");
+        c = it.getStringExtra("c");
+        d = it.getStringExtra("d");
+        e = it.getStringExtra("e");
+        f = it.getStringExtra("f");
+        g = it.getStringExtra("g");
+        h = it.getStringExtra("h");
+        i = it.getStringExtra("i");
+        j = it.getStringExtra("j");
 
         signaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
@@ -78,8 +86,16 @@ public class SignatureActivity extends AppCompatActivity {
             public void onClick(View v) {
                 createSignature();
                 Intent intent = new Intent(SignatureActivity.this, CompaniesActivity.class);
-                intent.putExtra("cnpj", cnpj);
-                intent.putExtra("ie", ie);
+                intent.putExtra("a", a);
+                intent.putExtra("b", b);
+                intent.putExtra("c", c);
+                intent.putExtra("d", d);
+                intent.putExtra("e", e);
+                intent.putExtra("f", f);
+                intent.putExtra("g", g);
+                intent.putExtra("h", h);
+                intent.putExtra("i", i);
+                intent.putExtra("j", j);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(SignatureActivity.this, intent, activityOptionsCompat.toBundle());
             }
@@ -90,6 +106,19 @@ public class SignatureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signaturePad.clear();
+                Intent intent = new Intent(SignatureActivity.this, CompaniesActivity.class);
+                intent.putExtra("a", a);
+                intent.putExtra("b", b);
+                intent.putExtra("c", c);
+                intent.putExtra("d", d);
+                intent.putExtra("e", e);
+                intent.putExtra("f", f);
+                intent.putExtra("g", g);
+                intent.putExtra("h", h);
+                intent.putExtra("i", i);
+                intent.putExtra("j", j);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(SignatureActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
 
