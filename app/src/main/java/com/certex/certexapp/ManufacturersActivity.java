@@ -2,6 +2,8 @@ package com.certex.certexapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,7 +32,7 @@ public class ManufacturersActivity extends AppCompatActivity {
     private EditText etCep;
     private EditText etCity;
     private EditText etState;
-   // private Button btSave;
+    // private Button btSave;
     private Button btSearchCep;
 
     @Override
@@ -45,7 +47,7 @@ public class ManufacturersActivity extends AppCompatActivity {
         etCep = (EditText) findViewById(R.id.et_cep_manufacturers);
         etCity = (EditText) findViewById(R.id.et_city_manufacturers);
         etState = (EditText) findViewById(R.id.et_state_manufacturers);
-       // btSave = (Button) findViewById(R.id.bt_manufacturers_save);
+        // btSave = (Button) findViewById(R.id.bt_manufacturers_save);
         btSearchCep = (Button) findViewById(R.id.bt_search_cep_manufacturers);
 
         setTitle("Cadastro de Fornecedor");
@@ -55,7 +57,7 @@ public class ManufacturersActivity extends AppCompatActivity {
         btSearchCep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etCep.getText().toString().isEmpty()){
+                if (etCep.getText().toString().isEmpty()) {
                     alert("Favor Preencha CEP Valido", true);
                 } else {
                     searchCep();
@@ -228,6 +230,14 @@ public class ManufacturersActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
                 saveCRUD();
+
+
+                //VERIFICAR
+                alert("SALVO COM SUCESSO!", false);
+
+                Intent intent = new Intent(ManufacturersActivity.this, DashboardActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(ManufacturersActivity.this, intent, activityOptionsCompat.toBundle());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -251,28 +261,28 @@ public class ManufacturersActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
     }
 
-    private void isNew(){
+    private void isNew() {
 
     }
 
-    private void isEdit(){
+    private void isEdit() {
 
     }
 
-    private void searchCep(){
+    private void searchCep() {
         String cep = etCep.getText().toString();
         String[] parametersFixed = {cep};
         try {
             JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CEP, null);
             Log.i("JOSN CEP", json.toString());
-            etCity.setText( SettingStrings.removeAccentuation( json.getJSONObject("data").getString("localidade") ).toUpperCase() );
-            etState.setText( SettingStrings.removeAccentuation( json.getJSONObject("data").getString("uf") ).toUpperCase() );
-        } catch (Exception e){
+            etCity.setText(SettingStrings.removeAccentuation(json.getJSONObject("data").getString("localidade")).toUpperCase());
+            etState.setText(SettingStrings.removeAccentuation(json.getJSONObject("data").getString("uf")).toUpperCase());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveCRUD (){
+    private void saveCRUD() {
         String name = etName.getText().toString();
         String fone = etFone.getText().toString();
         String email = etEmail.getText().toString();
@@ -295,7 +305,7 @@ public class ManufacturersActivity extends AppCompatActivity {
             JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_STORE, null, data);
 
             Log.i("JSON de SOTRE", json.toString());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
