@@ -46,7 +46,6 @@ public class ConnectionAPI {
     public final static String ACTION_NULL = null;
 
     /**
-     *
      * @param from
      * @param action
      * @param indice
@@ -59,9 +58,15 @@ public class ConnectionAPI {
         JSONObject json = null;
         //Formando a URL
         String urlTemp = url + from;
-        if (indice != null){ urlTemp += "/" + indice; }
-        if (action != null){ urlTemp += "/" + action; }
-        if (Session.isFromInstance()) { urlTemp += "?token=" + Session.getInstance().getToken().getCode(); }
+        if (indice != null) {
+            urlTemp += "/" + indice;
+        }
+        if (action != null) {
+            urlTemp += "/" + action;
+        }
+        if (Session.isFromInstance()) {
+            urlTemp += "?token=" + Session.getInstance().getToken().getCode();
+        }
         Log.i("URL DO POST => ", urlTemp);
         try {
             //Estabelecer a conexão
@@ -82,7 +87,9 @@ public class ConnectionAPI {
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder responseOutput = new StringBuilder();
             String line = "";
-            while ((line = br.readLine()) != null) { responseOutput.append(line); }
+            while ((line = br.readLine()) != null) {
+                responseOutput.append(line);
+            }
             br.close();
             Log.i("RETORNO BRUTO POST => ", responseOutput.toString());
             //Montar o JSON
@@ -90,33 +97,43 @@ public class ConnectionAPI {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (connection != null) { connection.disconnect(); }
+            if (connection != null) {
+                connection.disconnect();
+            }
             return json;
         }
     }
 
     /**
-     *
      * @param parametersFixed /cep/95890000
-     * @param parameters ?name=modelo&idade=99
+     * @param parameters      ?name=modelo&idade=99
      * @param from
      * @param action
      * @return
      */
-    public static JSONObject makeGet ( String[] parametersFixed, String[] parameters, String from, String action ){
+    public static JSONObject makeGet(String[] parametersFixed, String[] parameters, String from, String action) {
         StringBuilder result = new StringBuilder();
         JSONObject json = null;
         //Montar a URL
         String dataUrlTemp = url + from;
-        if (parametersFixed != null){
-            for (int i = 0; i < parametersFixed.length; i++){ dataUrlTemp += "/" + parametersFixed[i]; }
+        if (parametersFixed != null) {
+            for (int i = 0; i < parametersFixed.length; i++) {
+                dataUrlTemp += "/" + parametersFixed[i];
+            }
         }
-        if (action != null) { dataUrlTemp += "/" + action; }
-        if (Session.isFromInstance()) { dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode(); }
-        if (parameters != null){
-            for (int i = 0; i < parameters.length; i++){
-                if ( Session.isFromInstance() && i ==0){ dataUrlTemp += "?" + parameters[i]; }
-                else { dataUrlTemp += "&" + parameters[i]; }
+        if (action != null) {
+            dataUrlTemp += "/" + action;
+        }
+        if (Session.isFromInstance()) {
+            dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode();
+        }
+        if (parameters != null) {
+            for (int i = 0; i < parameters.length; i++) {
+                if (Session.isFromInstance() && i == 0) {
+                    dataUrlTemp += "?" + parameters[i];
+                } else {
+                    dataUrlTemp += "&" + parameters[i];
+                }
             }
         }
         Log.i("URL DO GET => ", dataUrlTemp);
@@ -128,7 +145,9 @@ public class ConnectionAPI {
             //Receber o resultado
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
-            while ((line = rd.readLine()) != null) { result.append(line); }
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
             //Montar o JSON
             String st_json = result.toString();
             json = new JSONObject(st_json);
@@ -155,10 +174,15 @@ public class ConnectionAPI {
                     Log.i("Script", object.toString());
                     //JSONArray jarray = object.getJSONArray("access_token");
 
-                    String output = object.getString(variable);
+                    String outputToken = object.getString(variable);
+                    String outputUser_id = object.getString("user_id");
+                    String outputCompany_id = object.getString("company_id");
+
                     if (table.equals("login")) {
                         Token token = new Token();
-                        token.setCode(output);
+                        token.setCode(outputToken);
+                        token.setCompanyID(outputCompany_id);
+                        token.setUserID(outputUser_id);
                         Session session = Session.getInstance();
                         session.setToken(token);
                     }
