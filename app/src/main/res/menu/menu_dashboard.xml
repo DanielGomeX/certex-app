@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_extinguishers_register"
+        android:title="Cadastrar Extintore" />
+
+    <item android:id="@+id/nav_extinguishers_lister"
+        android:title="Lista de Extintores" />
+
+    <item android:id="@+id/nav_manufacturers_register"
+        android:title="Cadastrar Fornecedores" />
+
+    <item android:id="@+id/nav_manufacturers_lister"
+        android:title="Lista de Fornecedores" />
+
+    <item android:id="@+id/nav_companies_perfil"
+        android:title="Perfil da Empresa" />
+
+
+
+</menu>
