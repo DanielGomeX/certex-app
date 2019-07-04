@@ -18,6 +18,7 @@
         <activity android:name=".DashboardActivity"></activity>
         <activity android:name=".UserActivity" />
         <activity android:name=".ExtinguishersActivity" />
+        <activity android:name=".ExtinguishersListActivity" />
         <activity android:name=".SignatureActivity" />
         <activity android:name=".ManufacturersActivity" />
         <activity android:name=".MainActivity" />

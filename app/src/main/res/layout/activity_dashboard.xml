@@ -16,15 +16,15 @@
             android:id="@+id/bt_dashboard_show_report"
             android:layout_width="340dp"
             android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:alpha="0.50"
             android:background="#CE2628"
             android:text="@string/show_report_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_create_report" />
 
@@ -33,7 +33,7 @@
             android:layout_width="165dp"
             android:layout_height="70dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="36dp"
             android:alpha="0.50"
             android:background="#CE2628"
             android:text="@string/create_report_dashboard_ptBr"
@@ -45,6 +45,7 @@
             android:id="@+id/bt_dashboard_create_extinguishers"
             android:layout_width="165dp"
             android:layout_height="70dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:alpha="0.50"
@@ -52,6 +53,8 @@
             android:text="@string/create_extinguishers_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toStartOf="@+id/bt_dashboard_create_report"
+            app:layout_constraintHorizontal_bias="0.931"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView

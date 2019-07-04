@@ -5,6 +5,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +18,7 @@ import com.certex.certexapp.service.CustomListView;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    ListView list;
+
 
     String[] maintitle = {
             "Certificado 1", "Certificado 2",
@@ -41,6 +43,8 @@ public class DashboardActivity extends AppCompatActivity {
     private Button btCreateExtinguishers;
     private Button btShowReport;
 
+    private ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +57,6 @@ public class DashboardActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         btCreateReport = (Button) findViewById(R.id.bt_dashboard_create_report);
-        btCreateExtinguishers = (Button) findViewById(R.id.bt_dashboard_create_extinguishers);
-        btShowReport = (Button) findViewById(R.id.bt_dashboard_show_report);
-
         btCreateReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,15 +66,18 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        btCreateExtinguishers = (Button) findViewById(R.id.bt_dashboard_create_extinguishers);
         btCreateExtinguishers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
+//                Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
 
+        btShowReport = (Button) findViewById(R.id.bt_dashboard_show_report);
         btShowReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,14 +112,38 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.bt_main:
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        return true;
+    }
 
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+        ActivityOptionsCompat activityOptionsCompat;
+        int id = item.getItemId();
+
+        if (id == R.id.nav_extinguishers_lister){
+            Log.i("Clicou Aqui", "Aqui óoooo if");
+            intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
+            activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+            ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+
+        } else if (id == R.id.nav_manufacturers_register){
+            Log.i("Clicou Aqui", "Aqui óoooo if");
+            intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
+            activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+            ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+
+        } else if (id == R.id.nav_extinguishers_register){
+            Log.i("Clicou Aqui", "Aqui óoooo if");
+            intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
+            activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+            ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
