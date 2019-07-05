@@ -178,7 +178,7 @@
                 android:id="@+id/bt_signature_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/signature_companies_bt"/>
+                android:text="@string/signature_companies_bt" />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

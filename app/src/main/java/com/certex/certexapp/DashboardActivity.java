@@ -19,7 +19,6 @@ import com.certex.certexapp.service.CustomListView;
 public class DashboardActivity extends AppCompatActivity {
 
 
-
     String[] maintitle = {
             "Certificado 1", "Certificado 2",
             "Certificado 3", "Certificado 4",
@@ -50,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
         CustomListView adapter = new CustomListView(this, maintitle, subtitle, imgid);
         list = (ListView) findViewById(R.id.lv_dashboard);
@@ -60,7 +59,7 @@ public class DashboardActivity extends AppCompatActivity {
         btCreateReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, CompaniesActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, CheckListActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
@@ -70,7 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
         btCreateExtinguishers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
 //                Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
@@ -126,19 +125,19 @@ public class DashboardActivity extends AppCompatActivity {
         ActivityOptionsCompat activityOptionsCompat;
         int id = item.getItemId();
 
-        if (id == R.id.nav_extinguishers_lister){
+        if (id == R.id.nav_extinguishers_lister) {
             Log.i("Clicou Aqui", "Aqui óoooo if");
             intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
             activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
             ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
 
-        } else if (id == R.id.nav_manufacturers_register){
+        } else if (id == R.id.nav_manufacturers_register) {
             Log.i("Clicou Aqui", "Aqui óoooo if");
             intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
             activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
             ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
 
-        } else if (id == R.id.nav_extinguishers_register){
+        } else if (id == R.id.nav_extinguishers_register) {
             Log.i("Clicou Aqui", "Aqui óoooo if");
             intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
             activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);

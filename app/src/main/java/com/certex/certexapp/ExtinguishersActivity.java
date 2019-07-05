@@ -56,8 +56,8 @@ public class ExtinguishersActivity extends AppCompatActivity {
     private final Calendar myCalendar = Calendar.getInstance();
 
     private Spinner spManufacturers;
-    List<String> manufacturers = new ArrayList<>();
-    List<String> manufacturers_id = new ArrayList<>();
+    private List<String> manufacturers = new ArrayList<>();
+    private List<String> manufacturers_id = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,20 +87,20 @@ public class ExtinguishersActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if( bundle.containsKey("id_extinguishers") ){
+        if (bundle.containsKey("id_extinguishers")) {
             String[] fixed = {bundle.getString("id_extinguishers")};
-            this.id = Integer.parseInt( bundle.getString("id_extinguishers") );
+            this.id = Integer.parseInt(bundle.getString("id_extinguishers"));
             JSONObject entityJson = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_SHOW);
             Log.i("ENTITY RETURN", entityJson.toString());
             try {
-                etCode.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("code") );
-                etNumber.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("numeration") );
-                etCapacity.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("capacity") );
-                etCharge.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge") );
-                etChargeDate.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge_date") );
-                etValidateDate.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("validate_date") );
-                etLocation.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("location") );
-            } catch (Exception e){
+                etCode.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("code"));
+                etNumber.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("numeration"));
+                etCapacity.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("capacity"));
+                etCharge.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge"));
+                etChargeDate.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge_date"));
+                etValidateDate.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("validate_date"));
+                etLocation.setText(entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("location"));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -188,8 +188,6 @@ public class ExtinguishersActivity extends AppCompatActivity {
         } else {
             etValidateDate.setText(sdf.format(myCalendar.getTime()));
         }
-
-
 
 
     }

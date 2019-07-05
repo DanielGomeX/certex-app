@@ -29,6 +29,11 @@
     <string name="show_report_dashboard_ptBr">Visualizar \n Certificados</string>
     <string name="perfil_dashboard_ptBr">Alterar Perfil</string>
 
+    <!--activity CheckList-->
+    <string name="radio_conforme">CONFORME</string>
+    <string name="radio_naoconforme">NÃO CONFORME</string>
+    <string name="radio_na">N/A</string>
+
 
     <string name="empty"></string>
     <string name="permission_necessary">Permisão Necessária</string>
@@ -50,12 +55,12 @@
     <string name="state_manufacturers_ptBr">Estado</string>
     <string name="save_manufacturers_ptBr">Salvar</string>
     <string name="save_btn_extinguishers_ptBr">Salvar</string>
-    <string name="cep_btn_search_manufacturers_ptBr" >Pesquisar CEP</string>
+    <string name="cep_btn_search_manufacturers_ptBr">Pesquisar CEP</string>
     <string name="bt_dashboard_register_manufacturers_ptBr">Cadastrar Fornecedores</string>
     <string name="name_manufacturers_ptBr">Nome</string>
     <string name="fone_manufacturers_ptBr">Telefone</string>
     <string name="email_manufacturers_ptBr">E-mail</string>
     <string name="bt_edit">EDITAR</string>
-    <string name="bt_delet" >DELETAR</string>
+    <string name="bt_delet">DELETAR</string>
 
 </resources>

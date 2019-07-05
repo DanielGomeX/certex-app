@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_companies"
+    android:orientation="vertical"
+    tools:context=".CompaniesActivity">
+
+
+    <ScrollView
+        android:id="@+id/sv_check"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Identificação"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_identif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_identif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_identif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_identif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Carga/Recarga"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_carga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_carga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_carga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_carga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Reteste"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_reteste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_reteste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_reteste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_reteste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Difusor/Bico"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_bico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_bico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_bico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_bico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Mangueira"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_mangueira"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_mangueira"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_mangueira"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_mangueira"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Punho"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_punho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_punho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_punho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_punho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Pintura"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_pintura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_pintura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_pintura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_pintura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Lacre"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_lacre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_lacre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_lacre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_lacre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Manômetro"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_mano"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_mano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_mano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_mano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Anel de identificação"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_anel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_anel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_anel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_anel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Suporte no piso"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_piso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_piso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_piso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_piso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Sinalização do local"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Extintor desobstruído"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_desobstruido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_desobstruido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_desobstruido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_desobstruido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Fixação"
+                android:textSize="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_fix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/devider1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/cb_conforme_fix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_conforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_nconforme_fix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_naoconforme" />
+
+                <RadioButton
+                    android:id="@+id/cb_na_fix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:button="@drawable/radiobutton_selector"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="10dip"
+                    android:text="@string/radio_na" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:focusable="false" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
