@@ -157,7 +157,7 @@ public class UserActivity extends AppCompatActivity {
                     if (etPassword.getText().length() > 5) {
                         saveCRUD();
 
-                        Intent intent = new Intent(UserActivity.this, DashboardActivity.class);
+                        Intent intent = new Intent(UserActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right); //VOLTAR
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
@@ -201,7 +201,7 @@ public class UserActivity extends AppCompatActivity {
             data.put("email", email);
             data.put("password", password);
             data.put("companies_id", companies_id);
-            data.put("access_level_id", access_level_id);
+            data.put("access_levels_id", access_level_id);
 
             Log.i("JSON DATA", data.toString());
 

@@ -225,6 +225,7 @@ public class CompaniesActivity extends AppCompatActivity {
                                 Intent intent = new Intent(CompaniesActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                                 Bundle bundle = new Bundle();
                                 bundle.putInt("id_company", idCompany);
+                                intent.putExtras(bundle);
                                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                                 ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
                                 finish();
@@ -331,12 +332,12 @@ public class CompaniesActivity extends AppCompatActivity {
             JSONObject json;
             if (idCompany == 0) {
                 json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_STORE, null, data);
-                idCompany = json.getJSONObject("data").getJSONObject("company").getInt("id");
+                this.idCompany = json.getJSONObject("data").getJSONObject("company").getInt("id");
             } else {
                 json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_UPDATE, ""+idCompany, data);
             }
             this.error = json.has("error");
-            Log.i("JSON de SOTRE", json.toString());
+            Log.i("JSON de SOTRE QUERO ID", json.getJSONObject("data").getJSONObject("company").getInt("id") + "");
         } catch (Exception e) {
             this.error = true;
             e.printStackTrace();

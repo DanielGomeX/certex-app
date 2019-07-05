@@ -87,7 +87,7 @@ public class ExtinguishersActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if (bundle.containsKey("id_extinguishers")) {
+        if (intent.hasExtra("id_extinguishers")) {
             String[] fixed = {bundle.getString("id_extinguishers")};
             this.id = Integer.parseInt(bundle.getString("id_extinguishers"));
             JSONObject entityJson = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_SHOW);
