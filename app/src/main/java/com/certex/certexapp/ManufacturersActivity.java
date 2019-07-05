@@ -56,7 +56,7 @@ public class ManufacturersActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if (bundle.containsKey("id_manufacturers")) {
+        if (intent.hasExtra("id_manufacturers")) {
             String[] fixed = {bundle.getString("id_manufacturers")};
             this.id = Integer.parseInt(bundle.getString("id_manufacturers"));
             JSONObject entityJson = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_SHOW);
@@ -251,7 +251,7 @@ public class ManufacturersActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
-                if (this.id != 0){
+                if (this.id != 0) {
                     updateCRUD();
                     //VERIFICAR
                     alert("SALVO COM SUCESSO!", false);
@@ -359,7 +359,7 @@ public class ManufacturersActivity extends AppCompatActivity {
 
             Log.i("JSON DATA", data.toString());
 
-            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_UPDATE, ""+this.id, data);
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_UPDATE, "" + this.id, data);
 
             Log.i("JSON UPDATE", json.toString());
         } catch (Exception e) {

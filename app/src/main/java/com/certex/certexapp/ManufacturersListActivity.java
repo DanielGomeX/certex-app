@@ -50,7 +50,7 @@ public class ManufacturersListActivity extends AppCompatActivity {
                 //Get value String of variable listRoute
                 Object obj = parent.getItemAtPosition(position);
                 String idObj = "" + info.get(obj);
-                Log.i("Item selecionado", ""+obj);
+                Log.i("Item selecionado", "" + obj);
                 Log.i("Item selecionado ID", "" + info.get(obj));
 
                 //Message or feedback to user
@@ -69,22 +69,6 @@ public class ManufacturersListActivity extends AppCompatActivity {
         listExtinguishers();
 
 
-
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     private void alert(String msg, boolean error) {
@@ -97,7 +81,7 @@ public class ManufacturersListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
     }
 
-    private void listExtinguishers(){
+    private void listExtinguishers() {
 
         JSONObject jsonCount = ConnectionAPI.makeGet(null, null, ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_COUNT);
 
@@ -107,13 +91,13 @@ public class ManufacturersListActivity extends AppCompatActivity {
 
         try {
             int count = jsonCount.getJSONObject("data").getInt("count");
-            if (count > 0){
+            if (count > 0) {
                 data = new String[count];
-                String[] fixed = { "0", count+"" };
+                String[] fixed = {"0", count + ""};
                 JSONObject json = ConnectionAPI.makeGet(null, null, ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_ALL);
                 Log.i("JSON data", json.getString("data"));
                 JSONArray arrayJson = json.getJSONObject("data").getJSONArray("manufacturers");
-                for (int i = 0; i < arrayJson.length(); i++){
+                for (int i = 0; i < arrayJson.length(); i++) {
                     String temp = "Fornecedores # Nome: " + arrayJson.getJSONObject(i).getString("name");
                     info.put(temp, arrayJson.getJSONObject(i).getInt("id"));
                     data[i] = temp;
@@ -124,7 +108,7 @@ public class ManufacturersListActivity extends AppCompatActivity {
                 data[0] = "Nenhum dado encontrado";
                 listManufacturers.setEnabled(false);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             data = new String[1];
             data[0] = "Nenhum dado encontrado";

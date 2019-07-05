@@ -1,6 +1,8 @@
 package com.certex.certexapp;
 
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,64 @@ public class CheckListActivity extends AppCompatActivity {
     private RadioGroup rgFixa;
     private RadioGroup rgFogo;
 
+    private RadioButton cb_conforme_identif;
+    private RadioButton cb_nconforme_identif;
+    private RadioButton cb_na_identif;
+    private RadioButton cb_conforme_carga;
+    private RadioButton cb_nconforme_carga;
+    private RadioButton cb_na_carga;
+    private RadioButton cb_conforme_reteste;
+    private RadioButton cb_nconforme_reteste;
+    private RadioButton cb_na_reteste;
+    private RadioButton cb_conforme_pintura;
+    private RadioButton cb_nconforme_pintura;
+    private RadioButton cb_na_pintura;
+    private RadioButton cb_conforme_lacre;
+    private RadioButton cb_nconforme_lacre;
+    private RadioButton cb_na_lacre;
+    private RadioButton cb_conforme_mano;
+    private RadioButton cb_nconforme_mano;
+    private RadioButton cb_na_mano;
+    private RadioButton cb_conforme_bico;
+    private RadioButton cb_nconforme_bico;
+    private RadioButton cb_na_bico;
+    private RadioButton cb_conforme_mangueira;
+    private RadioButton cb_nconforme_mangueira;
+    private RadioButton cb_na_mangueira;
+    private RadioButton cb_conforme_punho;
+    private RadioButton cb_nconforme_punho;
+    private RadioButton cb_na_punho;
+    private RadioButton cb_conforme_recarga;
+    private RadioButton cb_nconforme_recarga;
+    private RadioButton cb_na_recarga;
+    private RadioButton cb_conforme_etiqueta;
+    private RadioButton cb_nconforme_etiqueta;
+    private RadioButton cb_na_etiqueta;
+    private RadioButton cb_conforme_alavanca;
+    private RadioButton cb_nconforme_alavanca;
+    private RadioButton cb_na_alavanca;
+    private RadioButton cb_conforme_anel;
+    private RadioButton cb_nconforme_anel;
+    private RadioButton cb_na_anel;
+    private RadioButton cb_conforme_piso;
+    private RadioButton cb_nconforme_piso;
+    private RadioButton cb_na_piso;
+    private RadioButton cb_conforme_sinaliza;
+    private RadioButton cb_nconforme_sinaliza;
+    private RadioButton cb_na_sinaliza;
+    private RadioButton cb_conforme_desobstruido;
+    private RadioButton cb_nconforme_desobstruido;
+    private RadioButton cb_na_desobstruido;
+    private RadioButton cb_conforme_protecao;
+    private RadioButton cb_nconforme_protecao;
+    private RadioButton cb_na_protecao;
+    private RadioButton cb_conforme_fix;
+    private RadioButton cb_nconforme_fix;
+    private RadioButton cb_na_fix;
+    private RadioButton cb_conforme_fogo;
+    private RadioButton cb_nconforme_fogo;
+    private RadioButton cb_na_fogo;
+
     private int certification_id = 0;
 
     @Override
@@ -71,13 +131,71 @@ public class CheckListActivity extends AppCompatActivity {
         rgFixa = (RadioGroup) findViewById(R.id.rg_fix);
         rgFogo = (RadioGroup) findViewById(R.id.rg_fogo);
 
+        cb_conforme_identif = (RadioButton) findViewById(R.id.cb_conforme_identif);
+        cb_nconforme_identif = (RadioButton) findViewById(R.id.cb_nconforme_identif);
+        cb_na_identif = (RadioButton) findViewById(R.id.cb_na_identif);
+        cb_conforme_carga = (RadioButton) findViewById(R.id.cb_conforme_carga);
+        cb_nconforme_carga = (RadioButton) findViewById(R.id.cb_nconforme_carga);
+        cb_na_carga = (RadioButton) findViewById(R.id.cb_na_carga);
+        cb_conforme_reteste = (RadioButton) findViewById(R.id.cb_conforme_reteste);
+        cb_nconforme_reteste = (RadioButton) findViewById(R.id.cb_nconforme_reteste);
+        cb_na_reteste = (RadioButton) findViewById(R.id.cb_na_reteste);
+        cb_conforme_pintura = (RadioButton) findViewById(R.id.cb_conforme_pintura);
+        cb_nconforme_pintura = (RadioButton) findViewById(R.id.cb_nconforme_pintura);
+        cb_na_pintura = (RadioButton) findViewById(R.id.cb_na_pintura);
+        cb_conforme_lacre = (RadioButton) findViewById(R.id.cb_conforme_lacre);
+        cb_nconforme_lacre = (RadioButton) findViewById(R.id.cb_nconforme_lacre);
+        cb_na_lacre = (RadioButton) findViewById(R.id.cb_na_lacre);
+        cb_conforme_mano = (RadioButton) findViewById(R.id.cb_conforme_mano);
+        cb_nconforme_mano = (RadioButton) findViewById(R.id.cb_nconforme_mano);
+        cb_na_mano = (RadioButton) findViewById(R.id.cb_na_mano);
+        cb_conforme_bico = (RadioButton) findViewById(R.id.cb_conforme_bico);
+        cb_nconforme_bico = (RadioButton) findViewById(R.id.cb_nconforme_bico);
+        cb_na_bico = (RadioButton) findViewById(R.id.cb_na_bico);
+        cb_conforme_mangueira = (RadioButton) findViewById(R.id.cb_conforme_mangueira);
+        cb_nconforme_mangueira = (RadioButton) findViewById(R.id.cb_nconforme_mangueira);
+        cb_na_mangueira = (RadioButton) findViewById(R.id.cb_na_mangueira);
+        cb_conforme_punho = (RadioButton) findViewById(R.id.cb_conforme_punho);
+        cb_nconforme_punho = (RadioButton) findViewById(R.id.cb_nconforme_punho);
+        cb_na_punho = (RadioButton) findViewById(R.id.cb_na_punho);
+        cb_conforme_recarga = (RadioButton) findViewById(R.id.cb_conforme_recarga);
+        cb_nconforme_recarga = (RadioButton) findViewById(R.id.cb_nconforme_recarga);
+        cb_na_recarga = (RadioButton) findViewById(R.id.cb_na_recarga);
+        cb_conforme_etiqueta = (RadioButton) findViewById(R.id.cb_conforme_etiqueta);
+        cb_nconforme_etiqueta = (RadioButton) findViewById(R.id.cb_nconforme_etiqueta);
+        cb_na_etiqueta = (RadioButton) findViewById(R.id.cb_na_etiqueta);
+        cb_conforme_alavanca = (RadioButton) findViewById(R.id.cb_conforme_alavanca);
+        cb_nconforme_alavanca = (RadioButton) findViewById(R.id.cb_nconforme_alavanca);
+        cb_na_alavanca = (RadioButton) findViewById(R.id.cb_na_alavanca);
+        cb_conforme_anel = (RadioButton) findViewById(R.id.cb_conforme_anel);
+        cb_nconforme_anel = (RadioButton) findViewById(R.id.cb_nconforme_anel);
+        cb_na_anel = (RadioButton) findViewById(R.id.cb_na_anel);
+        cb_conforme_piso = (RadioButton) findViewById(R.id.cb_conforme_piso);
+        cb_nconforme_piso = (RadioButton) findViewById(R.id.cb_nconforme_piso);
+        cb_na_piso = (RadioButton) findViewById(R.id.cb_na_piso);
+        cb_conforme_sinaliza = (RadioButton) findViewById(R.id.cb_conforme_sinaliza);
+        cb_nconforme_sinaliza = (RadioButton) findViewById(R.id.cb_nconforme_sinaliza);
+        cb_na_sinaliza = (RadioButton) findViewById(R.id.cb_na_sinaliza);
+        cb_conforme_desobstruido = (RadioButton) findViewById(R.id.cb_conforme_desobstruido);
+        cb_nconforme_desobstruido = (RadioButton) findViewById(R.id.cb_nconforme_desobstruido);
+        cb_na_desobstruido = (RadioButton) findViewById(R.id.cb_na_desobstruido);
+        cb_conforme_protecao = (RadioButton) findViewById(R.id.cb_conforme_protecao);
+        cb_nconforme_protecao = (RadioButton) findViewById(R.id.cb_nconforme_protecao);
+        cb_na_protecao = (RadioButton) findViewById(R.id.cb_na_protecao);
+        cb_conforme_fix = (RadioButton) findViewById(R.id.cb_conforme_fix);
+        cb_nconforme_fix = (RadioButton) findViewById(R.id.cb_nconforme_fix);
+        cb_na_fix = (RadioButton) findViewById(R.id.cb_na_fix);
+        cb_conforme_fogo = (RadioButton) findViewById(R.id.cb_conforme_fogo);
+        cb_nconforme_fogo = (RadioButton) findViewById(R.id.cb_nconforme_fogo);
+        cb_na_fogo = (RadioButton) findViewById(R.id.cb_na_fogo);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         if (bundle.containsKey("id_extinguishers")) {
-            idExtinguisher = bundle.getInt("id_extinguishers");
+            String x = bundle.getString("id_extinguishers");
+            idExtinguisher = Integer.parseInt(x);
         }
-
     }
 
 
@@ -113,6 +231,12 @@ public class CheckListActivity extends AppCompatActivity {
                     for (int i = 0; i < 19; i++) {
                         saveCRUD(i);
                     }
+
+                    alert("SALVO COM SUCESSO!", false);
+
+                    Intent intent = new Intent(CheckListActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                    ActivityCompat.startActivity(CheckListActivity.this, intent, activityOptionsCompat.toBundle());
                 } else {
                     alert("Favor Selecione adequadamente!", true);
                 }
@@ -122,6 +246,7 @@ public class CheckListActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
     @Override
@@ -171,252 +296,194 @@ public class CheckListActivity extends AppCompatActivity {
     private void saveCRUD(int id) {
         int op = 0;
 
-        RadioButton cb_conforme_identif = (RadioButton) findViewById(R.id.cb_conforme_identif);
-        RadioButton cb_nconforme_identif = (RadioButton) findViewById(R.id.cb_nconforme_identif);
-        RadioButton cb_na_identif = (RadioButton) findViewById(R.id.cb_na_identif);
-        RadioButton cb_conforme_carga = (RadioButton) findViewById(R.id.cb_conforme_carga);
-        RadioButton cb_nconforme_carga = (RadioButton) findViewById(R.id.cb_nconforme_carga);
-        RadioButton cb_na_carga = (RadioButton) findViewById(R.id.cb_na_carga);
-        RadioButton cb_conforme_reteste = (RadioButton) findViewById(R.id.cb_conforme_reteste);
-        RadioButton cb_nconforme_reteste = (RadioButton) findViewById(R.id.cb_nconforme_reteste);
-        RadioButton cb_na_reteste = (RadioButton) findViewById(R.id.cb_na_reteste);
-        RadioButton cb_conforme_pintura = (RadioButton) findViewById(R.id.cb_conforme_pintura);
-        RadioButton cb_nconforme_pintura = (RadioButton) findViewById(R.id.cb_nconforme_pintura);
-        RadioButton cb_na_pintura = (RadioButton) findViewById(R.id.cb_na_pintura);
-        RadioButton cb_conforme_lacre = (RadioButton) findViewById(R.id.cb_conforme_lacre);
-        RadioButton cb_nconforme_lacre = (RadioButton) findViewById(R.id.cb_nconforme_lacre);
-        RadioButton cb_na_lacre = (RadioButton) findViewById(R.id.cb_na_lacre);
-        RadioButton cb_conforme_mano = (RadioButton) findViewById(R.id.cb_conforme_mano);
-        RadioButton cb_nconforme_mano = (RadioButton) findViewById(R.id.cb_nconforme_mano);
-        RadioButton cb_na_mano = (RadioButton) findViewById(R.id.cb_na_mano);
-        RadioButton cb_conforme_bico = (RadioButton) findViewById(R.id.cb_conforme_bico);
-        RadioButton cb_nconforme_bico = (RadioButton) findViewById(R.id.cb_nconforme_bico);
-        RadioButton cb_na_bico = (RadioButton) findViewById(R.id.cb_na_bico);
-        RadioButton cb_conforme_mangueira = (RadioButton) findViewById(R.id.cb_conforme_mangueira);
-        RadioButton cb_nconforme_mangueira = (RadioButton) findViewById(R.id.cb_nconforme_mangueira);
-        RadioButton cb_na_mangueira = (RadioButton) findViewById(R.id.cb_na_mangueira);
-        RadioButton cb_conforme_punho = (RadioButton) findViewById(R.id.cb_conforme_punho);
-        RadioButton cb_nconforme_punho = (RadioButton) findViewById(R.id.cb_nconforme_punho);
-        RadioButton cb_na_punho = (RadioButton) findViewById(R.id.cb_na_punho);
-        RadioButton cb_conforme_recarga = (RadioButton) findViewById(R.id.cb_conforme_recarga);
-        RadioButton cb_nconforme_recarga = (RadioButton) findViewById(R.id.cb_nconforme_recarga);
-        RadioButton cb_na_recarga = (RadioButton) findViewById(R.id.cb_na_recarga);
-        RadioButton cb_conforme_etiqueta = (RadioButton) findViewById(R.id.cb_conforme_etiqueta);
-        RadioButton cb_nconforme_etiqueta = (RadioButton) findViewById(R.id.cb_nconforme_etiqueta);
-        RadioButton cb_na_etiqueta = (RadioButton) findViewById(R.id.cb_na_etiqueta);
-        RadioButton cb_conforme_alavanca = (RadioButton) findViewById(R.id.cb_conforme_alavanca);
-        RadioButton cb_nconforme_alavanca = (RadioButton) findViewById(R.id.cb_nconforme_alavanca);
-        RadioButton cb_na_alavanca = (RadioButton) findViewById(R.id.cb_na_alavanca);
-        RadioButton cb_conforme_anel = (RadioButton) findViewById(R.id.cb_conforme_anel);
-        RadioButton cb_nconforme_anel = (RadioButton) findViewById(R.id.cb_nconforme_anel);
-        RadioButton cb_na_anel = (RadioButton) findViewById(R.id.cb_na_anel);
-        RadioButton cb_conforme_piso = (RadioButton) findViewById(R.id.cb_conforme_piso);
-        RadioButton cb_nconforme_piso = (RadioButton) findViewById(R.id.cb_nconforme_piso);
-        RadioButton cb_na_piso = (RadioButton) findViewById(R.id.cb_na_piso);
-        RadioButton cb_conforme_sinaliza = (RadioButton) findViewById(R.id.cb_conforme_sinaliza);
-        RadioButton cb_nconforme_sinaliza = (RadioButton) findViewById(R.id.cb_nconforme_sinaliza);
-        RadioButton cb_na_sinaliza = (RadioButton) findViewById(R.id.cb_na_sinaliza);
-        RadioButton cb_conforme_desobstruido = (RadioButton) findViewById(R.id.cb_conforme_desobstruido);
-        RadioButton cb_nconforme_desobstruido = (RadioButton) findViewById(R.id.cb_nconforme_desobstruido);
-        RadioButton cb_na_desobstruido = (RadioButton) findViewById(R.id.cb_na_desobstruido);
-        RadioButton cb_conforme_protecao = (RadioButton) findViewById(R.id.cb_conforme_protecao);
-        RadioButton cb_nconforme_protecao = (RadioButton) findViewById(R.id.cb_nconforme_protecao);
-        RadioButton cb_na_protecao = (RadioButton) findViewById(R.id.cb_na_protecao);
-        RadioButton cb_conforme_fix = (RadioButton) findViewById(R.id.cb_conforme_fix);
-        RadioButton cb_nconforme_fix = (RadioButton) findViewById(R.id.cb_nconforme_fix);
-        RadioButton cb_na_fix = (RadioButton) findViewById(R.id.cb_na_fix);
-        RadioButton cb_conforme_fogo = (RadioButton) findViewById(R.id.cb_conforme_fogo);
-        RadioButton cb_nconforme_fogo = (RadioButton) findViewById(R.id.cb_nconforme_fogo);
-        RadioButton cb_na_fogo = (RadioButton) findViewById(R.id.cb_na_fogo);
-
         if (id == 0) {
-            if (cb_conforme_identif.isSelected()) {
+            if (cb_conforme_identif.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_identif.isSelected()) {
+            if (cb_nconforme_identif.isChecked()) {
                 op = 2;
             }
-            if (cb_na_identif.isSelected()) {
+            if (cb_na_identif.isChecked()) {
                 op = 3;
             }
         } else if (id == 1) {
-            if (cb_conforme_carga.isSelected()) {
+            if (cb_conforme_carga.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_carga.isSelected()) {
+            if (cb_nconforme_carga.isChecked()) {
                 op = 2;
             }
-            if (cb_na_carga.isSelected()) {
+            if (cb_na_carga.isChecked()) {
                 op = 3;
             }
         } else if (id == 2) {
-            if (cb_conforme_reteste.isSelected()) {
+            if (cb_conforme_reteste.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_reteste.isSelected()) {
+            if (cb_nconforme_reteste.isChecked()) {
                 op = 2;
             }
-            if (cb_na_reteste.isSelected()) {
+            if (cb_na_reteste.isChecked()) {
                 op = 3;
             }
         } else if (id == 3) {
-            if (cb_conforme_pintura.isSelected()) {
+            if (cb_conforme_pintura.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_pintura.isSelected()) {
+            if (cb_nconforme_pintura.isChecked()) {
                 op = 2;
             }
-            if (cb_na_pintura.isSelected()) {
+            if (cb_na_pintura.isChecked()) {
                 op = 3;
             }
         } else if (id == 4) {
-            if (cb_conforme_lacre.isSelected()) {
+            if (cb_conforme_lacre.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_lacre.isSelected()) {
+            if (cb_nconforme_lacre.isChecked()) {
                 op = 2;
             }
-            if (cb_na_lacre.isSelected()) {
+            if (cb_na_lacre.isChecked()) {
                 op = 3;
             }
         } else if (id == 5) {
-            if (cb_conforme_mano.isSelected()) {
+            if (cb_conforme_mano.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_mano.isSelected()) {
+            if (cb_nconforme_mano.isChecked()) {
                 op = 2;
             }
-            if (cb_na_mano.isSelected()) {
+            if (cb_na_mano.isChecked()) {
                 op = 3;
             }
         } else if (id == 6) {
-            if (cb_conforme_bico.isSelected()) {
+            if (cb_conforme_bico.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_bico.isSelected()) {
+            if (cb_nconforme_bico.isChecked()) {
                 op = 2;
             }
-            if (cb_na_bico.isSelected()) {
+            if (cb_na_bico.isChecked()) {
                 op = 3;
             }
         } else if (id == 7) {
-            if (cb_conforme_mangueira.isSelected()) {
+            if (cb_conforme_mangueira.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_mangueira.isSelected()) {
+            if (cb_nconforme_mangueira.isChecked()) {
                 op = 2;
             }
-            if (cb_na_mangueira.isSelected()) {
+            if (cb_na_mangueira.isChecked()) {
                 op = 3;
             }
         } else if (id == 8) {
-            if (cb_conforme_punho.isSelected()) {
+            if (cb_conforme_punho.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_punho.isSelected()) {
+            if (cb_nconforme_punho.isChecked()) {
                 op = 2;
             }
-            if (cb_na_punho.isSelected()) {
+            if (cb_na_punho.isChecked()) {
                 op = 3;
             }
         } else if (id == 9) {
-            if (cb_conforme_recarga.isSelected()) {
+            if (cb_conforme_recarga.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_recarga.isSelected()) {
+            if (cb_nconforme_recarga.isChecked()) {
                 op = 2;
             }
-            if (cb_na_recarga.isSelected()) {
+            if (cb_na_recarga.isChecked()) {
                 op = 3;
             }
         } else if (id == 10) {
-            if (cb_conforme_etiqueta.isSelected()) {
+            if (cb_conforme_etiqueta.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_etiqueta.isSelected()) {
+            if (cb_nconforme_etiqueta.isChecked()) {
                 op = 2;
             }
-            if (cb_na_etiqueta.isSelected()) {
+            if (cb_na_etiqueta.isChecked()) {
                 op = 3;
             }
         } else if (id == 11) {
-            if (cb_conforme_alavanca.isSelected()) {
+            if (cb_conforme_alavanca.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_alavanca.isSelected()) {
+            if (cb_nconforme_alavanca.isChecked()) {
                 op = 2;
             }
-            if (cb_na_alavanca.isSelected()) {
+            if (cb_na_alavanca.isChecked()) {
                 op = 3;
             }
         } else if (id == 12) {
-            if (cb_conforme_anel.isSelected()) {
+            if (cb_conforme_anel.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_anel.isSelected()) {
+            if (cb_nconforme_anel.isChecked()) {
                 op = 2;
             }
-            if (cb_na_anel.isSelected()) {
+            if (cb_na_anel.isChecked()) {
                 op = 3;
             }
         } else if (id == 13) {
-            if (cb_conforme_piso.isSelected()) {
+            if (cb_conforme_piso.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_piso.isSelected()) {
+            if (cb_nconforme_piso.isChecked()) {
                 op = 2;
             }
-            if (cb_na_piso.isSelected()) {
+            if (cb_na_piso.isChecked()) {
                 op = 3;
             }
         } else if (id == 14) {
-            if (cb_conforme_fogo.isSelected()) {
+            if (cb_conforme_fogo.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_fogo.isSelected()) {
+            if (cb_nconforme_fogo.isChecked()) {
                 op = 2;
             }
-            if (cb_na_fogo.isSelected()) {
+            if (cb_na_fogo.isChecked()) {
                 op = 3;
             }
         } else if (id == 15) {
-            if (cb_conforme_sinaliza.isSelected()) {
+            if (cb_conforme_sinaliza.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_sinaliza.isSelected()) {
+            if (cb_nconforme_sinaliza.isChecked()) {
                 op = 2;
             }
-            if (cb_na_sinaliza.isSelected()) {
+            if (cb_na_sinaliza.isChecked()) {
                 op = 3;
             }
         } else if (id == 16) {
-            if (cb_conforme_desobstruido.isSelected()) {
+            if (cb_conforme_desobstruido.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_desobstruido.isSelected()) {
+            if (cb_nconforme_desobstruido.isChecked()) {
                 op = 2;
             }
-            if (cb_na_desobstruido.isSelected()) {
+            if (cb_na_desobstruido.isChecked()) {
                 op = 3;
             }
         } else if (id == 17) {
-            if (cb_conforme_protecao.isSelected()) {
+            if (cb_conforme_protecao.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_protecao.isSelected()) {
+            if (cb_nconforme_protecao.isChecked()) {
                 op = 2;
             }
-            if (cb_na_protecao.isSelected()) {
+            if (cb_na_protecao.isChecked()) {
                 op = 3;
             }
         } else if (id == 18) {
-            if (cb_conforme_fix.isSelected()) {
+            if (cb_conforme_fix.isChecked()) {
                 op = 1;
             }
-            if (cb_nconforme_fix.isSelected()) {
+            if (cb_nconforme_fix.isChecked()) {
                 op = 2;
             }
-            if (cb_na_fix.isSelected()) {
+            if (cb_na_fix.isChecked()) {
                 op = 3;
             }
         }
@@ -439,7 +506,6 @@ public class CheckListActivity extends AppCompatActivity {
             data.put("extinguishers_id", extinguishers_id);
             data.put("certifications_id", certifications_id);
             data.put("questions_id", questions_id);
-
 
             Log.i("JSON DATA", data.toString());
 

@@ -16,6 +16,7 @@
             android:id="@+id/bt_dashboard_show_report"
             android:layout_width="215dp"
             android:layout_height="50dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:alpha="0.50"
@@ -23,12 +24,14 @@
             android:text="@string/show_report_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_create_extinguishers" />
 
         <Button
             android:id="@+id/bt_dashboard_create_report"
             android:layout_width="215dp"
             android:layout_height="50dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="150dp"
             android:layout_marginEnd="20dp"
             android:alpha="0.50"
@@ -36,12 +39,14 @@
             android:text="@string/create_report_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/bt_dashboard_create_extinguishers"
             android:layout_width="215dp"
             android:layout_height="50dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:alpha="0.50"
@@ -49,36 +54,52 @@
             android:text="@string/create_extinguishers_dashboard_ptBr"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_create_report" />
 
-        <LinearLayout
-            android:layout_width="158dp"
-            android:layout_height="239dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="150dp"
-            android:orientation="vertical"
+        <Button
+            android:id="@+id/bt_manufacturers_register"
+            android:layout_width="215dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.50"
+            android:background="#CE2628"
+            android:text="CADASTRO DE FORNECEDOR"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/bt_dashboard_show_report" />
 
-            <Button
-                android:id="@+id/bt_manufacturers_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CADASTRO DE FORNECEDOR" />
+        <Button
+            android:id="@+id/bt_manufacturers_lister"
+            android:layout_width="215dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.50"
+            android:background="#CE2628"
+            android:text="LISTA DE FORNECEDOR"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_manufacturers_register" />
 
-            <Button
-                android:id="@+id/bt_manufacturers_lister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LISTA DE FORNECEDOR" />
+        <Button
+            android:id="@+id/bt_extinguishers_list"
+            android:layout_width="215dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.50"
+            android:background="#CE2628"
+            android:text="LISTA DE EXTINTOR"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_manufacturers_lister" />
 
-            <Button
-                android:id="@+id/bt_extinguishers_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LISTA DE EXTINTOR" />
-
-        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 

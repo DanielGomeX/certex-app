@@ -44,9 +44,9 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
 
-        if ( bundle.containsKey("isCertification") ){
+        if (it.hasExtra("isCertification")) {
             certifications = bundle.getBoolean("isCertification");
-            Log.i("BOOLEAN ########", ""+bundle.getBoolean("isCertification"));
+            Log.i("BOOLEAN ########", "" + bundle.getBoolean("isCertification"));
         }
 
         info = new TreeMap();
@@ -59,7 +59,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
 
                 Intent intent;
 
-                if (certifications){
+                if (certifications) {
                     intent = new Intent(ExtinguishersListActivity.this, CheckListActivity.class);
                 } else {
                     intent = new Intent(ExtinguishersListActivity.this, ExtinguishersActivity.class);
@@ -68,8 +68,8 @@ public class ExtinguishersListActivity extends AppCompatActivity {
                 //Get value String of variable listRoute
                 Object obj = parent.getItemAtPosition(position);
                 String idObj = "" + info.get(obj);
-                Log.i("Item selecionado", ""+obj);
-                Log.i("Item selecionado ID", ""+info.get(obj));
+                Log.i("Item selecionado", "" + obj);
+                Log.i("Item selecionado ID", "" + info.get(obj));
 
                 //Message or feedback to user
                 Toast.makeText(ExtinguishersListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
@@ -87,22 +87,6 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         listExtinguishers();
 
 
-
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     private void alert(String msg, boolean error) {
@@ -115,7 +99,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.move_left, R.anim.fade_out);
     }
 
-    private void listExtinguishers(){
+    private void listExtinguishers() {
 
         JSONObject jsonCount = ConnectionAPI.makeGet(null, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_COUNT);
 
@@ -125,13 +109,13 @@ public class ExtinguishersListActivity extends AppCompatActivity {
 
         try {
             int count = jsonCount.getJSONObject("data").getInt("count");
-            if (count > 0){
+            if (count > 0) {
                 data = new String[count];
-                String[] fixed = { "0", count+"" };
+                String[] fixed = {"0", count + ""};
                 JSONObject json = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_INDEX);
                 Log.i("JSON data", json.getString("data"));
                 JSONArray arrayJson = json.getJSONObject("data").getJSONArray("extinguishers");
-                for (int i = 0; i < arrayJson.length(); i++){
+                for (int i = 0; i < arrayJson.length(); i++) {
                     String temp = "Extintor # Código: " + arrayJson.getJSONObject(i).getString("code") + " / Número: " + arrayJson.getJSONObject(i).getString("numeration");
                     info.put(temp, arrayJson.getJSONObject(i).getInt("id"));
                     data[i] = temp;
@@ -142,7 +126,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
                 data[0] = "Nenhum dado encontrado";
                 listExtinguishers.setEnabled(false);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             data = new String[1];
             data[0] = "Nenhum dado encontrado";
