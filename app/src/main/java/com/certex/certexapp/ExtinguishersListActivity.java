@@ -30,6 +30,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
 
     private ListView listExtinguishers;
     private ArrayAdapter<String> adapter;
+    private boolean certifications = false;
 
     TreeMap<String, Integer> info;
 
@@ -41,6 +42,11 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         setTitle("Extintores Cadastrados");
 
         Intent it = getIntent();
+        Bundle bundle = it.getExtras();
+
+        if (bundle.containsKey("isCertifications")){
+            certifications = bundle.getBoolean("isCertifications");
+        }
 
         info = new TreeMap();
 
@@ -50,7 +56,13 @@ public class ExtinguishersListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(ExtinguishersListActivity.this, ExtinguishersActivity.class);
+                Intent intent;
+
+                if (certifications){
+                    intent = new Intent(ExtinguishersListActivity.this, CheckListActivity.class);
+                } else {
+                    intent = new Intent(ExtinguishersListActivity.this, ExtinguishersActivity.class);
+                }
 
                 //Get value String of variable listRoute
                 Object obj = parent.getItemAtPosition(position);

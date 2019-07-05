@@ -59,7 +59,9 @@ public class DashboardActivity extends AppCompatActivity {
         btCreateReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, CheckListActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("isCertification", "true");
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }

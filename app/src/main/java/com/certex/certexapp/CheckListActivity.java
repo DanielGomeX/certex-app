@@ -1,5 +1,6 @@
 package com.certex.certexapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import java.util.Date;
 
 public class CheckListActivity extends AppCompatActivity {
 
+    private int idExtinguisher;
 
     private RadioGroup rgIdentifica;
     private RadioGroup rgCarga;
@@ -68,6 +70,14 @@ public class CheckListActivity extends AppCompatActivity {
         rgProtecao = (RadioGroup) findViewById(R.id.rg_protecao);
         rgFixa = (RadioGroup) findViewById(R.id.rg_fix);
         rgFogo = (RadioGroup) findViewById(R.id.rg_fogo);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle.containsKey("id_extinguishers")){
+            idExtinguisher = bundle.getInt("id_extinguishers");
+        }
+
     }
 
 
