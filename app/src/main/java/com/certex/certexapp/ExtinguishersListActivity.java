@@ -44,8 +44,9 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
 
-        if (bundle.containsKey("isCertifications")){
-            certifications = bundle.getBoolean("isCertifications");
+        if ( bundle.containsKey("isCertification") ){
+            certifications = bundle.getBoolean("isCertification");
+            Log.i("BOOLEAN ########", ""+bundle.getBoolean("isCertification"));
         }
 
         info = new TreeMap();

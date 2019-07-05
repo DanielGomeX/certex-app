@@ -19,30 +19,34 @@ import com.certex.certexapp.service.CustomListView;
 public class DashboardActivity extends AppCompatActivity {
 
 
-    String[] maintitle = {
-            "Certificado 1", "Certificado 2",
-            "Certificado 3", "Certificado 4",
-            "Certificado 5",
-    };
-
-    String[] subtitle = {
-            "Extintor 1", "Extintor 2",
-            "Extintor 3", "Extintor 4",
-            "Extintor 5",
-    };
-
-    Integer[] imgid = {
-            R.drawable.icon, R.drawable.icon,
-            R.drawable.icon, R.drawable.icon,
-            R.drawable.icon,
-    };
+//    String[] maintitle = {
+//            "Certificado 1", "Certificado 2",
+//            "Certificado 3", "Certificado 4",
+//            "Certificado 5",
+//    };
+//
+//    String[] subtitle = {
+//            "Extintor 1", "Extintor 2",
+//            "Extintor 3", "Extintor 4",
+//            "Extintor 5",
+//    };
+//
+//    Integer[] imgid = {
+//            R.drawable.icon, R.drawable.icon,
+//            R.drawable.icon, R.drawable.icon,
+//            R.drawable.icon,
+//    };
 
     //    private Button btRegisterManufacturers;
     private Button btCreateReport;
     private Button btCreateExtinguishers;
     private Button btShowReport;
 
-    private ListView list;
+    private Button btManufacturersRegister;
+    private Button btManufacturersList;
+    private Button btExtinguishersList;
+
+//    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +55,9 @@ public class DashboardActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        CustomListView adapter = new CustomListView(this, maintitle, subtitle, imgid);
-        list = (ListView) findViewById(R.id.lv_dashboard);
-        list.setAdapter(adapter);
+//        CustomListView adapter = new CustomListView(this, maintitle, subtitle, imgid);
+//        list = (ListView) findViewById(R.id.lv_dashboard);
+//        list.setAdapter(adapter);
 
         btCreateReport = (Button) findViewById(R.id.bt_dashboard_create_report);
         btCreateReport.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +65,8 @@ public class DashboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("isCertification", "true");
+                bundle.putBoolean("isCertification", true);
+                intent.putExtras(bundle);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
@@ -71,7 +76,6 @@ public class DashboardActivity extends AppCompatActivity {
         btCreateExtinguishers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(DashboardActivity.this, ManufacturersListActivity.class);
                 Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
@@ -82,36 +86,66 @@ public class DashboardActivity extends AppCompatActivity {
         btShowReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, CertificationsListActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        btExtinguishersList = (Button) findViewById(R.id.bt_extinguishers_list);
+        btExtinguishersList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Auto-generated method stub
-                if (position == 0) {
-                    //code specific to first list item
-                    Toast.makeText(getApplicationContext(), "Place 1", Toast.LENGTH_SHORT).show();
-                } else if (position == 1) {
-                    //code specific to 2nd list item
-                    Toast.makeText(getApplicationContext(), "Place 2", Toast.LENGTH_SHORT).show();
-                } else if (position == 2) {
-
-                    Toast.makeText(getApplicationContext(), "Place 3", Toast.LENGTH_SHORT).show();
-                } else if (position == 3) {
-
-                    Toast.makeText(getApplicationContext(), "Place 4", Toast.LENGTH_SHORT).show();
-                } else if (position == 4) {
-
-                    Toast.makeText(getApplicationContext(), "Place 5", Toast.LENGTH_SHORT).show();
-                }
-
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, ExtinguishersListActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
+
+        btManufacturersList = (Button) findViewById(R.id.bt_manufacturers_lister);
+        btManufacturersList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, ManufacturersListActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+            }
+        });
+
+        btManufacturersRegister = (Button) findViewById(R.id.bt_manufacturers_register);
+        btManufacturersRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
+            }
+        });
+//
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                // TODO Auto-generated method stub
+//                if (position == 0) {
+//                    //code specific to first list item
+//                    Toast.makeText(getApplicationContext(), "Place 1", Toast.LENGTH_SHORT).show();
+//                } else if (position == 1) {
+//                    //code specific to 2nd list item
+//                    Toast.makeText(getApplicationContext(), "Place 2", Toast.LENGTH_SHORT).show();
+//                } else if (position == 2) {
+//
+//                    Toast.makeText(getApplicationContext(), "Place 3", Toast.LENGTH_SHORT).show();
+//                } else if (position == 3) {
+//
+//                    Toast.makeText(getApplicationContext(), "Place 4", Toast.LENGTH_SHORT).show();
+//                } else if (position == 4) {
+//
+//                    Toast.makeText(getApplicationContext(), "Place 5", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
     }
 
     @Override

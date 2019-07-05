@@ -159,7 +159,7 @@ public class CheckListActivity extends AppCompatActivity {
 
             JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_CERTIFICATIONS, ConnectionAPI.ACTION_STORE, null, data);
             String id = json.getJSONObject("data").getJSONObject("certification").getString("id");
-            certification_id = Integer.parseInt(id);
+            this.certification_id = Integer.parseInt(id);
 
             Log.i("JSON de SOTRE", json.toString());
         } catch (Exception e) {
@@ -443,7 +443,7 @@ public class CheckListActivity extends AppCompatActivity {
 
             Log.i("JSON DATA", data.toString());
 
-            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_STORE, null, data);
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_ANSWERS, ConnectionAPI.ACTION_STORE, null, data);
 
             Log.i("JSON de SOTRE", json.toString());
         } catch (Exception e) {
