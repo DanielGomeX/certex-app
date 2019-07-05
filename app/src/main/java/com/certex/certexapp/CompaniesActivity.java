@@ -51,6 +51,10 @@ public class CompaniesActivity extends AppCompatActivity {
     private ImageView ivSignature;
     private String baseSignature;
 
+    private boolean isSingup = false;
+    private int idCompany = 0;
+    private boolean error = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,15 @@ public class CompaniesActivity extends AppCompatActivity {
         etNeighborhood.setText(it.getStringExtra("h"));
         etState.setText(it.getStringExtra("i"));
         etCity.setText(it.getStringExtra("j"));
+
+        if (it.hasExtra("singup")){
+            this.isSingup = true;
+        }
+
+        if (it.hasExtra("id_company")){
+            this.idCompany = it.getExtras().getInt("id_company");
+        }
+
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
@@ -172,9 +185,9 @@ public class CompaniesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
 
-                if (!etCnpj.getText().toString().isEmpty() && !etState.getText().toString().isEmpty() && !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
+                if (!etCnpj.getText().toString().isEmpty() && /*!etState.getText().toString().isEmpty() &&*/ !etNeighborhood.getText().toString().isEmpty() && !etStateRegistration.getText().toString().isEmpty() &&
                         !etFantasyName.getText().toString().isEmpty() && !etSocialName.getText().toString().isEmpty() && !etAddress.getText().toString().isEmpty() &&
-                        !etCep.getText().toString().isEmpty() && !etCity.getText().toString().isEmpty()) {
+                        !etCep.getText().toString().isEmpty() /*&& !etCity.getText().toString().isEmpty()*/) {
                     File imgFile = new File(Environment.getExternalStoragePublicDirectory(
                             Environment.DIRECTORY_DOWNLOADS), "Signature.jpg");
                     if (imgFile.exists()) {
@@ -204,12 +217,22 @@ public class CompaniesActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         //Log.i("Base64", encodeFileToBase64Binary(imgFile));
-
-                        alert("SALVO COM SUCESSO!", false);
-
-                        Intent intent = new Intent(CompaniesActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
-                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                        ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                        if (error) {
+                            alert("ERRO AO SALVAR!", false);
+                        } else {
+                            alert("SALVO COM SUCESSO!", false);
+                            if (isSingup) {
+                                Intent intent = new Intent(CompaniesActivity.this, UserActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("id_company", idCompany);
+                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                                ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                            } else {
+                                Intent intent = new Intent(CompaniesActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
+                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                                ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                            }
+                        }
                         return true;
                     } else {
                         alert("Favor Crie uma Assinatura!", true);
@@ -304,10 +327,17 @@ public class CompaniesActivity extends AppCompatActivity {
 
             Log.i("JSON DATA", data.toString());
 
-            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_STORE, null, data);
-
+            JSONObject json;
+            if (idCompany == 0) {
+                json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_STORE, null, data);
+                idCompany = json.getJSONObject("data").getJSONObject("company").getInt("id");
+            } else {
+                json = ConnectionAPI.makePost(ConnectionAPI.TABLE_COMPANY, ConnectionAPI.ACTION_UPDATE, ""+idCompany, data);
+            }
+            this.error = json.has("error");
             Log.i("JSON de SOTRE", json.toString());
         } catch (Exception e) {
+            this.error = true;
             e.printStackTrace();
         }
 

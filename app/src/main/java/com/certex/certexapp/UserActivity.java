@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 public class UserActivity extends AppCompatActivity {
 
+    private int idCompany;
+
     private EditText etName;
     private EditText etPassword;
     private EditText etEmail;
@@ -37,6 +39,13 @@ public class UserActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_user_email);
 
         setTitle("Dados do Usuário");
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("id_company")){
+            this.idCompany =  intent.getExtras().getInt("id_company");
+        }
+
 
         //tvTeste.setText(Session.getInstance().getToken().getCode());
 
@@ -142,6 +151,8 @@ public class UserActivity extends AppCompatActivity {
         }
     }
 
+
+
     public boolean goCompany() {
         if (!etName.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty() && !etEmail.getText().toString().isEmpty()) {
             if (validateNameFormat(etName.getText().toString())) {
@@ -149,7 +160,8 @@ public class UserActivity extends AppCompatActivity {
                     if (etPassword.getText().length() > 5) {
                         saveCRUD();
 
-                        Intent intent = new Intent(UserActivity.this, CompaniesActivity.class);
+                        Intent intent = new Intent(UserActivity.this, DashboardActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
                         return true;
@@ -182,7 +194,7 @@ public class UserActivity extends AppCompatActivity {
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        String companies_id = "1"; //Verificar com Vitor
+        String companies_id = "" + idCompany; //Verificar com Vitor
         String access_level_id = "1";
 
         try {

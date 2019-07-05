@@ -93,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(MainActivity.this, UserActivity.class);
 //                String[] paramentesFixed = {"95950000"};
 //                ConnectionAPI.makeGet(paramentesFixed, null, "cep",null);
-                Intent intent = new Intent(MainActivity.this, ManufacturersActivity.class);
+                Intent intent = new Intent(MainActivity.this, CompaniesActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("singup", "singup");
+                intent.putExtras(bundle);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
             }
