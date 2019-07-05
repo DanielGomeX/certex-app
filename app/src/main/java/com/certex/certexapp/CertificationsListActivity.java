@@ -56,7 +56,7 @@ public class CertificationsListActivity extends AppCompatActivity {
                 //Message or feedback to user
                 //Toast.makeText(CertificationsListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
 
-                generateReport(Integer.parseInt(idObj), 1);
+                generateReport(Integer.parseInt(idObj), 1); //FALTA ID DO EXTINTOR (VER COM VITOR)
 
                 //Preparations of value, to send tha next screen
                 Bundle bundle = new Bundle();

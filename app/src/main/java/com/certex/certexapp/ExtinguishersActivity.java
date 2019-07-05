@@ -106,7 +106,6 @@ public class ExtinguishersActivity extends AppCompatActivity {
 
         }
 
-
         int c = countManufactur() + 1;
 
         for (int i = 1; i < c; i++) {
