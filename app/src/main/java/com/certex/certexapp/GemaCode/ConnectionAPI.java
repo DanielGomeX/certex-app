@@ -36,6 +36,7 @@ public class ConnectionAPI {
     public final static String TABLE_CEP = "cep";
     public final static String TABLE_MANUFACTURER = "manufacturer";
     public final static String TABLE_EXTINGUISHER = "extinguisher";
+    public final static String TABLE_CERTIFICATION = "certification";
     public final static String TABLE_USER = "user";
     public final static String TABLE_EXTINGUISHERS = "extinguisher";
 
@@ -45,6 +46,7 @@ public class ConnectionAPI {
     public final static String ACTION_INDEX = "index";
     public final static String ACTION_DESTROY = "destroy";
     public final static String ACTION_COUNT = "count";
+    public final static String ACTION_ALL = "all";
     public final static String ACTION_NULL = null;
 
     /**

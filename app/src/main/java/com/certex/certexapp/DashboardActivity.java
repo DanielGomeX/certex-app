@@ -69,8 +69,8 @@ public class DashboardActivity extends AppCompatActivity {
         btCreateExtinguishers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent intent = new Intent(DashboardActivity.this, ManufacturersListActivity.class);
                 Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
-//                Intent intent = new Intent(DashboardActivity.this, ExtinguishersActivity.class);
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }

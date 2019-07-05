@@ -23,6 +23,8 @@
         <activity android:name=".SignatureActivity" />
         <activity android:name=".ManufacturersActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".CertificationsListActivity" />
+        <activity android:name=".ManufacturersListActivity" />
         <activity android:name=".CompaniesActivity" /> <!-- android:windowSoftInputMode="stateHidden" /> -->
         <activity android:name=".SplashActivity">
             <intent-filter>

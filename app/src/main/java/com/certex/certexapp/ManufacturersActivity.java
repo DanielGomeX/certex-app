@@ -52,7 +52,29 @@ public class ManufacturersActivity extends AppCompatActivity {
 
         setTitle("Cadastro de Fornecedor");
 
-        Intent it = getIntent();
+        // Modo de edição
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle.containsKey("id_manufacturers")) {
+            String[] fixed = {bundle.getString("id_manufacturers")};
+            this.id = Integer.parseInt(bundle.getString("id_manufacturers"));
+            JSONObject entityJson = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_SHOW);
+            Log.i("ENTITY RETURN", entityJson.toString());
+            try {
+                etName.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("name"));
+                etFone.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("fone"));
+                etEmail.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("email"));
+                etDescription.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("description"));
+                etCep.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("cep"));
+                etCity.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("city"));
+                etState.setText(entityJson.getJSONObject("data").getJSONObject("manufacturer").getString("state"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
 
         btSearchCep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,15 +251,21 @@ public class ManufacturersActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bt_main_save:
-                saveCRUD();
-
-
-                //VERIFICAR
-                alert("SALVO COM SUCESSO!", false);
-
-                Intent intent = new Intent(ManufacturersActivity.this, DashboardActivity.class);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
-                ActivityCompat.startActivity(ManufacturersActivity.this, intent, activityOptionsCompat.toBundle());
+                if (this.id != 0){
+                    updateCRUD();
+                    //VERIFICAR
+                    alert("SALVO COM SUCESSO!", false);
+                    Intent intent = new Intent(ManufacturersActivity.this, ManufacturersListActivity.class);
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                    ActivityCompat.startActivity(ManufacturersActivity.this, intent, activityOptionsCompat.toBundle());
+                } else {
+                    saveCRUD();
+                    //VERIFICAR
+                    alert("SALVO COM SUCESSO!", false);
+                    Intent intent = new Intent(ManufacturersActivity.this, DashboardActivity.class);
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                    ActivityCompat.startActivity(ManufacturersActivity.this, intent, activityOptionsCompat.toBundle());
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -304,7 +332,36 @@ public class ManufacturersActivity extends AppCompatActivity {
 
             JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_STORE, null, data);
 
-            Log.i("JSON de SOTRE", json.toString());
+            Log.i("JSON SOTRE", json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void updateCRUD() {
+        String name = etName.getText().toString();
+        String fone = etFone.getText().toString();
+        String email = etEmail.getText().toString();
+        String description = etDescription.getText().toString();
+        String cep = etCep.getText().toString();
+        String city = etCity.getText().toString();
+        String state = etState.getText().toString();
+        try {
+            JSONObject data = new JSONObject();
+            data.put("name", name);
+            data.put("fone", fone);
+            data.put("email", email);
+            data.put("description", description);
+            data.put("cep", cep);
+            data.put("state", state);
+            data.put("city", city);
+
+            Log.i("JSON DATA", data.toString());
+
+            JSONObject json = ConnectionAPI.makePost(ConnectionAPI.TABLE_MANUFACTURER, ConnectionAPI.ACTION_UPDATE, ""+this.id, data);
+
+            Log.i("JSON UPDATE", json.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
