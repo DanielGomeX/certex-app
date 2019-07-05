@@ -22,8 +22,6 @@ import java.util.Date;
 
 public class CheckListActivity extends AppCompatActivity {
 
-    private int idExtinguisher;
-
     private RadioGroup rgIdentifica;
     private RadioGroup rgCarga;
     private RadioGroup rgReteste;
@@ -102,7 +100,8 @@ public class CheckListActivity extends AppCompatActivity {
     private RadioButton cb_nconforme_fogo;
     private RadioButton cb_na_fogo;
 
-    private int certification_id = 0;
+    private int certification_id;
+    private int idExtinguisher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +198,27 @@ public class CheckListActivity extends AppCompatActivity {
     }
 
 
+    private void generateReport(int certificationId, int extinguisherId) {
+        String param1 = certificationId + "";
+        String param2 = extinguisherId + "";
+        String[] parametersFixed = {param1, param2, "generate"};
+        try {
+            String json = ConnectionAPI.makeReport(parametersFixed, null, ConnectionAPI.TABLE_CERTIFICATIONS, null) + "";
+            Log.i("JOSN Link: ", json);
+            shareButton(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void shareButton(String link) {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "certex-app");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, link);
+        startActivity(Intent.createChooser(sendIntent, "Share via"));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -224,8 +244,8 @@ public class CheckListActivity extends AppCompatActivity {
                 int checkedIdReteste = rgReteste.getCheckedRadioButtonId();
                 int checkedIdSinaliza = rgSinaliza.getCheckedRadioButtonId();
 
-                if (checkedIdAlavanca != -1 || checkedIdAnel != -1 || checkedIdBico != -1 || checkedIdCarga != -1 || checkedIdDeso != -1 || checkedIdEtiqueta != -1 || checkedIdFixa != -1 || checkedIdFogo != -1 || checkedIdIdenti != -1 ||
-                        checkedIdLacre != -1 || checkedIdMangueira != -1 || checkedIdMano != -1 || checkedIdPintura != -1 || checkedIdPiso != -1 || checkedIdProtecao != -1 || checkedIdPunho != -1 || checkedIdRecarga != -1 || checkedIdReteste != -1 ||
+                if (checkedIdAlavanca != -1 && checkedIdAnel != -1 && checkedIdBico != -1 && checkedIdCarga != -1 && checkedIdDeso != -1 && checkedIdEtiqueta != -1 && checkedIdFixa != -1 && checkedIdFogo != -1 && checkedIdIdenti != -1 &&
+                        checkedIdLacre != -1 && checkedIdMangueira != -1 && checkedIdMano != -1 && checkedIdPintura != -1 && checkedIdPiso != -1 && checkedIdProtecao != -1 && checkedIdPunho != -1 && checkedIdRecarga != -1 && checkedIdReteste != -1 &&
                         checkedIdSinaliza != -1) {
                     createReport();
                     for (int i = 0; i < 19; i++) {
@@ -237,6 +257,8 @@ public class CheckListActivity extends AppCompatActivity {
                     Intent intent = new Intent(CheckListActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                     ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                     ActivityCompat.startActivity(CheckListActivity.this, intent, activityOptionsCompat.toBundle());
+
+                    generateReport(certification_id, idExtinguisher);
                 } else {
                     alert("Favor Selecione adequadamente!", true);
                 }
@@ -267,10 +289,11 @@ public class CheckListActivity extends AppCompatActivity {
 
     private void createReport() {
 
-        SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
+        SimpleDateFormat formataData = new SimpleDateFormat("HHmmss/yyyy");
+        SimpleDateFormat formataData2 = new SimpleDateFormat("dd/MM/yyyy");
         Date fdata = new Date();
-        String dataFormatada = formataData.format(fdata);
-        String report_code = dataFormatada;
+        String dataFormatada = formataData2.format(fdata);
+        String report_code = formataData.format(fdata);
         String users_id = Session.getInstance().getToken().getUserID();
 
         try {
@@ -278,6 +301,7 @@ public class CheckListActivity extends AppCompatActivity {
             data.put("report_code", report_code);
             data.put("users_id", users_id);
             data.put("signature", "Minha Assinatura");
+            data.put("date", dataFormatada);
 
 
             Log.i("JSON DATA", data.toString());

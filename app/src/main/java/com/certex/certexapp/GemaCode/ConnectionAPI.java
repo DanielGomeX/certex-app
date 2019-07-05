@@ -219,6 +219,51 @@ public class ConnectionAPI {
         MyRequestQueue.add(MyStringRequest);
     }
 
+    public static String makeReport(String[] parametersFixed, String[] parameters, String from, String action) {
+        StringBuilder result = new StringBuilder();
+        String st_json = null;
+        //Montar a URL
+        String dataUrlTemp = url + from;
+        if (parametersFixed != null) {
+            for (int i = 0; i < parametersFixed.length; i++) {
+                dataUrlTemp += "/" + parametersFixed[i];
+            }
+        }
+        if (action != null) {
+            dataUrlTemp += "/" + action;
+        }
+        if (Session.isFromInstance()) {
+            dataUrlTemp += "?token=" + Session.getInstance().getToken().getCode();
+        }
+        if (parameters != null) {
+            for (int i = 0; i < parameters.length; i++) {
+                if (Session.isFromInstance() && i == 0) {
+                    dataUrlTemp += "?" + parameters[i];
+                } else {
+                    dataUrlTemp += "&" + parameters[i];
+                }
+            }
+        }
+        Log.i("URL DO GET => ", dataUrlTemp);
+        try {
+            //Estabelecer a conexão
+            URL url = new URL(dataUrlTemp);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            //Receber o resultado
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            //Montar o JSON
+            st_json = result.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return st_json;
+    }
+
 
 //    public static HashMap apiPOST(final String[] keys, final String[] value, final String[] keysInput, String table, Activity activity) {
 //        final RequestQueue MyRequestQueue = Volley.newRequestQueue(activity);

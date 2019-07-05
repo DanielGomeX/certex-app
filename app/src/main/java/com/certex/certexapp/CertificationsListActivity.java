@@ -54,7 +54,9 @@ public class CertificationsListActivity extends AppCompatActivity {
                 Log.i("Item selecionado ID", "" + info.get(obj));
 
                 //Message or feedback to user
-                Toast.makeText(CertificationsListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CertificationsListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
+
+                generateReport(Integer.parseInt(idObj), 1);
 
                 //Preparations of value, to send tha next screen
                 Bundle bundle = new Bundle();
@@ -67,8 +69,27 @@ public class CertificationsListActivity extends AppCompatActivity {
         });
 
         listExtinguishers();
+    }
 
+    private void generateReport(int certificationId, int extinguisherId) {
+        String param1 = certificationId + "";
+        String param2 = extinguisherId + "";
+        String[] parametersFixed = {param1, param2, "generate"};
+        try {
+            String json = ConnectionAPI.makeReport(parametersFixed, null, ConnectionAPI.TABLE_CERTIFICATIONS, null) + "";
+            Log.i("JOSN Link: ", json);
+            shareButton(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void shareButton(String link) {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "certex-app");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, link);
+        startActivity(Intent.createChooser(sendIntent, "Share via"));
     }
 
     private void alert(String msg, boolean error) {

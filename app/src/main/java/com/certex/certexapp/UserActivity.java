@@ -42,8 +42,8 @@ public class UserActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("id_company")){
-            this.idCompany =  intent.getExtras().getInt("id_company");
+        if (intent.hasExtra("id_company")) {
+            this.idCompany = intent.getExtras().getInt("id_company");
         }
 
 
@@ -58,7 +58,6 @@ public class UserActivity extends AppCompatActivity {
                 return true;
             }
         });
-
 
         etEmail.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -151,8 +150,6 @@ public class UserActivity extends AppCompatActivity {
         }
     }
 
-
-
     public boolean goCompany() {
         if (!etName.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty() && !etEmail.getText().toString().isEmpty()) {
             if (validateNameFormat(etName.getText().toString())) {
@@ -162,7 +159,7 @@ public class UserActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(UserActivity.this, DashboardActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right); //VOLTAR
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
                         finish();
                         return true;

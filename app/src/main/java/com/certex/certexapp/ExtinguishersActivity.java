@@ -188,8 +188,6 @@ public class ExtinguishersActivity extends AppCompatActivity {
         } else {
             etValidateDate.setText(sdf.format(myCalendar.getTime()));
         }
-
-
     }
 
 
