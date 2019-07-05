@@ -26,6 +26,8 @@ public class CertificationsListActivity extends AppCompatActivity {
     private ListView listCertifications;
     private ArrayAdapter<String> adapter;
 
+    private int idExtinguisher;
+
     TreeMap<String, Integer> info;
 
     @Override
@@ -56,7 +58,9 @@ public class CertificationsListActivity extends AppCompatActivity {
                 //Message or feedback to user
                 //Toast.makeText(CertificationsListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
 
-                generateReport(Integer.parseInt(idObj), 1); //FALTA ID DO EXTINTOR (VER COM VITOR)
+                searchCertification(Integer.parseInt(idObj));
+
+                generateReport(Integer.parseInt(idObj), idExtinguisher); //FALTA ID DO EXTINTOR (VER COM VITOR)
 
                 //Preparations of value, to send tha next screen
                 Bundle bundle = new Bundle();
@@ -69,6 +73,19 @@ public class CertificationsListActivity extends AppCompatActivity {
         });
 
         listExtinguishers();
+    }
+
+    private void searchCertification(int id) {
+        String param = id + "";
+        String[] parametersFixed = {param, "show"};
+        try {
+            JSONObject json = ConnectionAPI.makeGet(parametersFixed, null, ConnectionAPI.TABLE_CERTIFICATION, null);
+            Log.i("JOSN Manufacturer", json.toString());
+            String result = json.getJSONObject("data").getJSONObject("certification").getString("extinguishers_id");
+            idExtinguisher = Integer.parseInt(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void generateReport(int certificationId, int extinguisherId) {

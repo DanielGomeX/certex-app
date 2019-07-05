@@ -72,7 +72,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
                 Log.i("Item selecionado ID", "" + info.get(obj));
 
                 //Message or feedback to user
-                Toast.makeText(ExtinguishersListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ExtinguishersListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
 
                 //Preparations of value, to send tha next screen
                 Bundle bundle = new Bundle();

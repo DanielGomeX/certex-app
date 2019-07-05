@@ -361,6 +361,7 @@ public class CheckListActivity extends AppCompatActivity {
             data.put("users_id", users_id);
             data.put("signature", "Minha Assinatura");
             data.put("date", dataFormatada);
+            data.put("extinguishers_id", idExtinguisher);
 
 
             Log.i("JSON DATA", data.toString());
@@ -583,7 +584,11 @@ public class CheckListActivity extends AppCompatActivity {
         try {
             JSONObject data = new JSONObject();
             data.put("description", description);
-            data.put("photo", photo);
+            if (id == 0) {
+                data.put("photo", photo);
+            } else {
+                data.put("photo", "SEM FOTO");
+            }
             data.put("active", active);
             data.put("alternatives_id", alternatives_id);
             data.put("extinguishers_id", extinguishers_id);
