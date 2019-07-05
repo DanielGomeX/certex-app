@@ -227,6 +227,7 @@ public class CompaniesActivity extends AppCompatActivity {
                                 bundle.putInt("id_company", idCompany);
                                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                                 ActivityCompat.startActivity(CompaniesActivity.this, intent, activityOptionsCompat.toBundle());
+                                finish();
                             } else {
                                 Intent intent = new Intent(CompaniesActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);

@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DashboardActivity.class); //TESTE NECESSÁRIO CRIAR A ACTIVITY DASHBOARD
                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                 ActivityCompat.startActivity(MainActivity.this, intent, activityOptionsCompat.toBundle());
+                finish();
             } else {
                 alert("Usuário e/ou Senha Incorretos(s)!", true);
             }
@@ -158,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
         this.moveTaskToBack(true); //Não volta
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.move_left, R.anim.fade_out);
-    }
+//    @Override
+//    public void finish() {
+//        super.finish();
+//        overridePendingTransition(R.anim.move_left, R.anim.fade_out);
+//    }
 }
 

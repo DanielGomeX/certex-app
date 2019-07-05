@@ -164,6 +164,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
                         ActivityCompat.startActivity(UserActivity.this, intent, activityOptionsCompat.toBundle());
+                        finish();
                         return true;
                     } else {
                         alert("A Senha deve conter no mínimo 6 caracteres.!", true);
