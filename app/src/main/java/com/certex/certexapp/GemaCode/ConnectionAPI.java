@@ -39,6 +39,7 @@ public class ConnectionAPI {
     public final static String TABLE_CERTIFICATION = "certification";
     public final static String TABLE_USER = "user";
     public final static String TABLE_EXTINGUISHERS = "extinguisher";
+    public final static String TABLE_CERTIFICATIONS = "certification";
 
     public final static String ACTION_STORE = "store";
     public final static String ACTION_UPDATE = "update";
