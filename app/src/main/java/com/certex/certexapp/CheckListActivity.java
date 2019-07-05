@@ -1,15 +1,29 @@
 package com.certex.certexapp;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.GemaCode.Session;
@@ -17,6 +31,8 @@ import com.certex.certexapp.service.Alert;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -100,8 +116,14 @@ public class CheckListActivity extends AppCompatActivity {
     private RadioButton cb_nconforme_fogo;
     private RadioButton cb_na_fogo;
 
+    private EditText etDescription;
+
+    private Button btPhoto;
+    private ImageView imageViewFoto;
+
     private int certification_id;
     private int idExtinguisher;
+    private String baseImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +210,11 @@ public class CheckListActivity extends AppCompatActivity {
         cb_nconforme_fogo = (RadioButton) findViewById(R.id.cb_nconforme_fogo);
         cb_na_fogo = (RadioButton) findViewById(R.id.cb_na_fogo);
 
+        etDescription = (EditText) findViewById(R.id.et_desc_checklist);
+
+        btPhoto = (Button) findViewById(R.id.bt_photo_checklist);
+        imageViewFoto = (ImageView) findViewById(R.id.iv_photo_checklist);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
@@ -195,8 +222,43 @@ public class CheckListActivity extends AppCompatActivity {
             String x = bundle.getString("id_extinguishers");
             idExtinguisher = Integer.parseInt(x);
         }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+        }
+
+        btPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkPhoto();
+            }
+        });
     }
 
+    public void checkPhoto() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, 1);
+    }
+
+    public static String convert(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap images = (Bitmap) extras.get("data");
+            imageViewFoto.setImageBitmap(images);
+
+            baseImage = convert(images);
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     private void generateReport(int certificationId, int extinguisherId) {
         String param1 = certificationId + "";
@@ -262,13 +324,10 @@ public class CheckListActivity extends AppCompatActivity {
                 } else {
                     alert("Favor Selecione adequadamente!", true);
                 }
-
-
                 return false;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
@@ -513,8 +572,8 @@ public class CheckListActivity extends AppCompatActivity {
         }
 
         int questionsId = id + 1;
-        String description = "Teste";
-        String photo = "Sem Foto";
+        String description = etDescription.getText().toString();
+        String photo = baseImage;
         String active = "1";
         String alternatives_id = op + "";
         String extinguishers_id = idExtinguisher + "";

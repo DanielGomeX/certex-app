@@ -33,6 +33,8 @@
     <string name="radio_conforme">CONFORME</string>
     <string name="radio_naoconforme">NÃO CONFORME</string>
     <string name="radio_na">N/A</string>
+    <string name="description_checklist_ptBr">Descrição:</string>
+    <string name="photo_checklist_ptBr">FOTO</string>
 
 
     <string name="empty"></string>

@@ -1160,6 +1160,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Descrição"
+                android:textSize="24dp" />
+
+
+            <EditText
+                android:id="@+id/et_desc_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="98dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/description_checklist_ptBr"
+                android:inputType="textMultiLine" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <Button
+                android:id="@+id/bt_photo_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/photo_checklist_ptBr" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <ImageView
+                android:id="@+id/iv_photo_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
