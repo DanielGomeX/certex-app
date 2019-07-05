@@ -39,7 +39,7 @@
     <string name="charge_extinguishers_ptBr">*Carga</string>
     <string name="chargeDate_extinguishers_ptBr">*Data da Carga:</string>
     <string name="validate_extinguishers_ptBr">*Validade:</string>
-    <string name="location_extinguishers_ptBr">Localização:</string>
+    <string name="location_extinguishers_ptBr">*Localização:</string>
     <string name="manufacturers_extinguishers_ptBr">*Fornecedor</string>
     <string name="manufacturers_btn_extinguishers_ptBr">Buscar Fornecedor</string>
     <string name="status_extinguishers_ptBr">Situação:</string>

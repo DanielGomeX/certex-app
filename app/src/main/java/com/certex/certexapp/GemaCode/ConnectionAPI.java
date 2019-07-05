@@ -36,6 +36,7 @@ public class ConnectionAPI {
     public final static String TABLE_CEP = "cep";
     public final static String TABLE_MANUFACTURER = "manufacturer";
     public final static String TABLE_USER = "user";
+    public final static String TABLE_EXTINGUISHERS = "extinguisher";
 
     public final static String ACTION_STORE = "store";
     public final static String ACTION_UPDATE = "update";

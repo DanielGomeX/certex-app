@@ -65,161 +65,161 @@ public class ManufacturersActivity extends AppCompatActivity {
             }
         });
 
-//        btSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                saveCRUD();
-//            }
-//        });
-
-        //Field name ======= START
-        //Verify field empty
-        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etName.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("Nome vazio", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("Próximo: Telefone", true);
-                    return false;
-                }
-                return true;
-            }
-        });
-        //Field name ======= FINISH
-
-
-        //Field fone ======= START
-        //Verify field empty
-        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etFone.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("Telefone vazio", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("Próximo: Email", true);
-                    return false;
-                }
-                return true;
-            }
-        });
-        //Field fone ======= FINISH
-
-
-        //Field email ======= START
-        //Verify field empty
-        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etEmail.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("Email vazio", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("Próximo: Descrição", true);
-                    return false;
-                }
-                return true;
-            }
-        });
-        //Field email ======= FINISH
-
-
-        //Field description ======= START
-        //Verify field empty
-        etDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etDescription.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("Descrição vazio", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-        etDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    alert("Próximo: CEP", true);
-                    return false;
-                }
-                return true;
-            }
-        });
-        //Field description ======= FINISH
-
-
-        //Field CEP ======= START
-        //Verify field empty
-        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!etCep.getText().toString().isEmpty()) {
-                        return false;
-                    } else {
-                        alert("CEP vazio", true);
-                    }
-                }
-                return true;
-            }
-        });
-
-        //Next field
-//        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+////        btSave.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View view) {
+////                saveCRUD();
+////            }
+////        });
+//
+//        //Field name ======= START
+//        //Verify field empty
+//        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 //            @Override
 //            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 //                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-//                    alert("Próximo: capacidade do extintor", true);
+//                    if (!etName.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("Nome vazio", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+//        etName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("Próximo: Telefone", true);
 //                    return false;
 //                }
 //                return true;
 //            }
 //        });
-        //Field CEP ======= FINISH
+//        //Field name ======= FINISH
+//
+//
+//        //Field fone ======= START
+//        //Verify field empty
+//        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etFone.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("Telefone vazio", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+//        etFone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("Próximo: Email", true);
+//                    return false;
+//                }
+//                return true;
+//            }
+//        });
+//        //Field fone ======= FINISH
+//
+//
+//        //Field email ======= START
+//        //Verify field empty
+//        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etEmail.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("Email vazio", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+//        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("Próximo: Descrição", true);
+//                    return false;
+//                }
+//                return true;
+//            }
+//        });
+//        //Field email ======= FINISH
+//
+//
+//        //Field description ======= START
+//        //Verify field empty
+//        etDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etDescription.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("Descrição vazio", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+//        etDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    alert("Próximo: CEP", true);
+//                    return false;
+//                }
+//                return true;
+//            }
+//        });
+//        //Field description ======= FINISH
+//
+//
+//        //Field CEP ======= START
+//        //Verify field empty
+//        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    if (!etCep.getText().toString().isEmpty()) {
+//                        return false;
+//                    } else {
+//                        alert("CEP vazio", true);
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//
+//        //Next field
+////        etCep.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+////            @Override
+////            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+////                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+////                    alert("Próximo: capacidade do extintor", true);
+////                    return false;
+////                }
+////                return true;
+////            }
+////        });
+//        //Field CEP ======= FINISH
 
 
     }
@@ -297,8 +297,8 @@ public class ManufacturersActivity extends AppCompatActivity {
             data.put("email", email);
             data.put("description", description);
             data.put("cep", cep);
-            data.put("city", city);
             data.put("state", state);
+            data.put("city", city);
 
             Log.i("JSON DATA", data.toString());
 

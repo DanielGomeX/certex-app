@@ -46,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         CustomListView adapter = new CustomListView(this, maintitle, subtitle, imgid);
         list = (ListView) findViewById(R.id.lv_dashboard);
@@ -77,7 +77,9 @@ public class DashboardActivity extends AppCompatActivity {
         btShowReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(DashboardActivity.this, ManufacturersActivity.class);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.move_right);
+                ActivityCompat.startActivity(DashboardActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
 

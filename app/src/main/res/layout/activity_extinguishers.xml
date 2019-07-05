@@ -32,7 +32,7 @@
             android:enabled="true"
             android:hint="@string/validate_extinguishers_ptBr"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName" />
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/et_charge_date_extinguishers"
@@ -41,7 +41,7 @@
             android:enabled="true"
             android:hint="@string/chargeDate_extinguishers_ptBr"
             android:imeOptions="actionNext"
-            android:inputType="number" />
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/et_location_extinguishers"
@@ -66,14 +66,14 @@
             android:text="A" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="C" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -105,7 +105,7 @@
             android:enabled="true"
             android:hint="@string/capacity_extinguishers_ptBr"
             android:imeOptions="actionNext"
-            android:inputType="textCapCharacters" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/et_charge_extinguishers"
@@ -114,39 +114,29 @@
             android:enabled="true"
             android:hint="@string/charge_extinguishers_ptBr"
             android:imeOptions="actionNext"
-            android:inputType="textCapCharacters" />
-
-        <EditText
-            android:id="@+id/et_manufacturers_extinguishers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="true"
-            android:hint="@string/manufacturers_extinguishers_ptBr"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName" />
+            android:inputType="numberDecimal" />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="5dp" />
 
-        <Button
-            android:id="@+id/bt_manufacturers_extinguishers"
+        <Spinner
+            android:id="@+id/sp_manufacturers_extinguishers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/manufacturers_btn_extinguishers_ptBr" />
+            android:layout_height="92dp" />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="25dp" />
 
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="B" />
 
         <CheckBox
-            android:id="@+id/checkBox6"
+            android:id="@+id/checkBox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="D" />

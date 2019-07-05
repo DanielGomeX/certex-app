@@ -7,16 +7,6 @@
     android:background="@drawable/background_companies"
     tools:context=".ExtinguishersActivity">
 
-    <EditText
-        android:id="@+id/et_extinguishers_code4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:enabled="true"
-        android:hint="@string/description_manufacturers_ptBr"
-        android:imeOptions="actionNext"
-        android:inputType="number" />
-
     <ScrollView
         android:id="@+id/sv_companies"
         android:layout_width="match_parent"
@@ -47,7 +37,7 @@
                 android:enabled="true"
                 android:hint="@string/fone_manufacturers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
+                android:inputType="phone" />
 
             <EditText
                 android:id="@+id/et_email_manufacturers"
@@ -56,7 +46,7 @@
                 android:enabled="true"
                 android:hint="@string/email_manufacturers_ptBr"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/et_description_manufacturers"
