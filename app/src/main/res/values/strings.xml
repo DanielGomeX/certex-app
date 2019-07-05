@@ -55,5 +55,7 @@
     <string name="name_manufacturers_ptBr">Nome</string>
     <string name="fone_manufacturers_ptBr">Telefone</string>
     <string name="email_manufacturers_ptBr">E-mail</string>
+    <string name="bt_edit">EDITAR</string>
+    <string name="bt_delet" >DELETAR</string>
 
 </resources>
