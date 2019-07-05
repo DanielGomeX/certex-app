@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 public class ExtinguishersActivity extends AppCompatActivity {
 
+    private int id = 0;
     private EditText etCode;
     private EditText etNumber;
     private EditText etCapacity;
@@ -81,6 +82,30 @@ public class ExtinguishersActivity extends AppCompatActivity {
         setTitle("Cadastro de Extintor");
 
         manufacturers.add("*Fornecedor");
+
+        // Modo de edição
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if( bundle.containsKey("id_extinguishers") ){
+            String[] fixed = {bundle.getString("id_extinguishers")};
+            this.id = Integer.parseInt( bundle.getString("id_extinguishers") );
+            JSONObject entityJson = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_SHOW);
+            Log.i("ENTITY RETURN", entityJson.toString());
+            try {
+                etCode.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("code") );
+                etNumber.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("numeration") );
+                etCapacity.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("capacity") );
+                etCharge.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge") );
+                etChargeDate.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("charge_date") );
+                etValidateDate.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("validate_date") );
+                etLocation.setText( entityJson.getJSONObject("data").getJSONObject("extinguisher").getString("location") );
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
 
         int c = countManufactur() + 1;
 
@@ -163,6 +188,9 @@ public class ExtinguishersActivity extends AppCompatActivity {
         } else {
             etValidateDate.setText(sdf.format(myCalendar.getTime()));
         }
+
+
+
 
     }
 

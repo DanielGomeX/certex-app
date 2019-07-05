@@ -7,23 +7,31 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.certex.certexapp.GemaCode.ConnectionAPI;
 import com.certex.certexapp.service.Alert;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.TreeMap;
 
 
 public class ExtinguishersListActivity extends AppCompatActivity {
 
-    private ListView listRoute;
+    private ListView listExtinguishers;
     private ArrayAdapter<String> adapter;
+
+    TreeMap<String, Integer> info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +42,38 @@ public class ExtinguishersListActivity extends AppCompatActivity {
 
         Intent it = getIntent();
 
-        listRoute = (ListView) findViewById(R.id.lw_list_extinguishers);
+        info = new TreeMap();
+
+        listExtinguishers = (ListView) findViewById(R.id.lw_list_extinguishers);
+
+        listExtinguishers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(ExtinguishersListActivity.this, ExtinguishersActivity.class);
+
+                //Get value String of variable listRoute
+                Object obj = parent.getItemAtPosition(position);
+                String idObj = "" + info.get(obj);
+                Log.i("Item selecionado", ""+obj);
+                Log.i("Item selecionado ID", ""+info.get(obj));
+
+                //Message or feedback to user
+                Toast.makeText(ExtinguishersListActivity.this, "Carregando dados para edição", Toast.LENGTH_SHORT).show();
+
+                //Preparations of value, to send tha next screen
+                Bundle bundle = new Bundle();
+                bundle.putString("id_extinguishers", idObj);
+
+                //Send parameters and start the screen
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         listExtinguishers();
+
+
 
     }
 
@@ -77,12 +114,20 @@ public class ExtinguishersListActivity extends AppCompatActivity {
             int count = jsonCount.getJSONObject("data").getInt("count");
             if (count > 0){
                 data = new String[count];
-                String[] fixed = { count+"", "1" };
+                String[] fixed = { "0", count+"" };
                 JSONObject json = ConnectionAPI.makeGet(fixed, null, ConnectionAPI.TABLE_EXTINGUISHER, ConnectionAPI.ACTION_INDEX);
-                Log.i("JSON data", json.toString());
+                Log.i("JSON data", json.getString("data"));
+                JSONArray arrayJson = json.getJSONObject("data").getJSONArray("extinguishers");
+                for (int i = 0; i < arrayJson.length(); i++){
+                    String temp = "Extintor # Código: " + arrayJson.getJSONObject(i).getString("code") + " / Número: " + arrayJson.getJSONObject(i).getString("numeration");
+                    info.put(temp, arrayJson.getJSONObject(i).getInt("id"));
+                    data[i] = temp;
+                    Log.i("JSON array", temp);
+                }
             } else {
                 data = new String[1];
                 data[0] = "Nenhum dado encontrado";
+                listExtinguishers.setEnabled(false);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -91,7 +136,7 @@ public class ExtinguishersListActivity extends AppCompatActivity {
         }
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
-        listRoute.setAdapter(adapter);
+        listExtinguishers.setAdapter(adapter);
 
     }
 }
